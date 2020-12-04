@@ -1,0 +1,22 @@
+# Account details
+aws_profile = "heritage-staging-eu-west-2"
+aws_region  = "eu-west-2"
+aws_account = "heritage-staging"
+
+# Account shorthand
+account = "hstg"
+region  = "euw2"
+
+# Service details
+service = "ewf"
+environment = "heritage-staging"
+
+# RDS Settings
+allocated_storage = 10
+maximum_storage   = 800
+backup_retention_period = 2
+
+engine               = "oracle-se2"
+major_engine_version = "12.1"
+engine_version       = "12.1.0.2.v21"
+license_model        = "license-included"
