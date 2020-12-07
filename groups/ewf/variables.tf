@@ -74,11 +74,6 @@ variable "maximum_storage" {
   description = "The maximum storage in GB to allow RDS to scale to"
 }
 
-variable "rds_subnet_ids" {
-  type        = list(string)
-  description = "A list of subnets to use for the RDS subnet group setup and RDS placement"
-}
-
 # ------------------------------------------------------------------------------
 # RDS Engine Type Variables
 # ------------------------------------------------------------------------------

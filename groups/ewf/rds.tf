@@ -7,39 +7,11 @@ module "ewf_rds_security_group" {
 
   name        = "sgr-${var.application}-rds-001"
   description = "Security group for the ${var.application} rds database"
-  vpc_id      = local.vpc_data["vpc-id"]
+  vpc_id      = data.aws_vpc.vpc.id
 
   ingress_cidr_blocks = local.admin_cidrs
   ingress_rules       = ["oracle-db-tcp"]
   egress_rules        = ["all-all"]
-}
-
-# ------------------------------------------------------------------------------
-# RDS Enhanced monitoring
-# ------------------------------------------------------------------------------
-resource "aws_iam_role" "rds_enhanced_monitoring" {
-  name               = "irol-rds-enhanced-monitoring-${var.application}"
-  assume_role_policy = data.aws_iam_policy_document.rds_enhanced_monitoring.json
-}
-
-resource "aws_iam_role_policy_attachment" "rds_enhanced_monitoring" {
-  role       = aws_iam_role.rds_enhanced_monitoring.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
-}
-
-data "aws_iam_policy_document" "rds_enhanced_monitoring" {
-  statement {
-    actions = [
-      "sts:AssumeRole",
-    ]
-
-    effect = "Allow"
-
-    principals {
-      type        = "Service"
-      identifiers = ["monitoring.rds.amazonaws.com"]
-    }
-  }
 }
 
 # ------------------------------------------------------------------------------
@@ -61,7 +33,7 @@ module "ewf_rds" {
   allocated_storage    = var.allocated_storage
   multi_az             = var.multi_az
   storage_encrypted    = true
-  kms_key_id           = local.kms_date["rds-kms-arn"]
+  kms_key_id           = data.aws_kms_key.rds.arn //local.kms_data["rds-kms-arn"]
 
   name     = upper(var.application)
   username = local.ewf_rds_data["admin-username"]
@@ -77,13 +49,13 @@ module "ewf_rds" {
 
   # Enhanced Monitoring
   monitoring_interval = "30"
-  monitoring_role_arn = aws_iam_role.rds_enhanced_monitoring.arn
+  monitoring_role_arn = data.aws_iam_role.rds_enhanced_monitoring.arn
 
   # RDS Security Group
   vpc_security_group_ids = [module.ewf_rds_security_group.this_security_group_id]
 
   # DB subnet group
-  subnet_ids = var.rds_subnet_ids
+  subnet_ids = data.aws_subnet_ids.data.ids
 
   tags = merge(
     local.default_tags,

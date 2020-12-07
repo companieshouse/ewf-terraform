@@ -1,5 +1,5 @@
 resource "aws_route53_record" "ewf_rds" {
-  zone_id = local.route53_data["route53-zone-id"]
+  zone_id = data.aws_route53_zone.private_zone.zone_id
   name    = "${var.application}db"
   type    = "CNAME"
   ttl     = "300"

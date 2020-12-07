@@ -9,12 +9,12 @@ region  = "euw2"
 
 # Application details
 application = "ewf"
-environment = "heritage-development"
+environment = "development"
 
 # RDS Instance settings
 instance_class = "db.t3.medium"
-allocated_storage = 10
-maximum_storage   = 800
+allocated_storage = 20
+maximum_storage   = 40
 backup_retention_period = 2
 multi_az = false
 
@@ -23,9 +23,3 @@ engine               = "oracle-se2"
 major_engine_version = "12.1"
 engine_version       = "12.1.0.2.v21"
 license_model        = "license-included"
-
-rds_subnet_ids = [
- "subnet-025dbe71b0a807304",
- "subnet-07f66f2cd8d88ece2",
- "subnet-04fc1aebef4c0da11"
-]
