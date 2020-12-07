@@ -33,7 +33,7 @@ module "ewf_rds" {
   allocated_storage    = var.allocated_storage
   multi_az             = var.multi_az
   storage_encrypted    = true
-  kms_key_id           = data.aws_kms_key.rds.arn //local.kms_data["rds-kms-arn"]
+  kms_key_id           = data.aws_kms_key.rds.arn
 
   name     = upper(var.application)
   username = local.ewf_rds_data["admin-username"]
