@@ -59,7 +59,7 @@ module "ewf_rds" {
 
   # DB Parameter group
   family = join("-", [var.engine, var.major_engine_version])
-
+    
   tags = merge(
     local.default_tags,
     map(
