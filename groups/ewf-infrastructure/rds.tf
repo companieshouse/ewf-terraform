@@ -24,7 +24,7 @@ module "ewf_rds" {
   create_db_parameter_group = "true"
   create_db_subnet_group    = "true"
 
-  identifier           = var.application
+  identifier           = join("-", ["rds", var.application, var.environment, "001"])
   engine               = var.engine
   major_engine_version = var.major_engine_version
   engine_version       = var.engine_version
@@ -59,7 +59,7 @@ module "ewf_rds" {
 
   # DB Parameter group
   family = join("-", [var.engine, var.major_engine_version])
-    
+
   tags = merge(
     local.default_tags,
     map(
