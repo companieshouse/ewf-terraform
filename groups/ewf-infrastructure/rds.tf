@@ -58,7 +58,7 @@ module "ewf_rds" {
   subnet_ids = data.aws_subnet_ids.data.ids
 
   # DB Parameter group
-  family = join("-", [var.engine, var.major_engine_version])
+  family = join("-", ["oracle-se2", var.major_engine_version])
 
   tags = merge(
     local.default_tags,
