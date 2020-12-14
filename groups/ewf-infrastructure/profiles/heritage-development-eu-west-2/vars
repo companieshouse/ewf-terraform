@@ -19,7 +19,6 @@ backup_retention_period = 2
 multi_az = false
 
 # RDS Engine settings
-engine               = "oracle-se2"
 major_engine_version = "12.1"
 engine_version       = "12.1.0.2.v21"
 license_model        = "license-included"

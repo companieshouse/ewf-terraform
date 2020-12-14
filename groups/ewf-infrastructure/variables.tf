@@ -77,12 +77,6 @@ variable "maximum_storage" {
 # ------------------------------------------------------------------------------
 # RDS Engine Type Variables
 # ------------------------------------------------------------------------------
-
-variable "engine" {
-  type        = string
-  description = "Engine type to be used for the RDS Instance (Database vendor) e.g. oracle-se2"
-}
-
 variable "major_engine_version" {
   type        = string
   description = "The major version of the database engine type e.g. 12.1"
