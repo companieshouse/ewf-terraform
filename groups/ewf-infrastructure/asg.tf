@@ -2,12 +2,12 @@
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "~> 3.0"
-  name = "ewf-webserver"
+  name    = "ewf-webserver"
   # Launch configuration
-  lc_name = "ewf-launchconfig"
-  image_id          = data.aws_ami.ewf.id
-  instance_type     = "t2.micro"
-  security_groups   = [module.ewf_alb_security_group.this_security_group_id]
+  lc_name         = "ewf-launchconfig"
+  image_id        = data.aws_ami.ewf.id
+  instance_type   = "t2.micro"
+  security_groups = [module.ewf_alb_security_group.this_security_group_id]
   ebs_block_device = [
     {
       device_name           = "/dev/xvdz"
@@ -40,5 +40,5 @@ module "asg" {
       value               = "ewf web instance"
       propagate_at_launch = true
     }
-  ] 
+  ]
 }
