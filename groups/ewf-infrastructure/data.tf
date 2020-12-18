@@ -32,3 +32,21 @@ data "vault_generic_secret" "ewf_rds" {
 data "vault_generic_secret" "internal_cidrs" {
   path = "aws-accounts/network/internal_cidr_ranges"
 }
+
+# Example AMI from AWS marketplace used for testing until EWF AMI is available
+data "aws_ami" "ewf" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter {
+    name = "name"
+    values = [
+      "amzn-ami-hvm-*-x86_64-gp2",
+    ]
+  }
+  filter {
+    name = "owner-alias"
+    values = [
+      "amazon",
+    ]
+  }
+}
