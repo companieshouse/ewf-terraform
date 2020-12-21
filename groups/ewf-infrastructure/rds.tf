@@ -75,7 +75,7 @@ module "ewf_rds" {
       value = "TRUE"
     },
     {
-      name  = "sec_case_sensitive_logon	"
+      name  = "sec_case_sensitive_logon"
       value = "FALSE"
     }
   ]
