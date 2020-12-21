@@ -113,6 +113,6 @@ variable "cidr_block" {
 
 variable "domain_name" {
   type        = string
-  default     = "companieshouse.gov.uk"
+  default     = "*.companieshouse.gov.uk"
   description = "Domain Name for ACM Certificate"
 }

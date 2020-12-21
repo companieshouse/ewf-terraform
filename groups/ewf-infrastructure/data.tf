@@ -50,7 +50,7 @@ data "vault_generic_secret" "internal_cidrs" {
 }
 
 data "vault_generic_secret" "asg_keypair_input_data" {
-  path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/asg"
+  path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/ec2"
 }
 
 # Example AMI from AWS marketplace used for testing until EWF AMI is available
