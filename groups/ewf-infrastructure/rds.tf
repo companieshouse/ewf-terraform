@@ -69,10 +69,6 @@ module "ewf_rds" {
     {
       name  = "open_cursors"
       value = "3000"
-    },
-    {
-      name  = "sec_case_sensitive_logon"
-      value = "FALSE"
     }
   ]
 
