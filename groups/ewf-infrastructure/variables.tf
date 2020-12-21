@@ -101,3 +101,18 @@ variable "vault_password" {
   type        = string
   description = "Password for connecting to Vault - usually supplied through TF_VARS"
 }
+
+# ------------------------------------------------------------------------------
+# Vault Variables
+# ------------------------------------------------------------------------------
+variable "cidr_block" {
+  type        = string
+  default     = "0.0.0.0/0"
+  description = "cidr block for allowing inbound users from internet"
+}
+
+variable "domain_name" {
+  type        = string
+  default     = "companieshouse.gov.uk"
+  description = "Domain Name for ACM Certificate"
+}

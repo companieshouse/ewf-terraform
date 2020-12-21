@@ -12,6 +12,22 @@ data "aws_subnet_ids" "data" {
   }
 }
 
+data "aws_subnet_ids" "public" {
+  vpc_id = data.aws_vpc.vpc.id
+  filter {
+    name   = "tag:Name"
+    values = ["sub-public-*"]
+  }
+}
+
+data "aws_subnet_ids" "web" {
+  vpc_id = data.aws_vpc.vpc.id
+  filter {
+    name   = "tag:Name"
+    values = ["sub-web-*"]
+  }
+}
+
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
@@ -33,10 +49,14 @@ data "vault_generic_secret" "internal_cidrs" {
   path = "aws-accounts/network/internal_cidr_ranges"
 }
 
+data "vault_generic_secret" "asg_keypair_input_data" {
+  path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/asg"
+}
+
 # Example AMI from AWS marketplace used for testing until EWF AMI is available
 data "aws_ami" "ewf" {
   most_recent = true
-  owners      = ["amazon"]
+  owners      = ["self"]
   filter {
     name = "name"
     values = [
@@ -46,7 +66,7 @@ data "aws_ami" "ewf" {
   filter {
     name = "owner-alias"
     values = [
-      "amazon",
+      "self",
     ]
   }
 }

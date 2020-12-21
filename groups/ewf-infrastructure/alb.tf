@@ -9,18 +9,14 @@ module "ewf_alb_security_group" {
   description = "Security group for the ${var.application} web servers"
   vpc_id      = data.aws_vpc.vpc.id
 
-  ingress_cidr_blocks = local.admin_cidrs
-  ingress_rules       = ["http-80-tcp", "all-icmp"]
+  ingress_cidr_blocks = var.cidr_block
+  ingress_rules       = ["http-80-tcp", "https-443-tcp"]
   egress_rules        = ["all-all"]
 }
 
-# AWS ACM Module
-module "acm" {
-  source  = "terraform-aws-modules/acm/aws"
-  version = "~> 2.0"
-
-  domain_name = local.internal_fqdn
-  zone_id     = data.aws_route53_zone.private_zone.id
+data "aws_acm_certificate" "acm_cert" {
+  domain = var.domain_name
+  types  = "IMPORTED"
 }
 
 #--------------------------------------------
@@ -36,7 +32,7 @@ module "ewf_alb" {
   enable_deletion_protection = true
 
   security_groups = [module.ewf_alb_security_group.this_security_group_id]
-  subnets         = data.aws_subnet_ids.data.ids
+  subnets         = data.aws_subnet_ids.public.ids
 
   http_tcp_listeners = [
     {
@@ -56,8 +52,8 @@ module "ewf_alb" {
     {
       port               = 443
       protocol           = "HTTPS"
-      certificate_arn    = module.acm.this_acm_certificate_arn
-      target_group_index = 1
+      certificate_arn    = data.aws_acm_certificate.acm_cert.arn
+      target_group_index = 0
     },
   ]
 
@@ -94,7 +90,7 @@ module "ewf_alb" {
 # ALB CloudWatch Merics
 #--------------------------------------------
 module "alb_metrics" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.25"
+  source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
 
   load_balancer_id = module.ewf_alb.this_lb_id
   target_group_ids = module.ewf_alb.target_group_arns
