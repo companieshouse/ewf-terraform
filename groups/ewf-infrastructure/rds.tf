@@ -46,6 +46,7 @@ module "ewf_rds" {
   backup_retention_period   = var.backup_retention_period
   skip_final_snapshot       = "false"
   final_snapshot_identifier = "${var.application}-final-deletion-snapshot"
+  publicly_accessible       = false
 
   # Enhanced Monitoring
   monitoring_interval = "30"
@@ -59,6 +60,25 @@ module "ewf_rds" {
 
   # DB Parameter group
   family = join("-", ["oracle-se2", var.major_engine_version])
+
+  parameters = [
+    {
+      name  = "job_queue_processes"
+      value = "1000"
+    },
+    {
+      name  = "open_cursors"
+      value = "3000"
+    },
+    {
+      name  = "o7_dictionary_accessibility"
+      value = "TRUE"
+    },
+    {
+      name  = "sec_case_sensitive_logon	"
+      value = "FALSE"
+    }
+  ]
 
   tags = merge(
     local.default_tags,
