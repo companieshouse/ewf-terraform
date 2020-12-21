@@ -56,7 +56,7 @@ data "vault_generic_secret" "asg_keypair_input_data" {
 # Example AMI from AWS marketplace used for testing until EWF AMI is available
 data "aws_ami" "ewf" {
   most_recent = true
-  owners      = ["self"]
+  owners      = ["amazon"]
   filter {
     name = "name"
     values = [
@@ -66,7 +66,7 @@ data "aws_ami" "ewf" {
   filter {
     name = "owner-alias"
     values = [
-      "self",
+      "amazon",
     ]
   }
 }
