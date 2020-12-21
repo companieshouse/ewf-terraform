@@ -71,10 +71,6 @@ module "ewf_rds" {
       value = "3000"
     },
     {
-      name  = "o7_dictionary_accessibility"
-      value = "TRUE"
-    },
-    {
       name  = "sec_case_sensitive_logon"
       value = "FALSE"
     }
