@@ -60,13 +60,13 @@ module "ewf_alb" {
     {
       name_prefix          = "h1"
       backend_protocol     = "HTTP"
-      backend_port         = 80
+      backend_port         = var.backend_port
       target_type          = "instance"
       deregistration_delay = 10
       health_check = {
         enabled             = true
         interval            = 30
-        path                = "/health"
+        path                = var.health_check_path
         port                = 80
         healthy_threshold   = 3
         unhealthy_threshold = 3
@@ -81,7 +81,7 @@ module "ewf_alb" {
   ]
 
   tags = {
-    Environment = "Test"
+    Environment = var.environment
   }
 }
 

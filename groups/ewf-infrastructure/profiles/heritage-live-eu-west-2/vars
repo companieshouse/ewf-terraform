@@ -11,6 +11,12 @@ region  = "euw2"
 application = "ewf"
 environment = "live"
 
+# ASG settings
+instance_size = "t2.micro"
+min_size = 0
+max_size = 2
+desired_capacity = 2
+
 # RDS Instance settings
 instance_class = "db.m5.xlarge"
 allocated_storage = 1500

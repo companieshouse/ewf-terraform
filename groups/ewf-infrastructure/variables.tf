@@ -44,6 +44,28 @@ variable "environment" {
   description = "The name of the environment"
 }
 
+# ASG Variables
+variable "instance_size" {
+  type        = string
+  description = "The size of the ec2 instance"
+}
+
+variable "min_size" {
+  type        = number
+  description = "The min size of the ASG"
+}
+
+variable "max_size" {
+  type        = number
+  description = "The max size of the ASG"
+}
+
+variable "desired_capacity" {
+  type        = number
+  description = "The desired capacity of ASG"
+}
+
+
 # ------------------------------------------------------------------------------
 # RDS Variables
 # ------------------------------------------------------------------------------
@@ -103,8 +125,15 @@ variable "vault_password" {
 }
 
 # ------------------------------------------------------------------------------
-# Vault Variables
+# ALB Variables
 # ------------------------------------------------------------------------------
+
+variable "backend_port" {
+  type        = number
+  default     = 80
+  description = "Target group backend port"
+}
+
 variable "cidr_block" {
   type        = string
   default     = "0.0.0.0/0"
@@ -115,4 +144,10 @@ variable "domain_name" {
   type        = string
   default     = "*.companieshouse.gov.uk"
   description = "Domain Name for ACM Certificate"
+}
+
+variable "health_check_path" {
+  type        = string
+  default     = "/"
+  description = "Target group health check path"
 }
