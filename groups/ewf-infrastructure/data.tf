@@ -49,7 +49,7 @@ data "vault_generic_secret" "internal_cidrs" {
   path = "aws-accounts/network/internal_cidr_ranges"
 }
 
-data "vault_generic_secret" "asg_keypair_input_data" {
+data "vault_generic_secret" "ewf_ec2_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/ec2"
 }
 

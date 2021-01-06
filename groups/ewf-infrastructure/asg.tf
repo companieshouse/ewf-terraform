@@ -9,8 +9,14 @@ module "ewf_asg_security_group" {
   description = "Security group for the ${var.application} asg"
   vpc_id      = data.aws_vpc.vpc.id
 
-  ingress_cidr_blocks = [var.cidr_block]
-  ingress_rules       = ["http-80-tcp", "https-443-tcp"]
+  computed_ingress_with_source_security_group_id = [
+    {
+      rule                     = "http-80-tcp"
+      source_security_group_id = module.ewf_alb_security_group.this_security_group_id
+    }
+  ]
+  number_of_computed_ingress_with_source_security_group_id = 1
+
   egress_rules        = ["all-all"]
 }
 
@@ -64,5 +70,5 @@ module "asg" {
 
 resource "aws_key_pair" "asg_keypair" {
   key_name   = format("%s-%s", var.application, "asg")
-  public_key = local.asg_keypair_input_data["public-key"]
+  public_key = local.ewf_ec2_data["public-key"]
 }

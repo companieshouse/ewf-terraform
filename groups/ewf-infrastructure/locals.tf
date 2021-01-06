@@ -6,7 +6,7 @@ locals {
   ewf_rds_data  = data.vault_generic_secret.ewf_rds.data
   internal_fqdn = format("%s.%s.aws.internal", split("-", var.aws_account)[1], split("-", var.aws_account)[0])
 
-  asg_keypair_input_data = data.vault_generic_secret.asg_keypair_input_data.data
+  ewf_ec2_data = data.vault_generic_secret.ewf_ec2_data.data
 
   default_tags = {
     Terraform   = "true"

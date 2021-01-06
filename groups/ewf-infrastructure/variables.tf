@@ -134,7 +134,7 @@ variable "backend_port" {
   description = "Target group backend port"
 }
 
-variable "cidr_block" {
+variable "public_cidr_block" {
   type        = string
   default     = "0.0.0.0/0"
   description = "cidr block for allowing inbound users from internet"
