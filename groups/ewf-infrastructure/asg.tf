@@ -30,17 +30,9 @@ module "asg" {
   image_id        = data.aws_ami.ewf.id
   instance_type   = var.instance_size
   security_groups = [module.ewf_asg_security_group.this_security_group_id]
-  ebs_block_device = [
-    {
-      device_name           = "/dev/xvdz"
-      volume_type           = "gp2"
-      volume_size           = "50"
-      delete_on_termination = true
-    },
-  ]
   root_block_device = [
     {
-      volume_size = "50"
+      volume_size = "40"
       volume_type = "gp2"
     },
   ]
