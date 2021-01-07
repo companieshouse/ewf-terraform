@@ -30,8 +30,9 @@ parameter_group_settings = [
       value = "6"
     },
     {
-      name  = "compatible"
-      value = "12.1.0.2.0"
+      name         = "compatible"
+      value        = "12.1.0.2.0"
+      apply_method = "pending-reboot"
     },      
     {
       name  = "db_file_multiblock_read_count"
@@ -58,24 +59,28 @@ parameter_group_settings = [
       value = "10"
     },
     {
-      name  = "pga_aggregate_limit"
-      value = "2147483648"
+      name         = "pga_aggregate_limit"
+      value        = "2147483648"
+      apply_method = "pending-reboot"
     },
     {
-      name  = "processes"
-      value = "4400"
+      name         = "processes"
+      value        = "4400"
+      apply_method = "pending-reboot"
     },
     {
       name  = "remote_dependencies_mode"
       value = "SIGNATURE"
     },
     {
-      name  = "sessions"
-      value = "6720"
+      name         = "sessions"
+      value        = "6720"
+      apply_method = "pending-reboot"
     },
     {
-      name  = "timed_statistics"
-      value = "TRUE"
+      name         = "timed_statistics"
+      value        = "TRUE"
+      apply_method = "pending-reboot"
     },
     {
       name  = "undo_retention"
@@ -98,10 +103,6 @@ option_group_settings = [
       option_name = "SQLT"
 
       option_settings = [
-        {
-          name  = "Version"
-          value = "2018-07-25.v1"
-        },
         {
           name  = "LICENSE_PACK"
           value = "N"
