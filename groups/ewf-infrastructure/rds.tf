@@ -61,16 +61,10 @@ module "ewf_rds" {
   # DB Parameter group
   family = join("-", ["oracle-se2", var.major_engine_version])
 
-  parameters = [
-    {
-      name  = "job_queue_processes"
-      value = "1000"
-    },
-    {
-      name  = "open_cursors"
-      value = "3000"
-    }
-  ]
+  parameters = var.parameter_group_settings
+
+  options = var.option_group_settings
+
 
   tags = merge(
     local.default_tags,

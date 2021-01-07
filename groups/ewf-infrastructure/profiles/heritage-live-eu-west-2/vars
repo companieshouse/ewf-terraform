@@ -22,3 +22,90 @@ multi_az = true
 major_engine_version = "12.1"
 engine_version       = "12.1.0.2.v21"
 license_model        = "license-included"
+
+# RDS Param and Option settings
+parameter_group_settings = [
+    {
+      name  = "aq_tm_processes"
+      value = "6"
+    },
+    {
+      name  = "compatible"
+      value = "12.1.0.2.0"
+    },      
+    {
+      name  = "db_file_multiblock_read_count"
+      value = "64"
+    },
+    {
+      name  = "job_queue_processes"
+      value = "1000"
+    },
+    {
+      name  = "nls_length_semantics"
+      value = "CHAR"
+    },
+    {
+      name  = "open_cursors"
+      value = "3000"
+    },
+    {
+      name  = "parallel_max_servers"
+      value = "20"
+    },
+    {
+      name  = "parallel_min_servers"
+      value = "10"
+    },
+    {
+      name  = "pga_aggregate_limit"
+      value = "2147483648"
+    },
+    {
+      name  = "processes"
+      value = "4400"
+    },
+    {
+      name  = "remote_dependencies_mode"
+      value = "SIGNATURE"
+    },
+    {
+      name  = "sessions"
+      value = "6720"
+    },
+    {
+      name  = "timed_statistics"
+      value = "TRUE"
+    },
+    {
+      name  = "undo_retention"
+      value = "900"
+    },
+    {
+      name  = "workarea_size_policy"
+      value = "AUTO"
+    },
+]
+
+option_group_settings = [
+    {
+      option_name = "OEM"
+    },
+    {
+      option_name = "JVM"
+    },
+    {
+      option_name = "SQLT"
+
+      option_settings = [
+        {
+          name  = "Version"
+          value = "2018-07-25.v1"
+        },
+        {
+          name  = "LICENSE_PACK"
+          value = "N"
+        },
+      ]
+    },
+]
