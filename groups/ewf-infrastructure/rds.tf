@@ -11,7 +11,17 @@ module "ewf_rds_security_group" {
 
   ingress_cidr_blocks = local.admin_cidrs
   ingress_rules       = ["oracle-db-tcp"]
-  egress_rules        = ["all-all"]
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 5500
+      to_port     = 5500
+      protocol    = "tcp"
+      description = "Oracle Enterprise Manager"
+      cidr_blocks = join(",", local.admin_cidrs)
+    }
+  ]
+
+  egress_rules = ["all-all"]
 }
 
 # ------------------------------------------------------------------------------
@@ -66,14 +76,15 @@ module "ewf_rds" {
   options = [
     {
       option_name                    = "OEM"
-      vpc_security_group_memberships = [module.ewf_rds_security_group.this_security_group_name]
+      port                           = "5500"
+      vpc_security_group_memberships = [module.ewf_rds_security_group.this_security_group_id]
     },
     {
       option_name = "JVM"
     },
     {
       option_name = "SQLT"
-
+      version     = "2018-07-25.v1"
       option_settings = [
         {
           name  = "LICENSE_PACK"
