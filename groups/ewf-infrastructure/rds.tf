@@ -65,7 +65,6 @@ module "ewf_rds" {
 
   options = var.option_group_settings
 
-
   tags = merge(
     local.default_tags,
     map(
