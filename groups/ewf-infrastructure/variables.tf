@@ -79,9 +79,6 @@ variable "parameter_group_settings" {
   description = "A list of parameters that will be set in the RDS instance parameter group"
 }
 
-variable "option_group_settings" {
-  description = "A list (of multiple typs) of options that will be set in the RDS instance option group"
-}
 # ------------------------------------------------------------------------------
 # RDS Engine Type Variables
 # ------------------------------------------------------------------------------
