@@ -63,8 +63,25 @@ module "ewf_rds" {
 
   parameters = var.parameter_group_settings
 
-  options = var.option_group_settings
+  options = [
+    {
+      option_name                    = "OEM"
+      vpc_security_group_memberships = [module.ewf_rds_security_group.this_security_group_name]
+    },
+    {
+      option_name = "JVM"
+    },
+    {
+      option_name = "SQLT"
 
+      option_settings = [
+        {
+          name  = "LICENSE_PACK"
+          value = "N"
+        },
+      ]
+    },
+  ]
   tags = merge(
     local.default_tags,
     map(
