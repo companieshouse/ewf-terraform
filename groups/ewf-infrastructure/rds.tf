@@ -93,6 +93,7 @@ module "ewf_rds" {
       ]
     },
   ]
+
   tags = merge(
     local.default_tags,
     map(
