@@ -30,6 +30,10 @@ parameter_group_settings = [
       value = "6"
     },
     {
+      name  = "sec_case_sensitive_logon"
+      value = "TRUE"
+    },
+    {
       name         = "compatible"
       value        = "12.1.0.2.0"
       apply_method = "pending-reboot"
