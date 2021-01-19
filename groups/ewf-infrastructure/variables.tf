@@ -109,6 +109,11 @@ variable "maximum_storage" {
   description = "The maximum storage in GB to allow RDS to scale to"
 }
 
+variable "parameter_group_settings" {
+  type        = list(any)
+  description = "A list of parameters that will be set in the RDS instance parameter group"
+}
+
 # ------------------------------------------------------------------------------
 # RDS Engine Type Variables
 # ------------------------------------------------------------------------------
