@@ -70,3 +70,10 @@ data "aws_ami" "ewf" {
     ]
   }
 }
+
+# Gather details about TNS names for the environment
+data "null_data_source" "ewf_frontend" {
+  inputs = {
+    tnsnames = templatefile("${path.module}/templates/tns.tpl", local.tns_connections)
+  }
+}

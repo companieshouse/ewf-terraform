@@ -1,4 +1,17 @@
 # ------------------------------------------------------------------------------
+# Vault Variables
+# ------------------------------------------------------------------------------
+variable "vault_username" {
+  type        = string
+  description = "Username for connecting to Vault - usually supplied through TF_VARS"
+}
+
+variable "vault_password" {
+  type        = string
+  description = "Password for connecting to Vault - usually supplied through TF_VARS"
+}
+
+# ------------------------------------------------------------------------------
 # AWS Variables
 # ------------------------------------------------------------------------------
 variable "aws_region" {
@@ -113,19 +126,7 @@ variable "license_model" {
 }
 
 # ------------------------------------------------------------------------------
-# Vault Variables
-# ------------------------------------------------------------------------------
-variable "vault_username" {
-  type        = string
-  description = "Username for connecting to Vault - usually supplied through TF_VARS"
-}
-variable "vault_password" {
-  type        = string
-  description = "Password for connecting to Vault - usually supplied through TF_VARS"
-}
-
-# ------------------------------------------------------------------------------
-# ALB Variables
+# EWF Frontend Variables - ALB 
 # ------------------------------------------------------------------------------
 
 variable "backend_port" {
@@ -150,4 +151,10 @@ variable "health_check_path" {
   type        = string
   default     = "/"
   description = "Target group health check path"
+}
+
+variable "log_group_retention_in_days" {
+  type        = number
+  default     = 7
+  description = "Total days to retain logs in CloudWatch log group"
 }
