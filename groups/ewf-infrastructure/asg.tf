@@ -62,12 +62,12 @@ module "asg" {
   key_name                  = aws_key_pair.asg_keypair.key_name
   termination_policies      = ["OldestLaunchConfiguration"]
   target_group_arns         = module.ewf_alb.target_group_arns
-  # iam_instance_profile      = module.ewf_fe_cloudwatchlogs.iam_instance_profile.name
+  iam_instance_profile      = module.ewf_frontend_profile.aws_iam_instance_profile.name
   user_data = templatefile("${path.module}/templates/user_data.tpl",
     {
       REGION         = var.aws_region
       TNS_NAMES      = templatefile("${path.module}/templates/tns.tpl", local.tns_connections) //data.null_data_source.ewf_frontend.outputs["tnsnames"],
-      SERVER_NAME    = "123"
+      SERVER_NAME    = "${var.application}.${data.aws_route53_zone.private_zone.name}"
       LOG_GROUP_NAME = "logs-${var.application}-frontend"
     }
   )

@@ -40,13 +40,16 @@ data "aws_iam_role" "rds_enhanced_monitoring" {
 data "aws_kms_key" "rds" {
   key_id = "alias/kms-rds"
 }
-
-data "vault_generic_secret" "ewf_rds" {
-  path = "applications/${var.aws_profile}/${var.application}/rds"
+data "vault_generic_secret" "account_ids" {
+  path = "aws-accounts/account-ids"
 }
 
 data "vault_generic_secret" "internal_cidrs" {
   path = "aws-accounts/network/internal_cidr_ranges"
+}
+
+data "vault_generic_secret" "ewf_rds" {
+  path = "applications/${var.aws_profile}/${var.application}/rds"
 }
 
 data "vault_generic_secret" "ewf_ec2_data" {
@@ -56,24 +59,19 @@ data "vault_generic_secret" "ewf_ec2_data" {
 # Example AMI from AWS marketplace used for testing until EWF AMI is available
 data "aws_ami" "ewf" {
   most_recent = true
-  owners      = ["amazon"]
+  owners      = [data.vault_generic_secret.account_ids.data["development"]]
+
   filter {
     name = "name"
     values = [
-      "amzn-ami-hvm-*-x86_64-gp2",
+      "ewf-frontend-*",
     ]
   }
-  filter {
-    name = "owner-alias"
-    values = [
-      "amazon",
-    ]
-  }
-}
 
-# Gather details about TNS names for the environment
-data "null_data_source" "ewf_frontend" {
-  inputs = {
-    tnsnames = templatefile("${path.module}/templates/tns.tpl", local.tns_connections)
+  filter {
+    name = "state"
+    values = [
+      "available",
+    ]
   }
 }

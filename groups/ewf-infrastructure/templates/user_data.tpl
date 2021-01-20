@@ -8,10 +8,11 @@ aws ec2 modify-instance-attribute --no-source-dest-check --instance-id $instance
 python cw_log_conf.py \
 -g ${LOG_GROUP_NAME} \
 -o "amazon-cloudwatch-agent.log" \
--l "/var/log/squid/access.log" "/var/log/squid/cache.log"
+-l "/var/log/httpd/ewf_access_log" "/var/log/httpd/ewf_error_log"
 . /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:amazon-cloudwatch-agent.log -s
 #Replace servername directive with correct value in httpd.conf
-REGEXREPLACE_SERVERNAME
 sed -i -e "s/REGEXREPLACE_SERVERNAME/${SERVER_NAME}/g" /etc/httpd/conf/httpd.conf
 #Create the TNSNames.ora file for Oracle
-echo ${TNS_NAMES} > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
+cat <<EOF >>/usr/lib/oracle/11.2/client64/lib/tnsnames.ora
+${TNS_NAMES}
+EOF
