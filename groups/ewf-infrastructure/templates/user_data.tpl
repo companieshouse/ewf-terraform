@@ -1,9 +1,6 @@
 #!/bin/bash
 # Redirect the user-data output to the console logs
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-# Disable source / destination check. It cannot be disabled from the launch configuration and is required to intercept traffic
-instanceid=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
-aws ec2 modify-instance-attribute --no-source-dest-check --instance-id $instanceid --region ${REGION}
 #Generate new cloudwatch conf file with updated log group and load into cw agent service
 python cw_log_conf.py \
 -g ${LOG_GROUP_NAME} \
