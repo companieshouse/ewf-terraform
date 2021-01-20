@@ -56,7 +56,6 @@ data "vault_generic_secret" "ewf_ec2_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/ec2"
 }
 
-# Example AMI from AWS marketplace used for testing until EWF AMI is available
 data "aws_ami" "ewf" {
   most_recent = true
   owners      = [data.vault_generic_secret.account_ids.data["development"]]
