@@ -67,7 +67,7 @@ module "ewf_alb" {
         enabled             = true
         interval            = 30
         path                = var.health_check_path
-        port                = 80
+        port                = var.backend_port
         healthy_threshold   = 3
         unhealthy_threshold = 3
         timeout             = 6
