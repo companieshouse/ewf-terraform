@@ -63,7 +63,10 @@ module "ewf_rds" {
   monitoring_role_arn = data.aws_iam_role.rds_enhanced_monitoring.arn
 
   # RDS Security Group
-  vpc_security_group_ids = [module.ewf_rds_security_group.this_security_group_id]
+  vpc_security_group_ids = [
+    module.ewf_rds_security_group.this_security_group_id,
+    data.aws_security_group.rds_shared.id
+  ]
 
   # DB subnet group
   subnet_ids = data.aws_subnet_ids.data.ids
