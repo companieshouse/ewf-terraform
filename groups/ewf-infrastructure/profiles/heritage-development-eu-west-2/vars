@@ -20,7 +20,7 @@ multi_az = false
 
 # RDS Engine settings
 major_engine_version = "12.1"
-engine_version       = "12.1.0.2.v21"
+engine_version       = "12.1.0.2.v22"
 license_model        = "license-included"
 
 # RDS Param and Option settings
