@@ -9,7 +9,7 @@ module "ewf_rds_security_group" {
   description = "Security group for the ${var.application} rds database"
   vpc_id      = data.aws_vpc.vpc.id
 
-  ingress_cidr_blocks = local.admin_cidrs
+  ingress_cidr_blocks = local.rds_ingress_cidrs
   ingress_rules       = ["oracle-db-tcp"]
   ingress_with_cidr_blocks = [
     {
@@ -17,7 +17,7 @@ module "ewf_rds_security_group" {
       to_port     = 5500
       protocol    = "tcp"
       description = "Oracle Enterprise Manager"
-      cidr_blocks = join(",", local.admin_cidrs)
+      cidr_blocks = join(",", local.rds_ingress_cidrs)
     }
   ]
 
