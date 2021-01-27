@@ -23,6 +23,11 @@ major_engine_version = "12.1"
 engine_version       = "12.1.0.2.v22"
 license_model        = "license-included"
 
+# RDS Access
+rds_onpremise_access = [
+  "192.168.90.0/24"
+]
+
 # RDS Param and Option settings
 parameter_group_settings = [
     {
