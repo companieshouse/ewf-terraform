@@ -11,5 +11,5 @@ resource "aws_route53_record" "ewf_alb_internal" {
   name    = var.application
   type    = "CNAME"
   ttl     = "300"
-  records = [module.ewf_alb.this_lb_dns_name]
+  records = [module.ewf_internal_alb.this_lb_dns_name]
 }
