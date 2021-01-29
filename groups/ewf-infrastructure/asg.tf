@@ -12,10 +12,14 @@ module "ewf_asg_security_group" {
   computed_ingress_with_source_security_group_id = [
     {
       rule                     = "http-80-tcp"
-      source_security_group_id = module.ewf_alb_security_group.this_security_group_id
+      source_security_group_id = module.ewf_internal_alb_security_group.this_security_group_id
+    },
+    {
+      rule                     = "http-80-tcp"
+      source_security_group_id = module.ewf_external_alb_security_group.this_security_group_id
     }
   ]
-  number_of_computed_ingress_with_source_security_group_id = 1
+  number_of_computed_ingress_with_source_security_group_id = 2
 
   egress_rules = ["all-all"]
 }
@@ -61,7 +65,7 @@ module "asg" {
   force_delete              = true
   key_name                  = aws_key_pair.asg_keypair.key_name
   termination_policies      = ["OldestLaunchConfiguration"]
-  target_group_arns         = module.ewf_alb.target_group_arns
+  target_group_arns         = concat(module.ewf_external_alb.target_group_arns, module.ewf_internal_alb.target_group_arns)
   iam_instance_profile      = module.ewf_frontend_profile.aws_iam_instance_profile.name
   user_data = templatefile("${path.module}/templates/user_data.tpl",
     {

@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # EWF Security Group and rules
 # ------------------------------------------------------------------------------
-module "ewf_alb_security_group" {
+module "ewf_external_alb_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 3.0"
 
@@ -14,23 +14,19 @@ module "ewf_alb_security_group" {
   egress_rules        = ["all-all"]
 }
 
-data "aws_acm_certificate" "acm_cert" {
-  domain = var.domain_name
-}
-
 #--------------------------------------------
-# ALB EWF
+# External ALB EWF
 #--------------------------------------------
-module "ewf_alb" {
+module "ewf_external_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 5.0"
 
-  name                       = "alb-${var.application}-001"
+  name                       = "alb-${var.application}-external-001"
   internal                   = false
   load_balancer_type         = "application"
   enable_deletion_protection = true
 
-  security_groups = [module.ewf_alb_security_group.this_security_group_id]
+  security_groups = [module.ewf_external_alb_security_group.this_security_group_id]
   subnets         = data.aws_subnet_ids.public.ids
 
   http_tcp_listeners = [
@@ -75,24 +71,27 @@ module "ewf_alb" {
         matcher             = "200-399"
       }
       tags = {
-        InstanceTargetGroupTag = "ewf"
+        InstanceTargetGroupTag = var.application
       }
     },
   ]
 
-  tags = {
-    Environment = var.environment
-  }
+  tags = merge(
+    local.default_tags,
+    map(
+      "ServiceTeam", "${upper(var.application)}-DBA-Support"
+    )
+  )
 }
 
 #--------------------------------------------
-# ALB CloudWatch Merics
+# External ALB CloudWatch Merics
 #--------------------------------------------
-module "alb_metrics" {
+module "external_alb_metrics" {
   source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
 
-  load_balancer_id = module.ewf_alb.this_lb_id
-  target_group_ids = module.ewf_alb.target_group_arns
+  load_balancer_id = module.ewf_external_alb.this_lb_id
+  target_group_ids = module.ewf_external_alb.target_group_arns
 
-  depends_on = [module.ewf_alb]
+  depends_on = [module.ewf_external_alb]
 }

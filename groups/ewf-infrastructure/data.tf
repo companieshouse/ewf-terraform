@@ -56,6 +56,10 @@ data "vault_generic_secret" "ewf_ec2_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/ec2"
 }
 
+data "aws_acm_certificate" "acm_cert" {
+  domain = var.domain_name
+}
+
 data "aws_ami" "ewf" {
   most_recent = true
   owners      = [data.vault_generic_secret.account_ids.data["development"]]
