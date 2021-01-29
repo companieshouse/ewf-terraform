@@ -19,6 +19,8 @@ locals {
     ]
   }
 
+  rds_ingress_cidrs = concat(local.admin_cidrs, var.rds_onpremise_access)
+
   default_tags = {
     Terraform   = "true"
     Application = upper(var.application)
