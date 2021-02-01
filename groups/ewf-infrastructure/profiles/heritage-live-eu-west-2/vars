@@ -12,8 +12,8 @@ application = "ewf"
 environment = "live"
 
 # ASG settings
-instance_size = "t2.micro"
-min_size = 0
+instance_size = "t2.medium"
+min_size = 1
 max_size = 2
 desired_capacity = 2
 
