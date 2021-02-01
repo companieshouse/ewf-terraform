@@ -54,7 +54,6 @@ module "asg" {
   ]
   # Auto scaling group
   asg_name                  = "${var.application}-asg"
-  depends_on                = [module.ewf_alb]
   vpc_zone_identifier       = data.aws_subnet_ids.web.ids
   health_check_type         = "EC2"
   min_size                  = var.min_size
@@ -83,6 +82,11 @@ module "asg" {
       "ServiceTeam", "${upper(var.application)}-EC2-Support"
     )
   )
+
+  depends_on = [
+    module.ewf_external_alb,
+    module.ewf_internal_alb
+  ]
 }
 
 resource "aws_key_pair" "asg_keypair" {
