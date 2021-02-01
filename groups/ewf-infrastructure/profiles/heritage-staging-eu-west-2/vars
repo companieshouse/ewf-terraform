@@ -11,6 +11,12 @@ region  = "euw2"
 application = "ewf"
 environment = "staging"
 
+# ASG settings
+instance_size = "t2.medium"
+min_size = 1
+max_size = 2
+desired_capacity = 2
+
 # RDS Instance settings
 instance_class = "db.m5.large"
 allocated_storage = 250
