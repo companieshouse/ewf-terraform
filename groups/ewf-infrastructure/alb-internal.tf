@@ -22,6 +22,7 @@ module "ewf_internal_alb" {
   version = "~> 5.0"
 
   name                       = "alb-${var.application}-internal-001"
+  vpc_id                     = data.aws_vpc.vpc.id
   internal                   = true
   load_balancer_type         = "application"
   enable_deletion_protection = true
