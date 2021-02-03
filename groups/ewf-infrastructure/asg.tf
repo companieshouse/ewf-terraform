@@ -38,9 +38,9 @@ resource "aws_cloudwatch_log_group" "ewf_fe" {
 
 # ASG Module
 module "asg" {
-  source  = "terraform-aws-modules/autoscaling/aws"
-  version = "~> 3.0"
-  name    = "${var.application}-webserver"
+  source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36"
+
+  name = "${var.application}-webserver"
   # Launch configuration
   lc_name         = "${var.application}-launchconfig"
   image_id        = data.aws_ami.ewf.id
@@ -53,19 +53,22 @@ module "asg" {
     },
   ]
   # Auto scaling group
-  asg_name                  = "${var.application}-asg"
-  vpc_zone_identifier       = data.aws_subnet_ids.web.ids
-  health_check_type         = "EC2"
-  min_size                  = var.min_size
-  max_size                  = var.max_size
-  desired_capacity          = var.desired_capacity
-  health_check_grace_period = 300
-  wait_for_capacity_timeout = 0
-  force_delete              = true
-  key_name                  = aws_key_pair.asg_keypair.key_name
-  termination_policies      = ["OldestLaunchConfiguration"]
-  target_group_arns         = concat(module.ewf_external_alb.target_group_arns, module.ewf_internal_alb.target_group_arns)
-  iam_instance_profile      = module.ewf_frontend_profile.aws_iam_instance_profile.name
+  asg_name                       = "${var.application}-asg"
+  vpc_zone_identifier            = data.aws_subnet_ids.web.ids
+  health_check_type              = "ELB"
+  min_size                       = var.min_size
+  max_size                       = var.max_size
+  desired_capacity               = var.desired_capacity
+  health_check_grace_period      = 300
+  wait_for_capacity_timeout      = 0
+  force_delete                   = true
+  enable_instance_refresh        = true
+  refresh_min_healthy_percentage = 50
+  refresh_triggers               = ["launch_configuration"]
+  key_name                       = aws_key_pair.asg_keypair.key_name
+  termination_policies           = ["OldestLaunchConfiguration"]
+  target_group_arns              = concat(module.ewf_external_alb.target_group_arns, module.ewf_internal_alb.target_group_arns)
+  iam_instance_profile           = module.ewf_frontend_profile.aws_iam_instance_profile.name
   user_data = templatefile("${path.module}/templates/user_data.tpl",
     {
       REGION         = var.aws_region

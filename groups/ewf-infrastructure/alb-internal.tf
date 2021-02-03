@@ -28,7 +28,7 @@ module "ewf_internal_alb" {
   enable_deletion_protection = true
 
   security_groups = [module.ewf_internal_alb_security_group.this_security_group_id]
-  subnets         = data.aws_subnet_ids.public.ids
+  subnets         = data.aws_subnet_ids.web.ids
 
   http_tcp_listeners = [
     {
