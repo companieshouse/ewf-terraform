@@ -169,3 +169,14 @@ variable "log_group_retention_in_days" {
   default     = 7
   description = "Total days to retain logs in CloudWatch log group"
 }
+
+variable "app_release_version" {
+  type        = string
+  description = "Version of the application to download for deployment to frontend servers"
+}
+
+variable "frontend_ami_name" {
+  type        = string
+  default     = "ewf-frontend-*"
+  description = "Name of the AMI to use in the Auto Scaling configuration for frontend servers"
+}
