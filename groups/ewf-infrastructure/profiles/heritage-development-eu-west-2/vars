@@ -18,11 +18,13 @@ max_size = 2
 desired_capacity = 2
 
 # RDS Instance settings
-instance_class = "db.t3.medium"
-allocated_storage = 20
-maximum_storage   = 40
+instance_class          = "db.t3.medium"
+allocated_storage       = 20
+maximum_storage         = 40
 backup_retention_period = 2
-multi_az = false
+multi_az                = false
+rds_maintenance_window  = "Thu:00:00-Thu:03:00"
+rds_backup_window       = "03:00-06:00"
 
 # RDS Engine settings
 major_engine_version        = "12.1"

@@ -25,7 +25,6 @@ module "ewf_frontend_profile" {
         "s3:Get*",
         "s3:List*",
       ]
-
     }
   ]
 }
