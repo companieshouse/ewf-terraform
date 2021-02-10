@@ -15,15 +15,15 @@ module "ewf_frontend_profile" {
       ]
     },
     {
-      "Sid" : "AllowAccessToReleaseBucket",
-      "Effect" : "Allow",
-      "Action" : [
-        "s3:Get*",
-        "s3:List*"
-      ],
-      "Resource" : [
+      sid    = "AllowAccessToReleaseBucket",
+      effect = "Allow",
+      resources = [
         "arn:aws:s3:::shared-services.eu-west-2.resources.ch.gov.uk/*",
         "arn:aws:s3:::shared-services.eu-west-2.resources.ch.gov.uk"
+      ],
+      actions = [
+        "s3:Get*",
+        "s3:List*",
       ]
     }
   ]

@@ -120,6 +120,16 @@ variable "rds_onpremise_access" {
   default     = []
 }
 
+variable "rds_maintenance_window" {
+  type        = string
+  description = "A maintenance window that will allow AWS to run maintenance on underlying hosts e.g. `Mon:00:00-Mon:03:00`"
+}
+
+variable "rds_backup_window" {
+  type        = string
+  description = "A backup window that allows AWS to backup your RDS instance e.g. `03:00-06:00`"
+}
+
 # ------------------------------------------------------------------------------
 # RDS Engine Type Variables
 # ------------------------------------------------------------------------------
