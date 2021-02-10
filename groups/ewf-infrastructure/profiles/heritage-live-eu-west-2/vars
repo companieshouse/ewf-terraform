@@ -25,10 +25,10 @@ backup_retention_period = 14
 multi_az = true
 
 # RDS Engine settings
-major_engine_version = "12.1"
-engine_version       = "12.1.0.2.v22"
-license_model        = "license-included"
-auto_minor_version_upgrade  = false
+major_engine_version        = "12.1"
+engine_version              = "12.1.0.2.v22"
+license_model               = "license-included"
+auto_minor_version_upgrade  = true
 
 # RDS Access
 rds_onpremise_access = [
