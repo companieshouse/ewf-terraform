@@ -13,6 +13,18 @@ module "ewf_frontend_profile" {
         "logs:CreateLogStream",
         "logs:PutLogEvents",
       ]
+    },
+    {
+      "Sid" : "AllowAccessToReleaseBucket",
+      "Effect" : "Allow",
+      "Action" : [
+        "s3:Get*",
+        "s3:List*"
+      ],
+      "Resource" : [
+        "arn:aws:s3:::shared-services.eu-west-2.resources.ch.gov.uk/*",
+        "arn:aws:s3:::shared-services.eu-west-2.resources.ch.gov.uk"
+      ]
     }
   ]
 }
