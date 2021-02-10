@@ -34,16 +34,17 @@ module "ewf_rds" {
   create_db_parameter_group = "true"
   create_db_subnet_group    = "true"
 
-  identifier           = join("-", ["rds", var.application, var.environment, "001"])
-  engine               = "oracle-se2"
-  major_engine_version = var.major_engine_version
-  engine_version       = var.engine_version
-  license_model        = var.license_model
-  instance_class       = var.instance_class
-  allocated_storage    = var.allocated_storage
-  multi_az             = var.multi_az
-  storage_encrypted    = true
-  kms_key_id           = data.aws_kms_key.rds.arn
+  identifier                 = join("-", ["rds", var.application, var.environment, "001"])
+  engine                     = "oracle-se2"
+  major_engine_version       = var.major_engine_version
+  engine_version             = var.engine_version
+  auto_minor_version_upgrade = var.auto_minor_version_upgrade
+  license_model              = var.license_model
+  instance_class             = var.instance_class
+  allocated_storage          = var.allocated_storage
+  multi_az                   = var.multi_az
+  storage_encrypted          = true
+  kms_key_id                 = data.aws_kms_key.rds.arn
 
   name     = upper(var.application)
   username = local.ewf_rds_data["admin-username"]

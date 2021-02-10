@@ -136,6 +136,11 @@ variable "license_model" {
   description = "The license model for the engine, byol or license-include: https://aws.amazon.com/rds/oracle/faqs/"
 }
 
+variable "auto_minor_version_upgrade" {
+  type        = bool
+  description = "True/False value to allow AWS to apply minor version updates to RDS without approval from owner"
+}
+
 # ------------------------------------------------------------------------------
 # EWF Frontend Variables - ALB 
 # ------------------------------------------------------------------------------
