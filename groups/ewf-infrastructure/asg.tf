@@ -72,7 +72,7 @@ module "asg" {
   user_data = templatefile("${path.module}/templates/user_data.tpl",
     {
       REGION         = var.aws_region
-      TNS_NAMES      = jsonencode(local.tns_connections)
+      EWF_FRONTED    = jsonencode(local.ewf_frontend_data)
       LOG_GROUP_NAME = "logs-${var.application}-frontend"
     }
   )
