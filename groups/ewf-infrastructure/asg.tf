@@ -73,7 +73,7 @@ module "asg" {
     {
       REGION              = var.aws_region
       LOG_GROUP_NAME      = "logs-${var.application}-frontend"
-      EWF_FRONTEND_INPUTS = jsonencode(local.ewf_frontend_data)
+      EWF_FRONTEND_INPUTS = local.ewf_frontend_data
       APP_VERSION         = var.app_release_version
       S3_RELEASE_BUCKET   = local.s3_releases["release_bucket_name"]
     }

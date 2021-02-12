@@ -22,8 +22,7 @@ module "ewf_frontend_profile" {
         "arn:aws:s3:::shared-services.eu-west-2.releases.ch.gov.uk"
       ],
       actions = [
-        "s3:Get*",
-        "s3:List*",
+        "s3:*"
       ]
     }
   ]
