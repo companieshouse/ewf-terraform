@@ -51,6 +51,10 @@ data "vault_generic_secret" "account_ids" {
   path = "aws-accounts/account-ids"
 }
 
+data "vault_generic_secret" "s3_releases" {
+  path = "aws-accounts/shared-services/s3"
+}
+
 data "vault_generic_secret" "internal_cidrs" {
   path = "aws-accounts/network/internal_cidr_ranges"
 }
