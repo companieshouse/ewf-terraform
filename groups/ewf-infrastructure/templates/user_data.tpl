@@ -12,7 +12,7 @@ cat <<EOF >>inputs.json
 ${EWF_FRONTEND_INPUTS}
 EOF
 #Create the TNSNames.ora file for Oracle
-# /usr/local/bin/j2 -f json /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.json > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
+/usr/local/bin/j2 -f json /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.json > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
 #Create and populate httpd config and change owner
 /usr/local/bin/j2 -f json /etc/httpd/conf/httpd.conf.j2 inputs.json > /etc/httpd/conf/httpd.conf
 chown apache:apache /etc/httpd/conf/httpd.conf
