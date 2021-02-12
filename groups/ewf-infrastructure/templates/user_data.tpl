@@ -14,19 +14,19 @@ cat <<EOF >>inputs.yaml
 ${EWF_FRONTED}
 EOF
 #Create the TNSNames.ora file for Oracle
-j2 -f yaml /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.yaml > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
+/usr/local/bin/j2 -f yaml /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.yaml > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
 #Create and populate httpd config and change owner
-j2 -f yaml /etc/httpd/conf/httpd.conf.j2 inputs.yaml > /etc/httpd/conf/httpd.conf
+/usr/local/bin/j2 -f yaml /etc/httpd/conf/httpd.conf.j2 inputs.yaml > /etc/httpd/conf/httpd.conf
 chown apache:apache /etc/httpd/conf/httpd.conf
 #Create and populate the perl config and change owner
-j2 -f yaml /etc/httpd/conf.d/ewf_perl.conf.j2 inputs.yaml > /etc/httpd/conf.d/ewf_perl.conf
+/usr/local/bin/j2 -f yaml /etc/httpd/conf.d/ewf_perl.conf.j2 inputs.yaml > /etc/httpd/conf.d/ewf_perl.conf
 chown apache:apache /etc/httpd/conf.d/ewf_perl.conf
 #Remove unnecessary files
-rm chown apache:apache /etc/httpd/conf.d/welcome.conf
-rm chown apache:apache /etc/httpd/conf.d/ssl.conf
-rm chown apache:apache /etc/httpd/conf.d/perl.conf
+rm /etc/httpd/conf.d/welcome.conf
+rm /etc/httpd/conf.d/ssl.conf
+rm /etc/httpd/conf.d/perl.conf
 #Run Ansible deployment to download and install the app
-ansible-playbook /root/deployment.yml -e "s3_bucket=${S3_RELEASE_BUCKET} version=${APP_VERSION}"
+/usr/local/bin/ansible-playbook /root/deployment.yml -e "s3_bucket=${S3_RELEASE_BUCKET} version=${APP_VERSION}"
 #Enable and start httpd
 chkconfig httpd on
 service httpd start
