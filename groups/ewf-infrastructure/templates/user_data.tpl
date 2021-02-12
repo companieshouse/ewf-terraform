@@ -8,16 +8,16 @@ python /root/cw_log_conf.py \
  -l "/var/log/httpd/ewf_access_log" "/var/log/httpd/ewf_error_log"
 . /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:amazon-cloudwatch-agent.log -s
 #Create key:value variable
-cat <<EOF >>inputs.yaml
-${EWF_FRONTED}
+cat <<EOF >>inputs.json
+${EWF_FRONTEND_INPUTS}
 EOF
 #Create the TNSNames.ora file for Oracle
-/usr/local/bin/j2 -f yaml /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.yaml > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
+/usr/local/bin/j2 -f json /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.json > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
 #Create and populate httpd config and change owner
-/usr/local/bin/j2 -f yaml /etc/httpd/conf/httpd.conf.j2 inputs.yaml > /etc/httpd/conf/httpd.conf
+/usr/local/bin/j2 -f json /etc/httpd/conf/httpd.conf.j2 inputs.json > /etc/httpd/conf/httpd.conf
 chown apache:apache /etc/httpd/conf/httpd.conf
 #Create and populate the perl config and change owner
-/usr/local/bin/j2 -f yaml /etc/httpd/conf.d/ewf_perl.conf.j2 inputs.yaml > /etc/httpd/conf.d/ewf_perl.conf
+/usr/local/bin/j2 -f json /etc/httpd/conf.d/ewf_perl.conf.j2 inputs.json > /etc/httpd/conf.d/ewf_perl.conf
 chown apache:apache /etc/httpd/conf.d/ewf_perl.conf
 #Remove unnecessary files
 rm /etc/httpd/conf.d/welcome.conf
