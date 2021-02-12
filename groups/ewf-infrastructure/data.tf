@@ -76,7 +76,8 @@ data "aws_acm_certificate" "acm_cert" {
 }
 
 data "aws_ami" "ewf" {
-  owners = [data.vault_generic_secret.account_ids.data["development"]]
+  owners      = [data.vault_generic_secret.account_ids.data["development"]]
+  most_recent = var.frontend_ami_name == "ewf-frontend-*" ? true : false
 
   filter {
     name = "name"
