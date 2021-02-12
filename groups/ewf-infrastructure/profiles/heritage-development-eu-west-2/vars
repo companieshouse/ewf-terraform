@@ -11,11 +11,14 @@ region  = "euw2"
 application = "ewf"
 environment = "development"
 
-# ASG settings
+# NFS settings
+nfs_server = "10.104.9.145"
+
+# Frontend ASG settings
 instance_size = "t2.medium"
-min_size = 2
-max_size = 2
-desired_capacity = 2
+min_size = 1
+max_size = 1
+desired_capacity = 1
 
 # RDS Instance settings
 instance_class          = "db.t3.medium"

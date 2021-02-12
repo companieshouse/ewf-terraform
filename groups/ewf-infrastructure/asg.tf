@@ -37,7 +37,7 @@ resource "aws_cloudwatch_log_group" "ewf_fe" {
 }
 
 # ASG Module
-module "asg" {
+module "frontend_asg" {
   source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36"
 
   name = "${var.application}-webserver"
@@ -71,11 +71,10 @@ module "asg" {
   iam_instance_profile           = module.ewf_frontend_profile.aws_iam_instance_profile.name
   user_data = templatefile("${path.module}/templates/user_data.tpl",
     {
-      REGION            = var.aws_region
-      LOG_GROUP_NAME    = "logs-${var.application}-frontend"
-      EWF_FRONTED       = yamlencode(local.ewf_frontend_data)
-      APP_VERSION       = var.app_release_version
-      S3_RELEASE_BUCKET = local.s3_releases["release_bucket_name"]
+      REGION              = var.aws_region
+      LOG_GROUP_NAME      = "logs-${var.application}-frontend"
+      EWF_FRONTEND_INPUTS = local.ewf_frontend_data
+      ANSIBLE_INPUTS      = jsonencode(local.ewf_frontend_ansible_inputs)
     }
   )
 
