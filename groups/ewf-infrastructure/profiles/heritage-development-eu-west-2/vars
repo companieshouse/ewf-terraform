@@ -13,9 +13,9 @@ environment = "development"
 
 # ASG settings
 instance_size = "t2.medium"
-min_size = 2
-max_size = 2
-desired_capacity = 2
+min_size = 1
+max_size = 1
+desired_capacity = 1
 
 # RDS Instance settings
 instance_class          = "db.t3.medium"
