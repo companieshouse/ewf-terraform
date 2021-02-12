@@ -7,8 +7,6 @@ python /root/cw_log_conf.py \
  -o "amazon-cloudwatch-agent.log" \
  -l "/var/log/httpd/ewf_access_log" "/var/log/httpd/ewf_error_log"
 . /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:amazon-cloudwatch-agent.log -s
-#env output
-env
 #Create key:value variable
 cat <<EOF >>inputs.yaml
 ${EWF_FRONTED}
