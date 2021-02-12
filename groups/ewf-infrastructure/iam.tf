@@ -18,8 +18,8 @@ module "ewf_frontend_profile" {
       sid    = "AllowAccessToReleaseBucket",
       effect = "Allow",
       resources = [
-        "arn:aws:s3:::shared-services.eu-west-2.resources.ch.gov.uk/*",
-        "arn:aws:s3:::shared-services.eu-west-2.resources.ch.gov.uk"
+        "arn:aws:s3:::shared-services.eu-west-2.releases.ch.gov.uk/*",
+        "arn:aws:s3:::shared-services.eu-west-2.releases.ch.gov.uk"
       ],
       actions = [
         "s3:Get*",
