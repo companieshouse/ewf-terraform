@@ -11,7 +11,7 @@ region  = "euw2"
 application = "ewf"
 environment = "development"
 
-# ASG settings
+# Frontend ASG settings
 instance_size = "t2.medium"
 min_size = 1
 max_size = 1

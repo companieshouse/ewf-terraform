@@ -181,7 +181,7 @@ variable "health_check_path" {
 
 variable "log_group_retention_in_days" {
   type        = number
-  default     = 7
+  default     = 14
   description = "Total days to retain logs in CloudWatch log group"
 }
 

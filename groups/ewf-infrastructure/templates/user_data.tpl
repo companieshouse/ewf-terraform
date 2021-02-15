@@ -25,7 +25,3 @@ rm /etc/httpd/conf.d/ssl.conf
 rm /etc/httpd/conf.d/perl.conf
 #Run Ansible deployment to download and install the app
 /usr/local/bin/ansible-playbook /root/deployment.yml -e "s3_bucket=${S3_RELEASE_BUCKET} version=${APP_VERSION}"
-#Enable and start httpd
-chkconfig httpd on
-service httpd start
-

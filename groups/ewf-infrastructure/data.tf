@@ -47,6 +47,7 @@ data "aws_iam_role" "rds_enhanced_monitoring" {
 data "aws_kms_key" "rds" {
   key_id = "alias/kms-rds"
 }
+
 data "vault_generic_secret" "account_ids" {
   path = "aws-accounts/account-ids"
 }
