@@ -11,6 +11,9 @@ region  = "euw2"
 application = "ewf"
 environment = "development"
 
+# NFS settings
+nfs_server = "10.104.9.145"
+
 # Frontend ASG settings
 instance_size = "t2.medium"
 min_size = 1
