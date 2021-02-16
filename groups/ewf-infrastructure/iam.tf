@@ -25,6 +25,16 @@ module "ewf_frontend_profile" {
         "s3:Get*",
         "s3:List*",
       ]
+    },
+    {
+      sid    = "AllowInstanceHealthActions",
+      effect = "Allow",
+      resources = [
+        "${module.asg.this_autoscaling_group_arn}"
+      ],
+      actions = [
+        "autoscaling:SetInstanceHealth"
+      ]
     }
   ]
 }
