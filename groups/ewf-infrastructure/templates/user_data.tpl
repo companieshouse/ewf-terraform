@@ -24,4 +24,4 @@ rm /etc/httpd/conf.d/welcome.conf
 rm /etc/httpd/conf.d/ssl.conf
 rm /etc/httpd/conf.d/perl.conf
 #Run Ansible deployment to download and install the app
-/usr/local/bin/ansible-playbook /root/deployment.yml -e ${ANSIBLE_INPUTS}
+/usr/local/bin/ansible-playbook /root/deployment.yml -e '${ANSIBLE_INPUTS}'
