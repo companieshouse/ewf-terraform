@@ -17,8 +17,8 @@ nfs_server = "10.104.9.145"
 # Frontend ASG settings
 instance_size = "t2.medium"
 min_size = 1
-max_size = 1
-desired_capacity = 1
+max_size = 2
+desired_capacity = 2
 
 # RDS Instance settings
 instance_class          = "db.t3.medium"
