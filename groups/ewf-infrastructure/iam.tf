@@ -1,19 +1,12 @@
 module "ewf_frontend_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.31"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.40"
 
-  name = "ewf_frontend_profile"
-  statement = [
-    {
-      sid    = "ewfloggroupwrite"
-      effect = "Allow"
-      resources = [
-        aws_cloudwatch_log_group.ewf_fe.arn
-      ]
-      actions = [
-        "logs:CreateLogStream",
-        "logs:PutLogEvents",
-      ]
-    },
+  name              = "ewf_frontend_profile"
+  enable_SSM        = true
+  cw_log_group_arns = [aws_cloudwatch_log_group.ewf_fe.arn]
+  instance_asg_arns = [module.frontend_asg.this_autoscaling_group_arn]
+  kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
+  custom_statements = [
     {
       sid    = "AllowAccessToReleaseBucket",
       effect = "Allow",
@@ -24,16 +17,6 @@ module "ewf_frontend_profile" {
       actions = [
         "s3:Get*",
         "s3:List*",
-      ]
-    },
-    {
-      sid    = "AllowInstanceHealthActions",
-      effect = "Allow",
-      resources = [
-        "${module.asg.this_autoscaling_group_arn}"
-      ],
-      actions = [
-        "autoscaling:SetInstanceHealth"
       ]
     }
   ]
