@@ -9,7 +9,11 @@ resource "aws_route53_record" "ewf_rds" {
 resource "aws_route53_record" "ewf_alb_internal" {
   zone_id = data.aws_route53_zone.private_zone.zone_id
   name    = var.application
-  type    = "CNAME"
-  ttl     = "300"
-  records = [module.ewf_internal_alb.this_lb_dns_name]
+  type    = "A"
+
+  alias {
+    name                   = module.ewf_internal_alb.this_lb_dns_name
+    zone_id                = module.ewf_internal_alb.this_lb_zone_id
+    evaluate_target_health = true
+  }
 }
