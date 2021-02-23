@@ -15,6 +15,7 @@ locals {
   ewf_frontend_ansible_inputs = {
     s3_bucket_releases         = local.s3_releases["release_bucket_name"]
     s3_bucket_configs          = local.s3_releases["config_bucket_name"]
+    environment                = var.environment
     version                    = var.app_release_version
     default_nfs_server_address = var.nfs_server
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
