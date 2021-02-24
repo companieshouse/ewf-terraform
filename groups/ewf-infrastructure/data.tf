@@ -94,3 +94,25 @@ data "aws_ami" "ewf" {
     ]
   }
 }
+
+data "template_file" "frontend_userdata" {
+  template = file("${path.module}/templates/user_data.tpl")
+
+  vars = {
+    REGION              = var.aws_region
+    LOG_GROUP_NAME      = "logs-${var.application}-frontend"
+    EWF_FRONTEND_INPUTS = local.ewf_frontend_data
+    ANSIBLE_INPUTS      = jsonencode(local.ewf_frontend_ansible_inputs)
+  }
+}
+
+data "template_cloudinit_config" "frontend_userdata_config" {
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = data.template_file.frontend_userdata.rendered
+  }
+
+}

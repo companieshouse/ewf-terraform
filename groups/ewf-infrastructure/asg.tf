@@ -50,6 +50,7 @@ module "frontend_asg" {
     {
       volume_size = "40"
       volume_type = "gp2"
+      encrypted   = true
     },
   ]
   # Auto scaling group
@@ -69,19 +70,11 @@ module "frontend_asg" {
   termination_policies           = ["OldestLaunchConfiguration"]
   target_group_arns              = concat(module.ewf_external_alb.target_group_arns, module.ewf_internal_alb.target_group_arns)
   iam_instance_profile           = module.ewf_frontend_profile.aws_iam_instance_profile.name
-  user_data = templatefile("${path.module}/templates/user_data.tpl",
-    {
-      REGION              = var.aws_region
-      LOG_GROUP_NAME      = "logs-${var.application}-frontend"
-      EWF_FRONTEND_INPUTS = local.ewf_frontend_data
-      ANSIBLE_INPUTS      = jsonencode(local.ewf_frontend_ansible_inputs)
-    }
-  )
+  user_data_base64               = data.template_cloudinit_config.frontend_userdata_config.rendered
 
   tags_as_map = merge(
     local.default_tags,
     map(
-      "Name", "${var.application}-web-instance",
       "ServiceTeam", "${upper(var.application)}-EC2-Support"
     )
   )
