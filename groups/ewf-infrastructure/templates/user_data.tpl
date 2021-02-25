@@ -21,5 +21,5 @@ rm /etc/httpd/conf.d/perl.conf
 /usr/local/bin/j2 -f json /etc/httpd/conf/httpd.conf.j2 inputs.json > /etc/httpd/conf/httpd.conf
 #Create and populate the perl config
 /usr/local/bin/j2 -f json /etc/httpd/conf.d/ewf_perl.conf.j2 inputs.json > /etc/httpd/conf.d/ewf_perl.conf
-#Run Ansible deployment to download and install the app
+#Download Ansible playbook and run it with inputs to deploy the app
 /usr/local/bin/ansible-pull ${ANSIBLE_PLAYBOOK_LOCATION} -U ${DEPLOYMENT-SCRIPT-REPO} -i localhost -e '${ANSIBLE_INPUTS}'
