@@ -99,10 +99,12 @@ data "template_file" "frontend_userdata" {
   template = file("${path.module}/templates/user_data.tpl")
 
   vars = {
-    REGION              = var.aws_region
-    LOG_GROUP_NAME      = "logs-${var.application}-frontend"
-    EWF_FRONTEND_INPUTS = local.ewf_frontend_data
-    ANSIBLE_INPUTS      = jsonencode(local.ewf_frontend_ansible_inputs)
+    REGION                    = var.aws_region
+    LOG_GROUP_NAME            = "logs-${var.application}-frontend"
+    EWF_FRONTEND_INPUTS       = local.ewf_frontend_data
+    ANSIBLE_PLAYBOOK_REPO     = "https://github.com/companieshouse/ewf-ami.git"
+    ANSIBLE_PLAYBOOK_LOCATION = "deployment-scripts/frontend_deployment.yml"
+    ANSIBLE_INPUTS            = jsonencode(local.ewf_frontend_ansible_inputs)
   }
 }
 
