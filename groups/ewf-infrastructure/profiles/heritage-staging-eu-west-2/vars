@@ -11,6 +11,24 @@ region  = "euw2"
 application = "ewf"
 environment = "staging"
 
+# CVO Mounts
+nfs_server = "192.168.255.19"
+nfs_mount_destination_parent_dir = "/mnt/nfs/ewf"
+nfs_mounts = {
+    ewf_image = {
+      local_mount_point = "image"
+    },
+    ewf_upload = {
+      local_mount_point = "upload"
+    },
+    ewf_submissions = {
+      local_mount_point = "submissions"
+    },
+    ewf_archive = {
+      local_mount_point = "archive"
+    }
+  }
+
 # Frontend ASG settings
 instance_size = "t2.medium"
 min_size = 1
