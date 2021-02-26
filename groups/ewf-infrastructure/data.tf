@@ -35,6 +35,13 @@ data "aws_security_group" "rds_shared" {
   }
 }
 
+data "aws_security_group" "tuxedo" {
+  filter {
+    name   = "tag:Name"
+    values = ["ewf-frontend-tuxedo-${var.environment}"]
+  }
+}
+
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
