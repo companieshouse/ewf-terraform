@@ -85,14 +85,14 @@ module "ewf_external_alb" {
   )
 }
 
-#--------------------------------------------
-# External ALB CloudWatch Merics
-#--------------------------------------------
-module "external_alb_metrics" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
+# #--------------------------------------------
+# # External ALB CloudWatch Merics
+# #--------------------------------------------
+# module "external_alb_metrics" {
+#   source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
 
-  load_balancer_id = module.ewf_external_alb.this_lb_id
-  target_group_ids = module.ewf_external_alb.target_group_arns
+#   load_balancer_id = module.ewf_external_alb.this_lb_id
+#   target_group_ids = module.ewf_external_alb.target_group_arns
 
-  depends_on = [module.ewf_external_alb]
-}
+#   depends_on = [module.ewf_external_alb]
+# }
