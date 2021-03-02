@@ -151,6 +151,12 @@ variable "rds_onpremise_access" {
   default     = []
 }
 
+variable "rds_log_exports" {
+  type        = list(string)
+  description = "A list log types to export from RDS to Cloudwatch"
+  default     = []
+}
+
 variable "rds_maintenance_window" {
   type        = string
   description = "A maintenance window that will allow AWS to run maintenance on underlying hosts e.g. `Mon:00:00-Mon:03:00`"
