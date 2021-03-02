@@ -60,8 +60,7 @@ rds_log_exports = [
     "alert",
     "audit",
     "listener",
-    "trace",
-    "agent"
+    "trace"
 ]
 
 # RDS Param and Option settings
