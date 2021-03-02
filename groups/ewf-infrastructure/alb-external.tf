@@ -55,7 +55,7 @@ module "ewf_external_alb" {
 
   target_groups = [
     {
-      name                 = "tg-${var.application}-internal-001"
+      name                 = "tg-${var.application}-external-001"
       backend_protocol     = "HTTP"
       backend_port         = var.backend_port
       target_type          = "instance"
