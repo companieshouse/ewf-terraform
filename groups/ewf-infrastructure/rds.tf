@@ -20,23 +20,23 @@ module "ewf_rds_security_group" {
       cidr_blocks = join(",", local.rds_ingress_cidrs)
     }
   ]
-  # ingress_with_source_security_group_id = [
-  #   {
-  #     from_port                = 1521
-  #     to_port                  = 1521
-  #     protocol                 = "tcp"
-  #     description              = "Frontend Tuxedo"
-  #     source_security_group_id = data.aws_security_group.tuxedo.id
-  #   }
-  # ]
-  # computed_ingress_with_source_security_group_id = [
-  #   {
-  #     rule                     = "oracle-db-tcp"
-  #     source_security_group_id = "${module.ewf_asg_security_group.this_security_group_id}"
-  #     description              = "Allow frontends to connect to RDS"
-  #   }
-  # ]
-  # number_of_computed_ingress_with_source_security_group_id = 1
+  ingress_with_source_security_group_id = [
+    {
+      from_port                = 1521
+      to_port                  = 1521
+      protocol                 = "tcp"
+      description              = "Frontend Tuxedo"
+      source_security_group_id = data.aws_security_group.tuxedo.id
+    }
+  ]
+  computed_ingress_with_source_security_group_id = [
+    {
+      rule                     = "oracle-db-tcp"
+      source_security_group_id = module.ewf_asg_security_group.this_security_group_id
+      description              = "Allow frontends to connect to RDS"
+    }
+  ]
+  number_of_computed_ingress_with_source_security_group_id = 1
 
   egress_rules = ["all-all"]
 }

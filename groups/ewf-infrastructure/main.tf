@@ -13,12 +13,6 @@ terraform {
       source  = "hashicorp/vault"
       version = ">= 2.0.0"
     }
-    template = {
-      source = "hashicorp/template"
-    }
-    null = {
-      source = "hashicorp/null"
-    }
   }
   backend "s3" {}
 }
