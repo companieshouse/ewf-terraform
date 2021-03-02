@@ -46,6 +46,15 @@ rds_onpremise_access = [
   "192.168.60.134/32"
 ]
 
+# RDS logging
+rds_log_exports = [
+    "alert",
+    "audit",
+    "listener",
+    "trace",
+    "agent"
+]
+
 # RDS Param and Option settings
 parameter_group_settings = [
     {
