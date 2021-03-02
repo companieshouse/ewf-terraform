@@ -35,12 +35,12 @@ data "aws_security_group" "rds_shared" {
   }
 }
 
-data "aws_security_group" "tuxedo" {
-  filter {
-    name   = "tag:Name"
-    values = ["ewf-frontend-tuxedo-${var.environment}"]
-  }
-}
+# data "aws_security_group" "tuxedo" {
+#   filter {
+#     name   = "tag:Name"
+#     values = ["ewf-frontend-tuxedo-${var.environment}"]
+#   }
+# }
 
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
@@ -102,26 +102,26 @@ data "aws_ami" "ewf" {
   }
 }
 
-data "template_file" "frontend_userdata" {
-  template = file("${path.module}/templates/user_data.tpl")
+# data "template_file" "frontend_userdata" {
+#   template = file("${path.module}/templates/user_data.tpl")
 
-  vars = {
-    REGION                    = var.aws_region
-    LOG_GROUP_NAME            = "logs-${var.application}-frontend"
-    EWF_FRONTEND_INPUTS       = local.ewf_frontend_data
-    ANSIBLE_PLAYBOOK_REPO     = "https://github.com/companieshouse/ewf-ami.git"
-    ANSIBLE_PLAYBOOK_LOCATION = "deployment-scripts/frontend_deployment.yml"
-    ANSIBLE_INPUTS            = jsonencode(local.ewf_frontend_ansible_inputs)
-  }
-}
+#   vars = {
+#     REGION                    = var.aws_region
+#     LOG_GROUP_NAME            = "logs-${var.application}-frontend"
+#     EWF_FRONTEND_INPUTS       = local.ewf_frontend_data
+#     ANSIBLE_PLAYBOOK_REPO     = "https://github.com/companieshouse/ewf-ami.git"
+#     ANSIBLE_PLAYBOOK_LOCATION = "deployment-scripts/frontend_deployment.yml"
+#     ANSIBLE_INPUTS            = jsonencode(local.ewf_frontend_ansible_inputs)
+#   }
+# }
 
-data "template_cloudinit_config" "frontend_userdata_config" {
-  gzip          = true
-  base64_encode = true
+# data "template_cloudinit_config" "frontend_userdata_config" {
+#   gzip          = true
+#   base64_encode = true
 
-  part {
-    content_type = "text/x-shellscript"
-    content      = data.template_file.frontend_userdata.rendered
-  }
+#   part {
+#     content_type = "text/x-shellscript"
+#     content      = data.template_file.frontend_userdata.rendered
+#   }
 
-}
+# }
