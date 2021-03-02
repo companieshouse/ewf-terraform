@@ -32,7 +32,7 @@ module "ewf_rds_security_group" {
   computed_ingress_with_source_security_group_id = [
     {
       rule                     = "oracle-db-tcp"
-      source_security_group_id = "${module.ewf_asg_security_group.this_security_group_id}"
+      source_security_group_id = module.ewf_asg_security_group.this_security_group_id
       description              = "Allow frontends to connect to RDS"
     }
   ]
