@@ -57,14 +57,14 @@ module "ewf_internal_alb" {
     {
       name                 = "tg-${var.application}-internal-001"
       backend_protocol     = "HTTP"
-      backend_port         = var.backend_port
+      backend_port         = var.fe_service_port
       target_type          = "instance"
       deregistration_delay = 10
       health_check = {
         enabled             = true
         interval            = 30
-        path                = var.health_check_path
-        port                = 80
+        path                = var.fe_health_check_path
+        port                = var.fe_service_port
         healthy_threshold   = 3
         unhealthy_threshold = 3
         timeout             = 6
@@ -85,14 +85,14 @@ module "ewf_internal_alb" {
   )
 }
 
-# #--------------------------------------------
-# # Internal ALB CloudWatch Merics
-# #--------------------------------------------
-# module "internal_alb_metrics" {
-#   source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
+#--------------------------------------------
+# Internal ALB CloudWatch Merics
+#--------------------------------------------
+module "internal_alb_metrics" {
+  source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
 
-#   load_balancer_id = module.ewf_internal_alb.this_lb_id
-#   target_group_ids = module.ewf_internal_alb.target_group_arns
+  load_balancer_id = module.ewf_internal_alb.this_lb_id
+  target_group_ids = module.ewf_internal_alb.target_group_arns
 
-#   depends_on = [module.ewf_internal_alb]
-# }
+  depends_on = [module.ewf_internal_alb]
+}

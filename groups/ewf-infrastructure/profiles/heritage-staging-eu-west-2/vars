@@ -11,9 +11,21 @@ region  = "euw2"
 application = "ewf"
 environment = "staging"
 
+# Frontend ASG settings
+fe_instance_size = "t2.medium"
+fe_min_size = 2
+fe_max_size = 2
+fe_desired_capacity = 2
+
+# Backend ASG settings
+bep_instance_size = "t2.medium"
+bep_min_size = 1
+bep_max_size = 1
+bep_desired_capacity = 1
+
 # CVO Mounts
 nfs_server = "192.168.255.19"
-nfs_mount_destination_parent_dir = "/mnt/nfs/ewf"
+nfs_mount_destination_parent_dir = "/mnt/nfs/fillings"
 nfs_mounts = {
     ewf_image = {
       local_mount_point = "image"
@@ -28,13 +40,7 @@ nfs_mounts = {
       local_mount_point = "archive"
     }
   }
-
-# Frontend ASG settings
-instance_size = "t2.medium"
-min_size = 1
-max_size = 2
-desired_capacity = 2
-
+  
 # RDS Instance settings
 instance_class          = "db.m5.large"
 allocated_storage       = 250
