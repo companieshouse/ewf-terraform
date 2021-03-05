@@ -57,14 +57,14 @@ module "ewf_external_alb" {
     {
       name                 = "tg-${var.application}-external-001"
       backend_protocol     = "HTTP"
-      backend_port         = var.backend_port
+      backend_port         = var.fe_service_port
       target_type          = "instance"
       deregistration_delay = 10
       health_check = {
         enabled             = true
         interval            = 30
-        path                = var.health_check_path
-        port                = var.backend_port
+        path                = var.fe_health_check_path
+        port                = var.fe_service_port
         healthy_threshold   = 3
         unhealthy_threshold = 3
         timeout             = 6
@@ -85,14 +85,14 @@ module "ewf_external_alb" {
   )
 }
 
-# #--------------------------------------------
-# # External ALB CloudWatch Merics
-# #--------------------------------------------
-# module "external_alb_metrics" {
-#   source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
+#--------------------------------------------
+# External ALB CloudWatch Merics
+#--------------------------------------------
+module "external_alb_metrics" {
+  source = "git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26"
 
-#   load_balancer_id = module.ewf_external_alb.this_lb_id
-#   target_group_ids = module.ewf_external_alb.target_group_arns
+  load_balancer_id = module.ewf_external_alb.this_lb_id
+  target_group_ids = module.ewf_external_alb.target_group_arns
 
-#   depends_on = [module.ewf_external_alb]
-# }
+  depends_on = [module.ewf_external_alb]
+}

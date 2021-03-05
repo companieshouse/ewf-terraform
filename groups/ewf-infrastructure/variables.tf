@@ -57,25 +57,16 @@ variable "environment" {
   description = "The name of the environment"
 }
 
-# ASG Variables
-variable "instance_size" {
+variable "domain_name" {
   type        = string
-  description = "The size of the ec2 instance"
+  default     = "*.companieshouse.gov.uk"
+  description = "Domain Name for ACM Certificate"
 }
 
-variable "min_size" {
-  type        = number
-  description = "The min size of the ASG"
-}
-
-variable "max_size" {
-  type        = number
-  description = "The max size of the ASG"
-}
-
-variable "desired_capacity" {
-  type        = number
-  description = "The desired capacity of ASG"
+variable "public_cidr_block" {
+  type        = string
+  default     = "0.0.0.0/0"
+  description = "cidr block for allowing inbound users from internet"
 }
 
 # ------------------------------------------------------------------------------
@@ -107,8 +98,6 @@ variable "nfs_mounts" {
     }
   }
 }
-
-
 
 # ------------------------------------------------------------------------------
 # RDS Variables
@@ -192,43 +181,92 @@ variable "auto_minor_version_upgrade" {
 # EWF Frontend Variables - ALB 
 # ------------------------------------------------------------------------------
 
-variable "backend_port" {
+variable "fe_service_port" {
   type        = number
   default     = 80
   description = "Target group backend port"
 }
 
-variable "public_cidr_block" {
-  type        = string
-  default     = "0.0.0.0/0"
-  description = "cidr block for allowing inbound users from internet"
-}
-
-variable "domain_name" {
-  type        = string
-  default     = "*.companieshouse.gov.uk"
-  description = "Domain Name for ACM Certificate"
-}
-
-variable "health_check_path" {
+variable "fe_health_check_path" {
   type        = string
   default     = "/"
   description = "Target group health check path"
 }
 
-variable "log_group_retention_in_days" {
+variable "fe_log_group_retention_in_days" {
   type        = number
   default     = 14
   description = "Total days to retain logs in CloudWatch log group"
 }
 
-variable "app_release_version" {
+variable "fe_app_release_version" {
   type        = string
   description = "Version of the application to download for deployment to frontend servers"
 }
 
-variable "frontend_ami_name" {
+variable "fe_ami_name" {
   type        = string
   default     = "ewf-frontend-*"
   description = "Name of the AMI to use in the Auto Scaling configuration for frontend servers"
+}
+
+variable "fe_instance_size" {
+  type        = string
+  description = "The size of the ec2 instance"
+}
+
+variable "fe_min_size" {
+  type        = number
+  description = "The min size of the ASG"
+}
+
+variable "fe_max_size" {
+  type        = number
+  description = "The max size of the ASG"
+}
+
+variable "fe_desired_capacity" {
+  type        = number
+  description = "The desired capacity of ASG"
+}
+
+# ------------------------------------------------------------------------------
+# EWF Backend Variables
+# ------------------------------------------------------------------------------
+
+variable "bep_log_group_retention_in_days" {
+  type        = number
+  default     = 14
+  description = "Total days to retain logs in CloudWatch log group"
+}
+
+variable "bep_app_release_version" {
+  type        = string
+  description = "Version of the application to download for deployment to frontend servers"
+}
+
+variable "bep_ami_name" {
+  type        = string
+  default     = "ewf-frontend-*"
+  description = "Name of the AMI to use in the Auto Scaling configuration for frontend servers"
+}
+
+variable "bep_instance_size" {
+  type        = string
+  description = "The size of the ec2 instance"
+}
+
+variable "bep_min_size" {
+  type        = number
+  description = "The min size of the ASG"
+}
+
+variable "bep_max_size" {
+  type        = number
+  description = "The max size of the ASG"
+}
+
+variable "bep_desired_capacity" {
+  type        = number
+  description = "The desired capacity of ASG"
 }

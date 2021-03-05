@@ -4,14 +4,6 @@ data "aws_vpc" "vpc" {
   }
 }
 
-data "aws_subnet_ids" "data" {
-  vpc_id = data.aws_vpc.vpc.id
-  filter {
-    name   = "tag:Name"
-    values = ["sub-data-*"]
-  }
-}
-
 data "aws_subnet_ids" "public" {
   vpc_id = data.aws_vpc.vpc.id
   filter {
@@ -25,6 +17,22 @@ data "aws_subnet_ids" "web" {
   filter {
     name   = "tag:Name"
     values = ["sub-web-*"]
+  }
+}
+
+data "aws_subnet_ids" "data" {
+  vpc_id = data.aws_vpc.vpc.id
+  filter {
+    name   = "tag:Name"
+    values = ["sub-data-*"]
+  }
+}
+
+data "aws_subnet_ids" "application" {
+  vpc_id = data.aws_vpc.vpc.id
+  filter {
+    name   = "tag:Name"
+    values = ["sub-application-*"]
   }
 }
 
@@ -75,22 +83,29 @@ data "vault_generic_secret" "ewf_ec2_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/ec2"
 }
 
-data "vault_generic_secret" "ewf_frontend_data" {
+data "vault_generic_secret" "ewf_fe_data" {
   path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/frontend"
+}
+
+data "vault_generic_secret" "ewf_bep_data" {
+  path = "applications/${var.aws_account}-${var.aws_region}/${var.application}/backend"
 }
 
 data "aws_acm_certificate" "acm_cert" {
   domain = var.domain_name
 }
 
-data "aws_ami" "ewf" {
+# ------------------------------------------------------------------------------
+# EWF Frontend data
+# ------------------------------------------------------------------------------
+data "aws_ami" "ewf_fe" {
   owners      = [data.vault_generic_secret.account_ids.data["development"]]
-  most_recent = var.frontend_ami_name == "ewf-frontend-*" ? true : false
+  most_recent = var.fe_ami_name == "ewf-frontend-*" ? true : false
 
   filter {
     name = "name"
     values = [
-      var.frontend_ami_name,
+      var.fe_ami_name,
     ]
   }
 
@@ -102,26 +117,68 @@ data "aws_ami" "ewf" {
   }
 }
 
-data "template_file" "frontend_userdata" {
-  template = file("${path.module}/templates/user_data.tpl")
+data "template_file" "fe_userdata" {
+  template = file("${path.module}/templates/fe_user_data.tpl")
 
   vars = {
-    REGION                    = var.aws_region
-    LOG_GROUP_NAME            = "logs-${var.application}-frontend"
-    EWF_FRONTEND_INPUTS       = local.ewf_frontend_data
-    ANSIBLE_PLAYBOOK_REPO     = "https://github.com/companieshouse/ewf-ami.git"
-    ANSIBLE_PLAYBOOK_LOCATION = "deployment-scripts/frontend_deployment.yml"
-    ANSIBLE_INPUTS            = jsonencode(local.ewf_frontend_ansible_inputs)
+    REGION              = var.aws_region
+    LOG_GROUP_NAME      = aws_cloudwatch_log_group.ewf_fe.name
+    EWF_FRONTEND_INPUTS = local.ewf_fe_data
+    ANSIBLE_INPUTS      = jsonencode(local.ewf_fe_ansible_inputs)
   }
 }
 
-data "template_cloudinit_config" "frontend_userdata_config" {
+data "template_cloudinit_config" "fe_userdata_config" {
   gzip          = true
   base64_encode = true
 
   part {
     content_type = "text/x-shellscript"
-    content      = data.template_file.frontend_userdata.rendered
+    content      = data.template_file.fe_userdata.rendered
+  }
+
+}
+
+# ------------------------------------------------------------------------------
+# EWF Backend data
+# ------------------------------------------------------------------------------
+data "aws_ami" "ewf_bep" {
+  owners      = [data.vault_generic_secret.account_ids.data["development"]]
+  most_recent = var.bep_ami_name == "ewf-frontend-*" ? true : false
+
+  filter {
+    name = "name"
+    values = [
+      var.bep_ami_name,
+    ]
+  }
+
+  filter {
+    name = "state"
+    values = [
+      "available",
+    ]
+  }
+}
+
+data "template_file" "bep_userdata" {
+  template = file("${path.module}/templates/bep_user_data.tpl")
+
+  vars = {
+    REGION             = var.aws_region
+    LOG_GROUP_NAME     = aws_cloudwatch_log_group.ewf_fe.name
+    EWF_BACKEND_INPUTS = local.ewf_bep_data
+    ANSIBLE_INPUTS     = jsonencode(local.ewf_bep_ansible_inputs)
+  }
+}
+
+data "template_cloudinit_config" "bep_userdata_config" {
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = data.template_file.bep_userdata.rendered
   }
 
 }

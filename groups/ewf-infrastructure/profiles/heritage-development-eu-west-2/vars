@@ -30,10 +30,16 @@ nfs_mounts = {
   }
 
 # Frontend ASG settings
-instance_size = "t2.medium"
-min_size = 1
-max_size = 2
-desired_capacity = 2
+fe_instance_size = "t2.medium"
+fe_min_size = 2
+fe_max_size = 2
+fe_desired_capacity = 2
+
+# Backend ASG settings
+bep_instance_size = "t2.medium"
+bep_min_size = 1
+bep_max_size = 1
+bep_desired_capacity = 1
 
 # RDS Instance settings
 instance_class          = "db.t3.medium"
