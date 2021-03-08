@@ -201,18 +201,18 @@ variable "fe_log_group_retention_in_days" {
 
 variable "fe_app_release_version" {
   type        = string
-  description = "Version of the application to download for deployment to frontend servers"
+  description = "Version of the application to download for deployment to frontend server(s)"
 }
 
 variable "fe_ami_name" {
   type        = string
   default     = "ewf-frontend-*"
-  description = "Name of the AMI to use in the Auto Scaling configuration for frontend servers"
+  description = "Name of the AMI to use in the Auto Scaling configuration for frontend server(s)"
 }
 
 variable "fe_instance_size" {
   type        = string
-  description = "The size of the ec2 instance"
+  description = "The size of the ec2 instances to build"
 }
 
 variable "fe_min_size" {
@@ -242,18 +242,18 @@ variable "bep_log_group_retention_in_days" {
 
 variable "bep_app_release_version" {
   type        = string
-  description = "Version of the application to download for deployment to frontend servers"
+  description = "Version of the application to download for deployment to backend server(s)"
 }
 
 variable "bep_ami_name" {
   type        = string
   default     = "ewf-frontend-*"
-  description = "Name of the AMI to use in the Auto Scaling configuration for frontend servers"
+  description = "Name of the AMI to use in the Auto Scaling configuration for backend server(s)"
 }
 
 variable "bep_instance_size" {
   type        = string
-  description = "The size of the ec2 instance"
+  description = "The size of the ec2 instances to build"
 }
 
 variable "bep_min_size" {
