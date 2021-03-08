@@ -11,6 +11,11 @@ python /root/cw_log_conf.py \
 cat <<EOF >>inputs.json
 ${EWF_BACKEND_INPUTS}
 EOF
+#Create cron file and set crontab for EWF user:
+cat <<EOF >>/root/cronfile
+${EWF_CRON_ENTRIES}
+EOF
+crontab -u ewf /root/cronfile
 #Create the TNSNames.ora file for Oracle
 /usr/local/bin/j2 -f json /usr/lib/oracle/11.2/client64/lib/tnsnames.j2 inputs.json > /usr/lib/oracle/11.2/client64/lib/tnsnames.ora
 #Remove unnecessary files
