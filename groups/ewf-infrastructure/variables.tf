@@ -193,10 +193,10 @@ variable "fe_health_check_path" {
   description = "Target group health check path"
 }
 
-variable "fe_log_group_retention_in_days" {
+variable "fe_default_log_group_retention_in_days" {
   type        = number
   default     = 14
-  description = "Total days to retain logs in CloudWatch log group"
+  description = "Total days to retain logs in CloudWatch log group if not specified for specific logs"
 }
 
 variable "fe_app_release_version" {
@@ -234,10 +234,10 @@ variable "fe_desired_capacity" {
 # EWF Backend Variables
 # ------------------------------------------------------------------------------
 
-variable "bep_log_group_retention_in_days" {
+variable "bep_default_log_group_retention_in_days" {
   type        = number
   default     = 14
-  description = "Total days to retain logs in CloudWatch log group"
+  description = "Total days to retain logs in CloudWatch log group if not specified for specific logs"
 }
 
 variable "bep_app_release_version" {

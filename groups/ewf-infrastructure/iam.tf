@@ -4,8 +4,8 @@ module "ewf_fe_profile" {
   name       = "ewf-frontend-profile"
   enable_SSM = true
   cw_log_group_arns = [
-    "${aws_cloudwatch_log_group.ewf_fe.arn}:*",
-    "${aws_cloudwatch_log_group.ewf_fe.arn}:*:*",
+    format("arn:aws:logs:%s:%s:log-group:logs-%s-fe*:*:*", var.region, data.aws_caller_identity.current.account_id, var.application),
+    format("arn:aws:logs:%s:%s:log-group:logs-%s-fe*:*", var.region, data.aws_caller_identity.current.account_id, var.application),
   ]
   instance_asg_arns = [module.fe_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
@@ -33,8 +33,8 @@ module "ewf_bep_profile" {
   name       = "ewf-backend-profile"
   enable_SSM = true
   cw_log_group_arns = [
-    "${aws_cloudwatch_log_group.ewf_bep.arn}:*",
-    "${aws_cloudwatch_log_group.ewf_bep.arn}:*:*",
+    format("arn:aws:logs:%s:%s:log-group:logs-%s-bep*:*:*", var.region, data.aws_caller_identity.current.account_id, var.application),
+    format("arn:aws:logs:%s:%s:log-group:logs-%s-bep*:*", var.region, data.aws_caller_identity.current.account_id, var.application),
   ]
   instance_asg_arns = [module.bep_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
