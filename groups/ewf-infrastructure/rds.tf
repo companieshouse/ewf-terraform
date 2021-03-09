@@ -51,7 +51,7 @@ module "ewf_rds_security_group" {
 # ------------------------------------------------------------------------------
 module "ewf_rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "~> 2.0"
+  version = "2.23.0" # Pinned version to ensure updates are a choice, can be upgraded if new features are available and required.
 
   create_db_parameter_group = "true"
   create_db_subnet_group    = "true"
