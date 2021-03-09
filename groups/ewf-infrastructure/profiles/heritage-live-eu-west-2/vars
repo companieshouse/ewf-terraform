@@ -17,6 +17,11 @@ fe_min_size = 2
 fe_max_size = 2
 fe_desired_capacity = 2
 
+# FE Load Balancer
+public_allow_cidr_blocks = [
+  "0.0.0.0/0"
+]
+
 # Backend ASG settings
 bep_instance_size = "t2.medium"
 bep_min_size = 1

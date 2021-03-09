@@ -9,9 +9,9 @@ module "ewf_external_alb_security_group" {
   description = "Security group for the ${var.application} web servers"
   vpc_id      = data.aws_vpc.vpc.id
 
-  ingress_cidr_blocks = [var.public_cidr_block]
-  # ingress_rules       = ["http-80-tcp", "https-443-tcp"]
-  egress_rules = ["all-all"]
+  ingress_cidr_blocks = var.public_allow_cidr_blocks
+  ingress_rules       = ["http-80-tcp", "https-443-tcp"]
+  egress_rules        = ["all-all"]
 }
 
 #--------------------------------------------
