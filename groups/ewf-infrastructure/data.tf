@@ -169,7 +169,8 @@ data "template_file" "bep_userdata" {
     LOG_GROUP_NAME     = aws_cloudwatch_log_group.ewf_fe.name
     EWF_BACKEND_INPUTS = local.ewf_bep_data
     ANSIBLE_INPUTS     = jsonencode(local.ewf_bep_ansible_inputs)
-  EWF_CRON_ENTRIES = var.account == "hlive" ? "#No Entries" : templatefile("${path.module}/templates/bep_cron.tpl", { "USER" = "", "PASSWORD" = "" }) }
+    EWF_CRON_ENTRIES   = var.account == "hlive" ? "#No Entries" : templatefile("${path.module}/templates/bep_cron.tpl", { "USER" = "", "PASSWORD" = "" })
+  }
 }
 
 data "template_cloudinit_config" "bep_userdata_config" {

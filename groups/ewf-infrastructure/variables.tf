@@ -63,9 +63,9 @@ variable "domain_name" {
   description = "Domain Name for ACM Certificate"
 }
 
-variable "public_cidr_block" {
-  type        = string
-  default     = "0.0.0.0/0"
+variable "public_allow_cidr_blocks" {
+  type        = list(any)
+  default     = ["0.0.0.0/0"]
   description = "cidr block for allowing inbound users from internet"
 }
 
