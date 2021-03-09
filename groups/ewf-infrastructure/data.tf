@@ -124,7 +124,7 @@ data "template_file" "fe_userdata" {
 
   vars = {
     REGION              = var.aws_region
-    EWF_FRONTEND_INPUTS = local.ewf_frontend_data
+    EWF_FRONTEND_INPUTS = local.ewf_fe_data
     ANSIBLE_INPUTS      = jsonencode(local.ewf_fe_ansible_inputs)
   }
 }
