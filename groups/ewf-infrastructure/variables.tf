@@ -230,6 +230,12 @@ variable "fe_desired_capacity" {
   description = "The desired capacity of ASG"
 }
 
+variable "fe_cw_logs" {
+  type        = map(any)
+  description = "Map of log file information; used to create log groups, IAM permissions and passed to the application to configure remote logging"
+  default     = {}
+}
+
 # ------------------------------------------------------------------------------
 # EWF Backend Variables
 # ------------------------------------------------------------------------------
@@ -269,4 +275,10 @@ variable "bep_max_size" {
 variable "bep_desired_capacity" {
   type        = number
   description = "The desired capacity of ASG"
+}
+
+variable "bep_cw_logs" {
+  type        = map(any)
+  description = "Map of log file information; used to create log groups, IAM permissions and passed to the application to configure remote logging"
+  default     = {}
 }

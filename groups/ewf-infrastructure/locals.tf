@@ -14,8 +14,8 @@ locals {
   rds_ingress_cidrs = concat(local.admin_cidrs, var.rds_onpremise_access)
   
   #For each log map passed, add an extra kv for the log group name
-  fe_cw_logs = { for log, map in var.frontend_logs : log => merge(map, { "log_group_name" = "${var.application}-fe-${log}" }) }
-  bep_cw_logs  = { for log, map in var.backend_logs : log => merge(map, { "log_group_name" = "${var.application}-bep-${log}" }) }
+  fe_cw_logs = { for log, map in var.fe_cw_logs : log => merge(map, { "log_group_name" = "${var.application}-fe-${log}" }) }
+  bep_cw_logs  = { for log, map in var.bep_cw_logs : log => merge(map, { "log_group_name" = "${var.application}-bep-${log}" }) }
 
   ewf_fe_ansible_inputs = {
     s3_bucket_releases         = local.s3_releases["release_bucket_name"]
