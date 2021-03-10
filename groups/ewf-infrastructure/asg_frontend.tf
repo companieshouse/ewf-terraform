@@ -32,8 +32,10 @@ module "ewf_fe_asg_security_group" {
 }
 
 resource "aws_cloudwatch_log_group" "ewf_fe" {
-  name              = "logs-${var.application}-frontend"
-  retention_in_days = var.fe_log_group_retention_in_days
+  for_each = local.fe_cw_logs
+
+  name              = each.value["log_group_name"]
+  retention_in_days = lookup(each.value, "log_group_retention", var.fe_default_log_group_retention_in_days)
 
   tags = merge(
     local.default_tags,

@@ -149,3 +149,138 @@ parameter_group_settings = [
       value = "AUTO"
     },
 ]
+
+fe_cw_logs = {
+  "messages" = {
+    file_path = "/var/log/"
+    log_group_retention = 7
+  }
+  
+  "secure" = {
+    file_path = "/var/log/"
+    log_group_retention = 7
+  }
+
+  "yum.log" = {
+    file_path = "/var/log/"
+    log_group_retention = 7
+  }
+
+  "ewf_access_log" = {
+    file_path = "/var/log/httpd/"
+    log_group_retention = 7
+  }
+
+  "ewf_error_log" = {
+    file_path = "/var/log/httpd/"
+    log_group_retention = 7
+  }
+}
+
+
+bep_cw_logs = {
+  "messages" = {
+    file_path = "/var/log/"
+    log_group_retention = 7
+  }
+  
+  "secure" = {
+    file_path = "/var/log/"
+    log_group_retention = 7
+  }
+
+  "yum.log" = {
+    file_path = "/var/log/"
+    log_group_retention = 7
+  }
+
+  "auth.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "cron" = {
+    file_path = "/var/log"
+    log_group_retention = 7
+  }
+
+  "backend.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7   
+  }
+
+  "cancelledSubmissions.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "createCerts.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "emailDispatcher.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "failedPayments.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "filedDataPDF.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "formArchive.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "formPartition.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "formProcess.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "formResponse.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "statsReport.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "weeding.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "eReminder.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "eReminderWarn.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "filedDataPDF.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+
+  "paymentTX.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 7 
+  }
+}
