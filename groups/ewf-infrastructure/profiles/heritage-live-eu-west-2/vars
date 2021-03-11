@@ -30,7 +30,7 @@ bep_desired_capacity = 1
 
 # CVO Mounts
 nfs_server = "192.168.255.35"
-nfs_mount_destination_parent_dir = "/mnt/nfs/fillings"
+nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
 nfs_mounts = {
     ewf_image = {
       local_mount_point = "image"
