@@ -5,16 +5,14 @@ module "ewf_fe_profile" {
   enable_SSM = true
   cw_log_group_arns = length(local.fe_log_groups) > 0 ? flatten([
     formatlist(
-      "arn:aws:logs:%s:%s:log-group:%s-fe-%s:*:*",
+      "arn:aws:logs:%s:%s:log-group:%s:*:*",
       var.aws_region,
       data.aws_caller_identity.current.account_id,
-      var.application,
       local.fe_log_groups
       ),
-    formatlist("arn:aws:logs:%s:%s:log-group:%s-fe-%s:*",
+    formatlist("arn:aws:logs:%s:%s:log-group:%s:*",
       var.aws_region,
       data.aws_caller_identity.current.account_id,
-      var.application,
       local.fe_log_groups
     ),
   ]) : null
@@ -45,16 +43,14 @@ module "ewf_bep_profile" {
   enable_SSM = true
   cw_log_group_arns = length(local.bep_log_groups) > 0 ? flatten([
     formatlist(
-      "arn:aws:logs:%s:%s:log-group:%s-bep-%s:*:*", 
+      "arn:aws:logs:%s:%s:log-group:%s:*:*", 
       var.aws_region, 
       data.aws_caller_identity.current.account_id, 
-      var.application,
       local.bep_log_groups
     ),
-    formatlist("arn:aws:logs:%s:%s:log-group:%s-bep-%s:*",
+    formatlist("arn:aws:logs:%s:%s:log-group:%s:*",
       var.aws_region, 
       data.aws_caller_identity.current.account_id, 
-      var.application,
       local.bep_log_groups
     ),
   ]) : null
