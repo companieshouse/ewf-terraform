@@ -17,6 +17,9 @@ locals {
   fe_cw_logs = { for log, map in var.fe_cw_logs : log => merge(map, { "log_group_name" = "${var.application}-fe-${log}" }) }
   bep_cw_logs  = { for log, map in var.bep_cw_logs : log => merge(map, { "log_group_name" = "${var.application}-bep-${log}" }) }
 
+  fe_log_groups = compact([ for log, map in local.fe_cw_logs : lookup(map, "log_group_name", "") ])
+  bep_log_groups = compact([ for log, map in local.bep_cw_logs : lookup(map, "log_group_name", "") ])
+
   ewf_fe_ansible_inputs = {
     s3_bucket_releases         = local.s3_releases["release_bucket_name"]
     s3_bucket_configs          = local.s3_releases["config_bucket_name"]

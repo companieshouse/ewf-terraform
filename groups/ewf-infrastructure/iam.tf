@@ -3,9 +3,20 @@ module "ewf_fe_profile" {
 
   name       = "ewf-frontend-profile"
   enable_SSM = true
-  cw_log_group_arns = length(local.fe_cw_logs) > 0 ? [
-    format("arn:aws:logs:%s:%s:log-group:%s-fe*:*:*", var.aws_region, data.aws_caller_identity.current.account_id, var.application),
-    format("arn:aws:logs:%s:%s:log-group:%s-fe*:*", var.aws_region, data.aws_caller_identity.current.account_id, var.application),
+  cw_log_group_arns = length(local.fe_log_groups) > 0 ? [
+    formatlist(
+      "arn:aws:logs:%s:%s:log-group:%s-fe-%s:*:*",
+      var.aws_region,
+      data.aws_caller_identity.current.account_id,
+      var.application,
+      local.fe_log_groups
+      ),
+    format("arn:aws:logs:%s:%s:log-group:%s-fe-%s:*",
+      var.aws_region,
+      data.aws_caller_identity.current.account_id,
+      var.application,
+      local.fe_log_groups
+    ),
   ] : null
   instance_asg_arns = [module.fe_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
@@ -32,9 +43,20 @@ module "ewf_bep_profile" {
 
   name       = "ewf-backend-profile"
   enable_SSM = true
-  cw_log_group_arns = length(local.bep_cw_logs) > 0 ? [
-    format("arn:aws:logs:%s:%s:log-group:%s-bep*:*:*", var.aws_region, data.aws_caller_identity.current.account_id, var.application),
-    format("arn:aws:logs:%s:%s:log-group:%s-bep*:*", var.aws_region, data.aws_caller_identity.current.account_id, var.application),
+  cw_log_group_arns = length(local.bep_log_groups) > 0 ? [
+    formatlist(
+      "arn:aws:logs:%s:%s:log-group:%s-bep-%s:*:*", 
+      var.aws_region, 
+      data.aws_caller_identity.current.account_id, 
+      var.application,
+      local.bep_log_groups
+    ),
+    format("arn:aws:logs:%s:%s:log-group:%s-bep-%s:*",
+      var.aws_region, 
+      data.aws_caller_identity.current.account_id, 
+      var.application,
+      local.bep_log_groups
+    ),
   ] : null
   instance_asg_arns = [module.bep_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
