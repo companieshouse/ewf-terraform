@@ -3,7 +3,7 @@ module "ewf_fe_profile" {
 
   name       = "ewf-frontend-profile"
   enable_SSM = true
-  cw_log_group_arns = length(local.fe_log_groups) > 0 ? [
+  cw_log_group_arns = length(local.fe_log_groups) > 0 ? flatten([
     formatlist(
       "arn:aws:logs:%s:%s:log-group:%s-fe-%s:*:*",
       var.aws_region,
@@ -17,7 +17,7 @@ module "ewf_fe_profile" {
       var.application,
       local.fe_log_groups
     ),
-  ] : null
+  ]) : null
   instance_asg_arns = [module.fe_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
   custom_statements = [
@@ -43,7 +43,7 @@ module "ewf_bep_profile" {
 
   name       = "ewf-backend-profile"
   enable_SSM = true
-  cw_log_group_arns = length(local.bep_log_groups) > 0 ? [
+  cw_log_group_arns = length(local.bep_log_groups) > 0 ? flatten([
     formatlist(
       "arn:aws:logs:%s:%s:log-group:%s-bep-%s:*:*", 
       var.aws_region, 
@@ -57,7 +57,7 @@ module "ewf_bep_profile" {
       var.application,
       local.bep_log_groups
     ),
-  ] : null
+  ]) : null
   instance_asg_arns = [module.bep_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
   custom_statements = [
