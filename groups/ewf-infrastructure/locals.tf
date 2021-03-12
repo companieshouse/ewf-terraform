@@ -30,6 +30,7 @@ locals {
     mounts                     = var.nfs_mounts
     region                     = var.aws_region
     cw_log_files               = local.fe_cw_logs
+    cw_agent_user              = "root"
   }
 
   ewf_bep_ansible_inputs = {
@@ -42,6 +43,7 @@ locals {
     mounts                     = var.nfs_mounts
     region                     = var.aws_region
     cw_log_files               = local.bep_cw_logs
+    cw_agent_user              = "root"
   }
 
   default_tags = {
