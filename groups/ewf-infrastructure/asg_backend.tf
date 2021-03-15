@@ -9,6 +9,16 @@ module "ewf_bep_asg_security_group" {
   description = "Security group for the ${var.application} backend asg"
   vpc_id      = data.aws_vpc.vpc.id
 
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 5666
+      to_port     = 5666
+      protocol    = "tcp"
+      description = "Nagios Agent port inbound access from Nagios Server"
+      cidr_blocks = "10.44.13.233/32"
+    }
+  ]
+
   egress_rules = ["all-all"]
 
   tags = merge(
