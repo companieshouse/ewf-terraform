@@ -19,3 +19,9 @@ rm /etc/httpd/conf.d/ssl.conf
 rm /etc/httpd/conf.d/perl.conf
 #Run Ansible playbook for Backend deployment using provided inputs
 /usr/local/bin/ansible-playbook /root/backend_deployment.yml -e '${ANSIBLE_INPUTS}'
+# Update hostname and reboot
+INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+sed -i "s/HOSTNAME=.*/HOSTNAME=$INSTANCEID/" /etc/sysconfig/network
+sed -i "s/\b127.0.0.1\b/127.0.0.0 $INSTANCEID/" /etc/hosts
+# Reboot to take effect
+reboot
