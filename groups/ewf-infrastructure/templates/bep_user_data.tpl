@@ -22,6 +22,6 @@ rm /etc/httpd/conf.d/perl.conf
 # Update hostname and reboot
 INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
 sed -i "s/HOSTNAME=.*/HOSTNAME=$INSTANCEID/" /etc/sysconfig/network
-sed -i "s/\b127.0.0.1\b/127.0.0.0 $INSTANCEID/" /etc/hosts
+sed -i "s/\b127.0.0.1\b/127.0.0.1 $INSTANCEID/" /etc/hosts
 # Reboot to take effect
 reboot
