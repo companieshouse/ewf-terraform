@@ -174,12 +174,21 @@ fe_cw_logs = {
     log_group_retention = 7
   }
 
+  "ewf_access_lb_ip_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 7
+  }
+
   "ewf_error_log" = {
     file_path = "/var/log/httpd"
     log_group_retention = 7
   }
-}
 
+  "ewf_ssl_request_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 7
+  }
+}
 
 bep_cw_logs = {
   "messages" = {
@@ -197,14 +206,14 @@ bep_cw_logs = {
     log_group_retention = 7
   }
 
-  "auth.log" = {
-    file_path = "/home/ewf"
-    log_group_retention = 7 
-  }
-
   "cron" = {
     file_path = "/var/log"
     log_group_retention = 7
+  }
+
+  "auth.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
   }
 
   "backend.log" = {
@@ -216,13 +225,53 @@ bep_cw_logs = {
     file_path = "/home/ewf/"
     log_group_retention = 7 
   }
+  
+  "cleanup.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
+  "corporationTax.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
 
   "createCerts.log" = {
     file_path = "/home/ewf"
     log_group_retention = 7 
   }
 
+  "DeletedAccounts.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
   "emailDispatcher.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
+  "mailWarn.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
+  "eReminder.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
+  "eReminderCleanup.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
+  "eRemindersImport.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
+  "eReminderWarn.log" = {
     file_path = "/home/ewf"
     log_group_retention = 7 
   }
@@ -242,6 +291,11 @@ bep_cw_logs = {
     log_group_retention = 7 
   }
 
+  "formEnablement.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
   "formPartition.log" = {
     file_path = "/home/ewf"
     log_group_retention = 7 
@@ -257,32 +311,22 @@ bep_cw_logs = {
     log_group_retention = 7 
   }
 
+  "paymentTX.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
+  "paymentTXReport.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 7 
+  }
+
   "statsReport.log" = {
     file_path = "/home/ewf"
     log_group_retention = 7 
   }
 
   "weeding.log" = {
-    file_path = "/home/ewf"
-    log_group_retention = 7 
-  }
-
-  "eReminder.log" = {
-    file_path = "/home/ewf"
-    log_group_retention = 7 
-  }
-
-  "eReminderWarn.log" = {
-    file_path = "/home/ewf"
-    log_group_retention = 7 
-  }
-
-  "filedDataPDF.log" = {
-    file_path = "/home/ewf"
-    log_group_retention = 7 
-  }
-
-  "paymentTX.log" = {
     file_path = "/home/ewf"
     log_group_retention = 7 
   }
