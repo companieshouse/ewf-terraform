@@ -56,6 +56,30 @@ resource "aws_cloudwatch_log_group" "ewf_fe" {
   )
 }
 
+# ASG Scheduled Shutdown for non-production
+resource "aws_autoscaling_schedule" "fe-schedule-stop" {
+  count = var.environment == "live" ? 0 : 1
+
+  scheduled_action_name  = "${var.aws_account}-${var.application}-bep-scheduled-shutdown"
+  min_size               = 0
+  max_size               = 0
+  desired_capacity       = 0
+  recurrence             = "00 20 * * 1-5" #Mon-Fri at 8pm
+  autoscaling_group_name = module.fe_asg.this_autoscaling_group_name
+}
+
+# ASG Scheduled Startup for non-production
+resource "aws_autoscaling_schedule" "fe-schedule-start" {
+  count = var.environment == "live" ? 0 : 1
+
+  scheduled_action_name  = "${var.aws_account}-${var.application}-bep-scheduled-startup"
+  min_size               = var.fe_min_size
+  max_size               = var.fe_max_size
+  desired_capacity       = var.fe_desired_capacity
+  recurrence             = "00 06 * * 1-5" #Mon-Fri at 6am
+  autoscaling_group_name = module.fe_asg.this_autoscaling_group_name
+}
+
 # ASG Module
 module "fe_asg" {
   source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36"
