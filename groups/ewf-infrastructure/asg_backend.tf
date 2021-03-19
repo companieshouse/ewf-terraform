@@ -44,6 +44,30 @@ resource "aws_cloudwatch_log_group" "ewf_bep" {
   )
 }
 
+# ASG Scheduled Shutdown for non-production
+resource "aws_autoscaling_schedule" "bep-schedule-stop" {
+  count = var.environment == "live" ? 0 : 1
+
+  scheduled_action_name  = "${var.aws_account}-${var.application}-bep-scheduled-shutdown"
+  min_size               = 0
+  max_size               = 0
+  desired_capacity       = 0
+  recurrence             = "00 20 * * 1-5" #Mon-Fri at 8pm
+  autoscaling_group_name = module.bep_asg.this_autoscaling_group_name
+}
+
+# ASG Scheduled Shutdown for non-production
+resource "aws_autoscaling_schedule" "bep-schedule-start" {
+  count = var.environment == "live" ? 0 : 1
+
+  scheduled_action_name  = "${var.aws_account}-${var.application}-bep-scheduled-startup"
+  min_size               = var.bep_min_size
+  max_size               = var.bep_max_size
+  desired_capacity       = var.bep_desired_capacity
+  recurrence             = "00 06 * * 1-5" #Mon-Fri at 6am
+  autoscaling_group_name = module.bep_asg.this_autoscaling_group_name
+}
+
 # ASG Module
 module "bep_asg" {
   source = "git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36"
