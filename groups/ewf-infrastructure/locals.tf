@@ -9,8 +9,10 @@ locals {
   ewf_bep_data = data.vault_generic_secret.ewf_bep_data.data_json
   ewf_ec2_data = data.vault_generic_secret.ewf_ec2_data.data
 
-  kms_keys_data   = data.vault_generic_secret.kms_keys.data
-  logs_kms_key_id = local.kms_keys_data["logs"]
+  kms_keys_data          = data.vault_generic_secret.kms_keys.data
+  security_kms_keys_data = data.vault_generic_secret.security_kms_keys.data
+  logs_kms_key_id        = local.kms_keys_data["logs"]
+  ssm_kms_key_id         = local.security_kms_keys_data["session-manager-kms-key-arn"]
 
   internal_fqdn = format("%s.%s.aws.internal", split("-", var.aws_account)[1], split("-", var.aws_account)[0])
 

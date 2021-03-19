@@ -1,8 +1,9 @@
 module "ewf_fe_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.40"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.57"
 
-  name       = "ewf-frontend-profile"
-  enable_SSM = true
+  name        = "ewf-frontend-profile"
+  enable_SSM  = true
+  SSM_kms_key = local.ssm_kms_key_id
   cw_log_group_arns = length(local.fe_log_groups) > 0 ? flatten([
     formatlist(
       "arn:aws:logs:%s:%s:log-group:%s:*:*",
@@ -37,10 +38,11 @@ module "ewf_fe_profile" {
 }
 
 module "ewf_bep_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.40"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.57"
 
-  name       = "ewf-backend-profile"
-  enable_SSM = true
+  name        = "ewf-backend-profile"
+  enable_SSM  = true
+  SSM_kms_key = local.ssm_kms_key_id
   cw_log_group_arns = length(local.bep_log_groups) > 0 ? flatten([
     formatlist(
       "arn:aws:logs:%s:%s:log-group:%s:*:*",
