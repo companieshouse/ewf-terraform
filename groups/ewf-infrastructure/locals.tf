@@ -15,7 +15,7 @@ locals {
   ssm_kms_key_id         = local.security_kms_keys_data["session-manager-kms-key-arn"]
 
   security_s3_data            = data.vault_generic_secret.security_s3_buckets.data
-  session_manager_bucket_name = security_s3_data["session-manager-bucket-name"]
+  session_manager_bucket_name = local.security_s3_data["session-manager-bucket-name"]
 
   internal_fqdn = format("%s.%s.aws.internal", split("-", var.aws_account)[1], split("-", var.aws_account)[0])
 
