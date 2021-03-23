@@ -1,5 +1,5 @@
 module "ewf_fe_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.57"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59"
 
   name        = "ewf-frontend-profile"
   enable_SSM  = true
@@ -19,6 +19,7 @@ module "ewf_fe_profile" {
   ]) : null
   instance_asg_arns = [module.fe_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
+  s3_buckets_write  = [local.session_manager_bucket_name]
   custom_statements = [
     {
       sid    = "AllowAccessToReleaseBucket",
@@ -38,7 +39,7 @@ module "ewf_fe_profile" {
 }
 
 module "ewf_bep_profile" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.57"
+  source = "git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59"
 
   name        = "ewf-backend-profile"
   enable_SSM  = true
@@ -56,6 +57,7 @@ module "ewf_bep_profile" {
       local.bep_log_groups
     ),
   ]) : null
+  s3_buckets_write  = [local.session_manager_bucket_name]
   instance_asg_arns = [module.bep_asg.this_autoscaling_group_arn]
   kms_key_refs      = ["alias/${var.account}/${var.region}/ebs"]
   custom_statements = [
