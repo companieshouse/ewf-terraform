@@ -175,6 +175,16 @@ fe_cw_logs = {
     log_group_retention = 30
   }
 
+  "errors.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 30
+  }
+
+  "amazon-ssm-agent.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 30
+  }
+
   "ewf_access_log" = {
     file_path = "/var/log/httpd"
     log_group_retention = 14
@@ -215,6 +225,16 @@ bep_cw_logs = {
 
   "cron" = {
     file_path = "/var/log"
+    log_group_retention = 30
+  }
+
+  "errors.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 30
+  }
+
+  "amazon-ssm-agent.log" = {
+    file_path = "/var/log/amazon/ssm"
     log_group_retention = 30
   }
 
