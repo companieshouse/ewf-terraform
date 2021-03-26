@@ -83,6 +83,7 @@ module "bep_asg" {
       volume_size = "40"
       volume_type = "gp2"
       encrypted   = true
+      iops        = 0
     },
   ]
   # Auto scaling group
