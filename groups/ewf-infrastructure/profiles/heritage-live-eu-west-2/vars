@@ -161,3 +161,203 @@ parameter_group_settings = [
       value = "AUTO"
     },
 ]
+
+fe_cw_logs = {
+  "messages" = {
+    file_path = "/var/log"
+    log_group_retention = 30
+  }
+  
+  "secure" = {
+    file_path = "/var/log"
+    log_group_retention = 30
+  }
+
+  "yum.log" = {
+    file_path = "/var/log"
+    log_group_retention = 30
+  }
+
+  "errors.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 30
+  }
+
+  "amazon-ssm-agent.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 30
+  }
+
+  "ewf_access_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 14
+  }
+
+  "ewf_access_lb_ip_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 14
+  }
+
+  "ewf_error_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 14
+  }
+
+  "ewf_ssl_request_log" = {
+    file_path = "/var/log/httpd"
+    log_group_retention = 14
+  }
+}
+
+
+bep_cw_logs = {
+  "messages" = {
+    file_path = "/var/log"
+    log_group_retention = 30
+  }
+  
+  "secure" = {
+    file_path = "/var/log"
+    log_group_retention = 30
+  }
+
+  "yum.log" = {
+    file_path = "/var/log"
+    log_group_retention = 30
+  }
+
+  "cron" = {
+    file_path = "/var/log"
+    log_group_retention = 30
+  }
+
+  "errors.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 30
+  }
+
+  "amazon-ssm-agent.log" = {
+    file_path = "/var/log/amazon/ssm"
+    log_group_retention = 30
+  }
+
+  "auth.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "backend.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "cancelledSubmissions.log" = {
+    file_path = "/home/ewf/"
+    log_group_retention = 180
+  }
+  
+  "cleanup.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "corporationTax.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "createCerts.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "DeletedAccounts.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "emailDispatcher.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "mailWarn.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "eReminder.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "eReminderCleanup.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "eRemindersImport.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "eReminderWarn.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "failedPayments.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "filedDataPDF.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "formArchive.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "formEnablement.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "formPartition.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "formProcess.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "formResponse.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "paymentTX.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "paymentTXReport.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "statsReport.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+
+  "weeding.log" = {
+    file_path = "/home/ewf"
+    log_group_retention = 180
+  }
+}
