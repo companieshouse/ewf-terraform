@@ -9,16 +9,6 @@ module "ewf_fe_asg_security_group" {
   description = "Security group for the ${var.application} frontend asg"
   vpc_id      = data.aws_vpc.vpc.id
 
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 5666
-      to_port     = 5666
-      protocol    = "tcp"
-      description = "Nagios Agent port inbound access from Nagios Server"
-      cidr_blocks = "10.44.13.233/32"
-    }
-  ]
-
   computed_ingress_with_source_security_group_id = [
     {
       rule                     = "http-80-tcp"
@@ -86,10 +76,13 @@ module "fe_asg" {
 
   name = "${var.application}-webserver"
   # Launch configuration
-  lc_name         = "${var.application}-fe-launchconfig"
-  image_id        = data.aws_ami.ewf_fe.id
-  instance_type   = var.fe_instance_size
-  security_groups = [module.ewf_fe_asg_security_group.this_security_group_id]
+  lc_name       = "${var.application}-fe-launchconfig"
+  image_id      = data.aws_ami.ewf_fe.id
+  instance_type = var.fe_instance_size
+  security_groups = [
+    module.ewf_fe_asg_security_group.this_security_group_id,
+    data.aws_security_group.nagios_shared.id
+  ]
   root_block_device = [
     {
       volume_size = "40"

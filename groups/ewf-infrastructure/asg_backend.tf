@@ -9,16 +9,6 @@ module "ewf_bep_asg_security_group" {
   description = "Security group for the ${var.application} backend asg"
   vpc_id      = data.aws_vpc.vpc.id
 
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 5666
-      to_port     = 5666
-      protocol    = "tcp"
-      description = "Nagios Agent port inbound access from Nagios Server"
-      cidr_blocks = "10.44.13.233/32"
-    }
-  ]
-
   egress_rules = ["all-all"]
 
   tags = merge(
@@ -74,10 +64,13 @@ module "bep_asg" {
 
   name = "${var.application}-bep"
   # Launch configuration
-  lc_name         = "${var.application}-bep-launchconfig"
-  image_id        = data.aws_ami.ewf_bep.id
-  instance_type   = var.bep_instance_size
-  security_groups = [module.ewf_bep_asg_security_group.this_security_group_id]
+  lc_name       = "${var.application}-bep-launchconfig"
+  image_id      = data.aws_ami.ewf_bep.id
+  instance_type = var.bep_instance_size
+  security_groups = [
+    module.ewf_bep_asg_security_group.this_security_group_id,
+    data.aws_security_group.nagios_shared.id
+  ]
   root_block_device = [
     {
       volume_size = "40"
