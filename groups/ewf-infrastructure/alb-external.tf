@@ -30,6 +30,12 @@ module "ewf_external_alb" {
   security_groups = [module.ewf_external_alb_security_group.this_security_group_id]
   subnets         = data.aws_subnet_ids.public.ids
 
+  access_logs = {
+    bucket  = local.elb_access_logs_bucket_name
+    prefix  = local.elb_access_logs_prefix
+    enabled = true
+  }
+
   http_tcp_listeners = [
     {
       port               = 80
