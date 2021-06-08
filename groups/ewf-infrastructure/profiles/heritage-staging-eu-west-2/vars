@@ -13,8 +13,8 @@ environment = "staging"
 
 # Frontend ASG settings
 fe_instance_size = "t2.medium"
-fe_min_size = 1
-fe_max_size = 1
+fe_min_size = 10
+fe_max_size = 10
 fe_desired_capacity = 1
 
 # FE Load Balancer
