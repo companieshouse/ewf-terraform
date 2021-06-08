@@ -15,7 +15,7 @@ environment = "live"
 fe_instance_size = "t2.medium"
 fe_min_size = 10
 fe_max_size = 10
-fe_desired_capacity = 1
+fe_desired_capacity = 10
 
 # FE Load Balancer
 public_allow_cidr_blocks = [
