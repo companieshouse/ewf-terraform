@@ -59,6 +59,13 @@ data "aws_security_group" "tuxedo" {
   }
 }
 
+data "aws_security_group" "adminsites" {
+  filter {
+    name   = "tag:Name"
+    values = ["sgr-admin-sites-asg-001"]
+  }
+}
+
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
