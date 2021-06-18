@@ -46,7 +46,7 @@ module "ewf_rds_security_group" {
       rule                     = "oracle-db-tcp"
       source_security_group_id = module.ewf_bep_asg_security_group.this_security_group_id
       description              = "Allow backend to connect to RDS"
-    },
+    }
   ]
   number_of_computed_ingress_with_source_security_group_id = 2
 
