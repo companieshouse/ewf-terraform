@@ -62,7 +62,7 @@ data "aws_security_group" "tuxedo" {
 data "aws_security_group" "adminsites" {
   filter {
     name   = "tag:Name"
-    values = ["sgr-admin-sites-asg-001"]
+    values = ["sgr-admin-sites-asg*"]
   }
 }
 
