@@ -32,7 +32,7 @@ module "ewf_rds_security_group" {
       from_port                = 1521
       to_port                  = 1521
       protocol                 = "tcp"
-      description              = "Frontend Admin ites"
+      description              = "Frontend Admin sites"
       source_security_group_id = data.aws_security_group.adminsites.id
     }
   ]
