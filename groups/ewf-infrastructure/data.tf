@@ -59,6 +59,13 @@ data "aws_security_group" "tuxedo" {
   }
 }
 
+data "aws_security_group" "adminsites" {
+  filter {
+    name   = "tag:Name"
+    values = ["sgr-admin-sites-asg*"]
+  }
+}
+
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
@@ -192,7 +199,7 @@ data "template_file" "bep_userdata" {
     REGION             = var.aws_region
     EWF_BACKEND_INPUTS = local.ewf_bep_data
     ANSIBLE_INPUTS     = jsonencode(local.ewf_bep_ansible_inputs)
-    EWF_CRON_ENTRIES = var.account == "hlive" ? "#No Entries" : templatefile("${path.module}/templates/bep_cron.tpl", {
+    EWF_CRON_ENTRIES = templatefile("${path.module}/templates/bep_cron.tpl", {
       "USER"     = data.vault_generic_secret.ewf_bep_cron_data.data["username"],
       "PASSWORD" = data.vault_generic_secret.ewf_bep_cron_data.data["password"]
       }
