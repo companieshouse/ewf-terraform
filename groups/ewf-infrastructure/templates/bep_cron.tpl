@@ -105,7 +105,7 @@
 #LIVE###################NFS Cleanup End#########################
 #LIVE
 #LIVE###################EReminders Start#########################
-#LIVE*/1,2,3 * * * * /home/ewf/efbackend/eReminderMatch.sh >/dev/null 2>&1
+#LIVE*/1,2,3 * * * * /home/ewf/supportscripts/eReminderMatch.sh >/dev/null 2>&1
 #LIVE*/5 * * * * /home/ewf/efbackend/eReminderWarn.sh >/dev/null 2>&1
 #LIVE5 6 * * * /home/ewf/efbackend/eRemindersImport.sh >/dev/null 2>&1
 #LIVE*/10 1-6 * * * /home/ewf/efbackend/eRemindersCleanup.sh >/dev/null 2>&1
@@ -113,7 +113,7 @@
 #LIVE
 #LIVE###################MISC Start#########################
 #LIVE#*/20 * * * * /home/ewf/bcdbackend/communicationWeeding.sh >/dev/null 2>&1
-#LIVE0 4 * * * /home/ewf/efbackend/corporationTax.sh >/dev/null 2>&1
+#LIVE0 4 * * * /home/ewf/supportscripts/corporationTax.sh >/dev/null 2>&1
 #LIVE*/15 * * * * /home/ewf/efbackend/failedPayments.sh >/dev/null 2>&1
 #LIVE# email Warn double hashed out for repayments go-live 4/2/2012
 #LIVE0 5 * * * /home/ewf/efbackend/emailWarn.sh >/dev/null 2>&1
@@ -157,32 +157,32 @@
 #LIVE
 #LIVE###################################SUPPORT SECTION START##############################
 #LIVE*/10 * * * * /home/ewf/supportbackend/efbackend/jadeMonitor.sh >/dev/null 2>&1
-#LIVE0 8-17 * * 1-5 /home/ewf/updateEWFFormDetail.sh >/dev/null 2>&1
-#LIVE0 8 * * * /home/ewf/deleteoldaccounts.sh >/dev/null 2>&1
-#LIVE0 9 * * * /home/ewf/stuckAuthCodes.sh >/dev/null 2>&1
-#LIVE59 23 * * * /home/ewf/ServerBusyStat.sh >/dev/null 2>&1
-#LIVE*/1 * * * * /home/ewf/errorlogcheck.sh -700 >/dev/null 2>&1
-#LIVE#1 6 * * 1 /home/ewf/getEreminderSignups.sh >/dev/null 2>&1
-#LIVE1 5 1 * * /home/ewf/BCD_EremSignUp.sh >/dev/null 2>&1
-#LIVE*/15 7-18 * * * /home/ewf/efbackend/status7TNEP.sh >/dev/null 2>&1
-#LIVE*/30 7-18 * * * /home/ewf/BCD_EmailWaiting.sh >/dev/null 2>&1
-#LIVE4,34 * * * * /home/ewf/efbackend/filinqueuecheck.sh email >/dev/null 2>&1 
+#LIVE0 8-17 * * 1-5 /home/ewf/supportscripts/updateEWFFormDetail.sh >/dev/null 2>&1
+#LIVE0 8 * * * /home/ewf/supportscripts/deleteoldaccounts.sh >/dev/null 2>&1
+#LIVE0 9 * * * /home/ewf/supportscripts/stuckAuthCodes.sh >/dev/null 2>&1
+#LIVE59 23 * * * /home/ewf/supportscripts/ServerBusyStat.sh >/dev/null 2>&1
+#LIVE*/1 * * * * /home/ewf/supportscripts/errorlogcheck.sh -700 >/dev/null 2>&1
+#LIVE#1 6 * * 1 /home/ewf/supportscripts/getEreminderSignups.sh >/dev/null 2>&1
+#LIVE1 5 1 * * /home/ewf/supportscripts/BCD_EremSignUp.sh >/dev/null 2>&1
+#LIVE*/15 7-18 * * * /home/ewf/supportscripts/status7TNEP.sh >/dev/null 2>&1
+#LIVE*/30 7-18 * * * /home/ewf/supportscripts/BCD_EmailWaiting.sh >/dev/null 2>&1
+#LIVE4,34 * * * * /home/ewf/supportscripts/filinqueuecheck.sh email >/dev/null 2>&1
 #LIVE*/15 7-18 * * * /home/ewf/efbackend/updateGenBarcodeSub.sh >/dev/null 2>&1
 #LIVE#Barclaycard Payment fail check
-#LIVE5,35 * * * * /home/ewf/efbackend/paymentfailcheck.sh email >/dev/null 2>&1
+#LIVE5,35 * * * * /home/ewf/supportscripts/paymentfailcheck.sh email >/dev/null 2>&1
 #LIVE#tidy up the pdf copies of filings, only need 10 days
-#LIVE30 19 * * * /home/ewf/supportbackend/efbackend/pdfcleanup.sh >/dev/null 2>&1
+#LIVE30 19 * * * /home/ewf/supportscripts/pdfcleanup.sh >/dev/null 2>&1
 #LIVE*/5 * * * * /home/ewf/authlogcheck.sh -700 >/dev/null 2>&1
-#LIVE*/1 * * * * /home/ewf/eReminderlogcheck.sh -700 >/dev/null 2>&1
-#LIVE0 4 * * * /home/ewf/supportbackend/efbackend/checkregofficefails.sh >/dev/null 2>&1
-#LIVE0 7,12,16,18 * * 1-5 /home/ewf/updatedb.sh >/dev/null 2>&1
-#LIVE0 10 * * 0,6 /home/ewf/updatedb.sh >/dev/null 2>&1
-#LIVE45 0-23 * * * /home/ewf/checkForRecentFilings.sh >/dev/null 2>&1
+#LIVE*/1 * * * * /home/ewf/supportscripts/eReminderlogcheck.sh -700 >/dev/null 2>&1
+#LIVE0 4 * * * /home/ewf/supportscripts/checkregofficefails.sh >/dev/null 2>&1
+#LIVE0 7,12,16,18 * * 1-5 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
+#LIVE0 10 * * 0,6 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
+#LIVE45 0-23 * * * /home/ewf/supportscripts/checkForRecentFilings.sh >/dev/null 2>&1
 #LIVE5 7-17 * * * /home/ewf/efGenFail.sh >/dev/null 2>&1
 #LIVE15 7-18 * * * /home/ewf/PresInsertFail.sh >/dev/null 2>&1
 #LIVE####### Check for failed auth code request fails
-#LIVE30 7 * * * /home/ewf/getewfauthfail.sh email >/dev/null 2>&1
-#LIVE5 8-17 * * * /home/ewf/checkEmailFail.sh >/dev/null 2>&1
+#LIVE30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
+#LIVE5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
 #LIVE
 #LIVE###################################SUPPORT SECTION END##############################
 
