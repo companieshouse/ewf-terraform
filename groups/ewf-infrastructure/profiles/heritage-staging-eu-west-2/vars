@@ -54,27 +54,27 @@ nfs_mounts = {
     # On-premise NFS
     ewf_image_onp = {
       local_mount_point = "onsite/filings/image"
-      source_mount_name = "ewf_image"
+      source_mount_name = "/vol/tst00/ewf_image"
       nfs_server_address = "chfas-pl3.internal.ch"
     },
     ewf_upload_onp = {
       local_mount_point = "onsite/filings/upload"
-      source_mount_name = "ewf_upload"
+      source_mount_name = "/vol/tst00/ewf_upload"
       nfs_server_address = "chfas-pl3.internal.ch"
     },
     ewf_submissions_onp = {
       local_mount_point = "onsite/filings/submissions"
-      source_mount_name = "ewf_submissions"
+      source_mount_name = "/vol/tst00/ewf_submissions"
       nfs_server_address = "chfas-pl3.internal.ch"
     },
     ewf_archive_onp = {
       local_mount_point = "onsite/filings/archive"
-      source_mount_name = "ewf_archive"
+      source_mount_name = "/vol/tst00/ewf_archive"
       nfs_server_address = "chfas-pl3.internal.ch"
     },
     ewf_recent_filings_onp = {
       local_mount_point = "onsite/filings/recent_filings"
-      source_mount_name = "ewf_recent_filings"
+      source_mount_name = "/vol/tst00/ewf_recent_filings"
       nfs_server_address = "chfas-pl3.internal.ch"
     }
   }
