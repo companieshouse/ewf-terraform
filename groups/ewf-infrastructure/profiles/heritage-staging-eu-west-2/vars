@@ -74,7 +74,7 @@ nfs_mounts = {
     },
     ewf_recent_filings_onp = {
       local_mount_point = "onsite/filings/recent_filings"
-      nfs_source_mount = "vol/tst00/ewf/recent_filings"
+      nfs_source_mount = "vol/tst00/ewf/recent/filings"
       nfs_server_address = "chfas-pl3.internal.ch"
     }
   }
