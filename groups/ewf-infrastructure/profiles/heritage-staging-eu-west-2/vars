@@ -33,25 +33,52 @@ bep_desired_capacity = 1
 
 # CVO Mounts
 nfs_server = "192.168.255.19"
-nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
+nfs_mount_destination_parent_dir = "/mnt/nfs/"
 nfs_mounts = {
+    # AWS NFS
     ewf_image = {
-      local_mount_point = "image"
+      local_mount_point = "filings/image"
     },
     ewf_upload = {
-      local_mount_point = "upload"
+      local_mount_point = "filings/upload"
     },
     ewf_submissions = {
-      local_mount_point = "submissions"
+      local_mount_point = "filings/submissions"
     },
     ewf_archive = {
-      local_mount_point = "archive"
+      local_mount_point = "filings/archive"
     },
     ewf_recent_filings = {
-      local_mount_point = "recent_filings"
+      local_mount_point = "filings/recent_filings"
+    },
+    # On-premise NFS
+    ewf_image_onp = {
+      local_mount_point = "onsite/filings/image"
+      source_mount_name = "/vol/tst00/ewf_image"
+      nfs_server_address = "chfas-pl3.internal.ch"
+    },
+    ewf_upload_onp = {
+      local_mount_point = "onsite/filings/upload"
+      source_mount_name = "/vol/tst00/ewf_upload"
+      nfs_server_address = "chfas-pl3.internal.ch"
+    },
+    ewf_submissions_onp = {
+      local_mount_point = "onsite/filings/submissions"
+      source_mount_name = "/vol/tst00/ewf_submissions"
+      nfs_server_address = "chfas-pl3.internal.ch"
+    },
+    ewf_archive_onp = {
+      local_mount_point = "onsite/filings/archive"
+      source_mount_name = "/vol/tst00/ewf_archive"
+      nfs_server_address = "chfas-pl3.internal.ch"
+    },
+    ewf_recent_filings_onp = {
+      local_mount_point = "onsite/filings/recent_filings"
+      source_mount_name = "/vol/tst00/ewf_recent_filings"
+      nfs_server_address = "chfas-pl3.internal.ch"
     }
   }
-  
+
 # RDS Instance settings
 instance_class          = "db.m5.large"
 allocated_storage       = 250
@@ -97,7 +124,7 @@ parameter_group_settings = [
       name         = "compatible"
       value        = "12.1.0.2.0"
       apply_method = "pending-reboot"
-    },      
+    },
     {
       name  = "db_file_multiblock_read_count"
       value = "64"
@@ -162,7 +189,7 @@ fe_cw_logs = {
     file_path = "/var/log"
     log_group_retention = 7
   }
-  
+
   "secure" = {
     file_path = "/var/log"
     log_group_retention = 7
@@ -200,7 +227,7 @@ bep_cw_logs = {
     file_path = "/var/log"
     log_group_retention = 7
   }
-  
+
   "secure" = {
     file_path = "/var/log"
     log_group_retention = 7
@@ -228,121 +255,121 @@ bep_cw_logs = {
 
   "auth.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "backend.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7   
+    log_group_retention = 7
   }
 
   "cancelledSubmissions.log" = {
     file_path = "/home/ewf/"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
-  
+
   "cleanup.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "corporationTax.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "createCerts.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "DeletedAccounts.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "emailDispatcher.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "mailWarn.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "eReminder.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "eReminderCleanup.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "eRemindersImport.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "eReminderWarn.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "failedPayments.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "filedDataPDF.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "formArchive.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "formEnablement.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "formPartition.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "formProcess.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "formResponse.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "paymentTX.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "paymentTXReport.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "statsReport.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 
   "weeding.log" = {
     file_path = "/home/ewf"
-    log_group_retention = 7 
+    log_group_retention = 7
   }
 }
