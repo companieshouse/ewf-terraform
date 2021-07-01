@@ -33,25 +33,52 @@ bep_desired_capacity = 1
 
 # CVO Mounts
 nfs_server = "192.168.255.35"
-nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
+nfs_mount_destination_parent_dir = "/-"
 nfs_mounts = {
+    # AWS NFS
     ewf_image = {
-      local_mount_point = "image"
+      local_mount_point = "/mnt/nfs/filings/image"
     },
     ewf_upload = {
-      local_mount_point = "upload"
+      local_mount_point = "/mnt/nfs/filings/upload"
     },
     ewf_submissions = {
-      local_mount_point = "submissions"
+      local_mount_point = "/mnt/nfs/filings/submissions"
     },
     ewf_archive = {
-      local_mount_point = "archive"
+      local_mount_point = "/mnt/nfs/filings/archive"
     },
     ewf_recent_filings = {
-      local_mount_point = "recent_filings"
+      local_mount_point = "/mnt/nfs/filings/recent_filings"
+    },
+    # On-premise NFS
+    ewf_image_onp = {
+      local_mount_point = "/mnt/nfs/onsite/filings/image"
+      nfs_source_mount = "ewf_image"
+      nfs_server_address = "ipo-file-svm-lif-be1.internal.ch"
+    },
+    ewf_upload_onp = {
+      local_mount_point = "/mnt/nfs/onsite/filings/upload"
+      nfs_source_mount = "ewf_upload"
+      nfs_server_address = "ipo-file-svm-lif-be2.internal.ch"
+    },
+    ewf_submissions_onp = {
+      local_mount_point = "/mnt/nfs/onsite/filings/submissions"
+      nfs_source_mount = "ewf_submissions"
+      nfs_server_address = "ipo-file-svm-lif-be2.internal.ch"
+    },
+    ewf_archive_onp = {
+      local_mount_point = "/mnt/nfs/onsite/filings/archive"
+      nfs_source_mount = "ewf_archive"
+      nfs_server_address = "ipo-file-svm-lif-be2.internal.ch"
+    },
+    ewf_recent_filings_onp = {
+      local_mount_point = "/mnt/nfs/filings/recent_filings"
+      nfs_source_mount = "ewf_recent_filings"
+      nfs_server_address = "ipo-file-svm-lif-be1.internal.ch"
     }
   }
-  
+
 # RDS Instance settings
 instance_class          = "db.m5.xlarge"
 allocated_storage       = 1500
@@ -74,10 +101,10 @@ rds_onpremise_access = [
   "10.55.130.0/24",
   "172.24.4.17/32",
   "192.168.90.0/24",
-  "192.168.60.130/32", 
-  "192.168.60.131/32", 
-  "192.168.60.132/32", 
-  "192.168.60.133/32", 
+  "192.168.60.130/32",
+  "192.168.60.131/32",
+  "192.168.60.132/32",
+  "192.168.60.133/32",
   "192.168.60.134/32"
 ]
 
@@ -103,7 +130,7 @@ parameter_group_settings = [
       name         = "compatible"
       value        = "12.1.0.2.0"
       apply_method = "pending-reboot"
-    },      
+    },
     {
       name  = "db_file_multiblock_read_count"
       value = "64"
@@ -167,7 +194,7 @@ fe_cw_logs = {
     file_path = "/var/log"
     log_group_retention = 30
   }
-  
+
   "secure" = {
     file_path = "/var/log"
     log_group_retention = 30
@@ -215,7 +242,7 @@ bep_cw_logs = {
     file_path = "/var/log"
     log_group_retention = 30
   }
-  
+
   "secure" = {
     file_path = "/var/log"
     log_group_retention = 30
@@ -255,7 +282,7 @@ bep_cw_logs = {
     file_path = "/home/ewf/"
     log_group_retention = 180
   }
-  
+
   "cleanup.log" = {
     file_path = "/home/ewf"
     log_group_retention = 180
