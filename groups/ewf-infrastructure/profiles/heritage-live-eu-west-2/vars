@@ -55,7 +55,7 @@ nfs_mounts = {
     ewf_image_onp = {
       local_mount_point = "/mnt/nfs/onsite/filings/image"
       nfs_source_mount = "ewf_image"
-      nfs_server_address = "ipo-file-svm-lif-be2.internal.ch"
+      nfs_server_address = "ipo-file-svm-lif-be1.internal.ch"
     },
     ewf_upload_onp = {
       local_mount_point = "/mnt/nfs/onsite/filings/upload"
@@ -70,7 +70,7 @@ nfs_mounts = {
     ewf_archive_onp = {
       local_mount_point = "/mnt/nfs/onsite/filings/archive"
       nfs_source_mount = "ewf_archive"
-      nfs_server_address = "ipo-file-svm-lif-be1.internal.ch"
+      nfs_server_address = "ipo-file-svm-lif-be2.internal.ch"
     },
     ewf_recent_filings_onp = {
       local_mount_point = "/mnt/nfs/filings/recent_filings"
