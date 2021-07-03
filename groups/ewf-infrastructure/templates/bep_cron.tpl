@@ -126,7 +126,7 @@
 #LIVE###################MISC End#########################
 #LIVE
 #LIVE################################STATS GENERATION START#############################
-#LIVE0 6 * * 1 /home/ewf/supportbackend/efbackend/getOptIns.sh >/dev/null 2>&1
+#LIVE0 6 * * 1 /home/ewf/efbackend/getOptIns.sh >/dev/null 2>&1
 #LIVE0 6 1 * * /home/ewf/efbackend/produceStats.sh AccountFilingReport "cyoude@companieshouse.gov.uk" month >/dev/null 2>&1
 #LIVE0 4 1 * * /home/ewf/efbackend/produceStats.sh IncFormationReport "thill@companieshouse.gov.uk" month >/dev/null 2>&1
 #LIVE0 6 7 * * /home/ewf/efbackend/produceStats.sh HMRCIncStatReport "internalstats@companieshouse.gov.uk" lastmonth >/dev/null 2>&1
@@ -156,7 +156,7 @@
 #LIVE################################STATS GENERATION END#############################
 #LIVE
 #LIVE###################################SUPPORT SECTION START##############################
-#LIVE*/10 * * * * /home/ewf/supportbackend/efbackend/jadeMonitor.sh >/dev/null 2>&1
+#LIVE*/10 * * * * /home/ewf/supportscripts/jadeMonitor.sh >/dev/null 2>&1
 #LIVE0 8-17 * * 1-5 /home/ewf/supportscripts/updateEWFFormDetail.sh >/dev/null 2>&1
 #LIVE0 8 * * * /home/ewf/supportscripts/deleteoldaccounts.sh >/dev/null 2>&1
 #LIVE0 9 * * * /home/ewf/supportscripts/stuckAuthCodes.sh >/dev/null 2>&1
