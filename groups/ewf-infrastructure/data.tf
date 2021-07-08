@@ -59,6 +59,13 @@ data "aws_security_group" "tuxedo" {
   }
 }
 
+data "aws_security_group" "xmlbep" {
+  filter {
+    name   = "tag:Name"
+    values = ["sgr-xml-bep-*"]
+  }
+}
+
 data "aws_security_group" "adminsites" {
   filter {
     name   = "tag:Name"
