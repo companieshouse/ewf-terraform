@@ -34,6 +34,13 @@ module "ewf_rds_security_group" {
       protocol                 = "tcp"
       description              = "Frontend Admin sites"
       source_security_group_id = data.aws_security_group.adminsites.id
+    },
+    {
+      from_port                = 1521
+      to_port                  = 1521
+      protocol                 = "tcp"
+      description              = "XML BEP"
+      source_security_group_id = data.aws_security_group.xmlbep.id
     }
   ]
   computed_ingress_with_source_security_group_id = [
