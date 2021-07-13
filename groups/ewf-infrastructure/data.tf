@@ -160,9 +160,10 @@ data "template_file" "fe_userdata" {
   template = file("${path.module}/templates/fe_user_data.tpl")
 
   vars = {
-    REGION              = var.aws_region
-    EWF_FRONTEND_INPUTS = local.ewf_fe_data
-    ANSIBLE_INPUTS      = jsonencode(local.ewf_fe_ansible_inputs)
+    REGION               = var.aws_region
+    HERITAGE_ENVIRONMENT = title(var.environment)
+    EWF_FRONTEND_INPUTS  = local.ewf_fe_data
+    ANSIBLE_INPUTS       = jsonencode(local.ewf_fe_ansible_inputs)
   }
 }
 
@@ -203,9 +204,10 @@ data "template_file" "bep_userdata" {
   template = file("${path.module}/templates/bep_user_data.tpl")
 
   vars = {
-    REGION             = var.aws_region
-    EWF_BACKEND_INPUTS = local.ewf_bep_data
-    ANSIBLE_INPUTS     = jsonencode(local.ewf_bep_ansible_inputs)
+    REGION               = var.aws_region
+    HERITAGE_ENVIRONMENT = title(var.environment)
+    EWF_BACKEND_INPUTS   = local.ewf_bep_data
+    ANSIBLE_INPUTS       = jsonencode(local.ewf_bep_ansible_inputs)
     EWF_CRON_ENTRIES = templatefile("${path.module}/templates/bep_cron.tpl", {
       "USER"     = data.vault_generic_secret.ewf_bep_cron_data.data["username"],
       "PASSWORD" = data.vault_generic_secret.ewf_bep_cron_data.data["password"]
