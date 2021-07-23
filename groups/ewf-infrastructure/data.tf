@@ -73,6 +73,10 @@ data "aws_security_group" "adminsites" {
   }
 }
 
+data "aws_security_group" "identity_gateway" {
+  name = "identity-gateway-instance"
+}
+
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
