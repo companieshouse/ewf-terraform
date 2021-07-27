@@ -75,23 +75,23 @@
 #LIVE#######################Form Process End##############################
 #LIVE
 #LIVE###################OTHER SCHEDULED JOBS#########################
-#LIVE*/1 0-23 * * * /home/ewf/efbackend/CreateCerts.sh >/dev/null 2>&1
-#LIVE*/1 0-23 * * * /home/ewf/efbackend/formResponse.sh >/dev/null 2>&1
-#LIVE*/1 0-23 * * * /home/ewf/efbackend/emailDispatcher.sh >/dev/null 2>&1
-#LIVE*/1 0-23 * * * /home/ewf/efbackend/cancelledSubmissions.sh >/dev/null 2>&1
+#*/1 0-23 * * * /home/ewf/efbackend/CreateCerts.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formResponse.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/emailDispatcher.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/cancelledSubmissions.sh >/dev/null 2>&1
 #LIVE*/1 0-23 * * * /home/ewf/efbackend/filedDataPDF.sh now >/dev/null 2>&1
 #LIVE*/10 0-23 * * * /home/ewf/supportbackend/efbackend/monitorLCKfilesWarn.sh >/dev/null 2>&1
 #LIVE*/1 0-23 * * * /home/ewf/efbackend/auth.sh >/dev/null 2>&1
 #LIVE*/1 7-21 * * * /home/ewf/efbackend/presenter.sh >/dev/null 2>&1
 #LIVE*/1 * * * * /home/ewf/chd3backend/paymentTXCommunicate.sh >/dev/null 2>&1
-#LIVE*/1 0-23 * * * /home/ewf/bcdbackend/communicationDispatcher.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/bcdbackend/communicationDispatcher.sh >/dev/null 2>&1
 #LIVE##MAW 20/04/15, partitioning running slow, so tried this
 #LIVE*/10 * * * * /home/ewf/efbackend/formArchive.sh 365 >/dev/null 2>&1
 #LIVE
 #LIVE#Chd3backend to handle emailed shuttle PDFs etc
-#LIVE*/1 0-23 * * * /home/ewf/chd3backend/partition.sh >/dev/null 2>&1
-#LIVE*/4 0-23 * * * /home/ewf/chd3backend/reports.sh now >/dev/null 2>&1
-#LIVE*/1 0-23 * * * /home/ewf/chd3backend/email.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/chd3backend/partition.sh >/dev/null 2>&1
+*/4 0-23 * * * /home/ewf/chd3backend/reports.sh now >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/chd3backend/email.sh >/dev/null 2>&1
 #LIVE
 #LIVE###################NFS Cleanup Start#########################
 #LIVE15 0 * * * find /mnt/nfs/ewf/upload -type f -mtime +365 -name ".html" -exec rm -f {} ; >/dev/null 2>&1
@@ -105,10 +105,10 @@
 #LIVE###################NFS Cleanup End#########################
 #LIVE
 #LIVE###################EReminders Start#########################
-#LIVE*/1,2,3 * * * * /home/ewf/supportscripts/eReminderMatch.sh >/dev/null 2>&1
-#LIVE*/5 * * * * /home/ewf/efbackend/eReminderWarn.sh >/dev/null 2>&1
-#LIVE5 6 * * * /home/ewf/efbackend/eRemindersImport.sh >/dev/null 2>&1
-#LIVE*/10 1-6 * * * /home/ewf/efbackend/eRemindersCleanup.sh >/dev/null 2>&1
+*/1,2,3 * * * * /home/ewf/supportscripts/eReminderMatch.sh >/dev/null 2>&1
+*/5 * * * * /home/ewf/efbackend/eReminderWarn.sh >/dev/null 2>&1
+5 6 * * * /home/ewf/efbackend/eRemindersImport.sh >/dev/null 2>&1
+*/10 1-6 * * * /home/ewf/efbackend/eRemindersCleanup.sh >/dev/null 2>&1
 #LIVE###################EReminders End#########################
 #LIVE
 #LIVE###################MISC Start#########################
