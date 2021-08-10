@@ -11,6 +11,8 @@ cat <<EOF >>/root/cronfile
 ${EWF_CRON_ENTRIES}
 EOF
 crontab -u ewf /root/cronfile
+#Set FESS_TOKEN
+echo "export FESS_TOKEN=${EWF_FESS_TOKEN}" >> /home/ewf/.bash_profile
 #Update Nagios registration script with relevant template
 cp /usr/local/bin/nagios-host-add.sh /usr/local/bin/nagios-host-add.j2
 REPLACE=EWF_BEP_${HERITAGE_ENVIRONMENT} /usr/local/bin/j2 /usr/local/bin/nagios-host-add.j2 > /usr/local/bin/nagios-host-add.sh
