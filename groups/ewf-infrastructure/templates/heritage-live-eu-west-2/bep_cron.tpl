@@ -1,5 +1,5 @@
 ############ 1 ############ LOAD CRON FROM TEMPLATE
-#*/1 * * * * ${HOME}/supportscripts/load_cron.sh >> ${HOME}/load_cron.log
+#*/1 * * * * $HOME/supportscripts/load_cron.sh >> $HOME/load_cron.log
 
 #############################LIVE SERVICE PROCESSING START############################
 ##Form Processing Jobs
