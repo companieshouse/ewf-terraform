@@ -22,7 +22,7 @@ locals {
 
   internal_fqdn = format("%s.%s.aws.internal", split("-", var.aws_account)[1], split("-", var.aws_account)[0])
 
-  chs_vpc_subnets = values(jsondecode(data.vault_generic_secret.chs_vpc_subnets.data["applications"]))
+  chs_app_subnets = values(jsondecode(data.vault_generic_secret.chs_app_subnets.data["applications"]))
 
   rds_ingress_cidrs = concat(local.admin_cidrs, var.rds_onpremise_access)
 

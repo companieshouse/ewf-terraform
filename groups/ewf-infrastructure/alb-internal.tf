@@ -16,12 +16,12 @@ module "ewf_internal_alb_security_group" {
     {
       rule        = "http-80-tcp"
       description = "CHS applications"
-      cidr_blocks = join(",", local.chs_vpc_subnets)
+      cidr_blocks = join(",", local.chs_app_subnets)
     },
     {
       rule        = "https-443-tcp"
       description = "CHS applications"
-      cidr_blocks = join(",", local.chs_vpc_subnets)
+      cidr_blocks = join(",", local.chs_app_subnets)
     }
   ]
 

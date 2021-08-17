@@ -117,7 +117,7 @@ data "vault_generic_secret" "security_s3_buckets" {
   path = "aws-accounts/security/s3"
 }
 
-data "vault_generic_secret" "chs_vpc_subnets" {
+data "vault_generic_secret" "chs_app_subnets" {
   path = "aws-accounts/${var.environment}/vpc/subnets"
 }
 
