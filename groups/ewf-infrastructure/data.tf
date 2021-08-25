@@ -73,10 +73,8 @@ data "aws_security_group" "adminsites" {
   }
 }
 
-# This is a non-production lookup, Forgerock ID Gateway access in Dev and Staging
-# When Forgerock goes into Live then the condition can be removed.
 data "aws_security_group" "identity_gateway" {
-  count = var.environment == "live" ? 0 : 1
+  count = 1
   name  = "identity-gateway-instance"
 }
 
