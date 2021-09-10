@@ -74,7 +74,6 @@ data "aws_security_group" "adminsites" {
 }
 
 data "aws_security_group" "identity_gateway" {
-  count = 1
   name  = "identity-gateway-instance"
 }
 

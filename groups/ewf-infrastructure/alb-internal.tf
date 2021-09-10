@@ -28,11 +28,11 @@ module "ewf_internal_alb_security_group" {
   ingress_with_source_security_group_id = [
     {
       rule                     = "http-80-tcp"
-      source_security_group_id = data.aws_security_group.identity_gateway[0].id
+      source_security_group_id = data.aws_security_group.identity_gateway.id
     },
     {
       rule                     = "https-443-tcp"
-      source_security_group_id = data.aws_security_group.identity_gateway[0].id
+      source_security_group_id = data.aws_security_group.identity_gateway.id
     }
   ]
 
