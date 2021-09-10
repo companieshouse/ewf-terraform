@@ -25,16 +25,14 @@ module "ewf_internal_alb_security_group" {
     }
   ]
 
-  # This is a non-production ruleset, Forgerock ID Gateway access in Dev and Staging
-  # When Forgerock goes into Live then the condition can be removed.
-  ingress_with_source_security_group_id = var.environment == "live" ? [] : [
+  ingress_with_source_security_group_id = [
     {
       rule                     = "http-80-tcp"
-      source_security_group_id = data.aws_security_group.identity_gateway[0].id
+      source_security_group_id = data.aws_security_group.identity_gateway.id
     },
     {
       rule                     = "https-443-tcp"
-      source_security_group_id = data.aws_security_group.identity_gateway[0].id
+      source_security_group_id = data.aws_security_group.identity_gateway.id
     }
   ]
 
