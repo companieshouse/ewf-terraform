@@ -4,7 +4,7 @@
 #############################LIVE SERVICE PROCESSING START############################
 ##Form Processing Jobs
 ## Monday
-#*/1 * * * 1 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 1 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 1 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ## ...or on demand
 ##*/1 0-18 * * 1 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -13,7 +13,7 @@
 ##*/10 22-23 * * 1 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Tuesday
-#*/1 * * * 2 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 2 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 2 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ## ...or on demand
 ##*/1 0-18 * * 2 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -22,7 +22,7 @@
 ##*/10 22-23 * * 2 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Wednesday
-#*/1 * * * 3 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 3 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 3 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-18 * * 3 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -31,7 +31,7 @@
 ##*/10 22-23 * * 3 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Thursday
-#*/1 * * * 4 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 4 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 ##*/10 * * * 4 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ## ...or on demand
 ##*/1 0-18 * * 4 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -40,7 +40,7 @@
 ##*/10 22-23 * * 4 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Friday
-#*/1 * * * 5 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 5 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 5 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-18 * * 5 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -49,7 +49,7 @@
 ##*/10 22-23 * * 5 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Saturday
-#*/1 * * * 6 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 6 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 6 /home/ewf/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-7 * * 6 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -58,7 +58,7 @@
 ##*/10 22-23 * * 6 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Sunday
-#*/1 * * * 0 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 0 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 0 /home/ewf/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-18 * * 0 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -68,61 +68,61 @@
 #############################LIVE SERVICE PROCESSING END############################
 #
 ########################Form Process Start##############################
-#*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh General >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Shuttles >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Accounts >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Incorporations >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh SameDayIncorporations >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Mortgages >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh General >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Shuttles >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Accounts >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Incorporations >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh SameDayIncorporations >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formProcess.sh Mortgages >/dev/null 2>&1
 #
 ########################Form Process End##############################
 #
 ####################OTHER SCHEDULED JOBS#########################
-#*/1 0-23 * * * /home/ewf/efbackend/CreateCerts.sh >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/formResponse.sh >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/emailDispatcher.sh >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/efbackend/cancelledSubmissions.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/CreateCerts.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/formResponse.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/emailDispatcher.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/efbackend/cancelledSubmissions.sh >/dev/null 2>&1
 #*/1 0-23 * * * /home/ewf/efbackend/filedDataPDF.sh now >/dev/null 2>&1
 #*/10 0-23 * * * /home/ewf/supportbackend/efbackend/monitorLCKfilesWarn.sh >/dev/null 2>&1
 #*/1 0-23 * * * /home/ewf/efbackend/auth.sh >/dev/null 2>&1
 #*/1 7-21 * * * /home/ewf/efbackend/presenter.sh >/dev/null 2>&1
-#*/1 * * * * /home/ewf/chd3backend/paymentTXCommunicate.sh >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/bcdbackend/communicationDispatcher.sh >/dev/null 2>&1
+*/1 * * * * /home/ewf/chd3backend/paymentTXCommunicate.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/bcdbackend/communicationDispatcher.sh >/dev/null 2>&1
 ###MAW 20/04/15, partitioning running slow, so tried this
 #*/10 * * * * /home/ewf/efbackend/formArchive.sh 365 >/dev/null 2>&1
 #
 ##Chd3backend to handle emailed shuttle PDFs etc
-#*/1 0-23 * * * /home/ewf/chd3backend/partition.sh >/dev/null 2>&1
-#*/4 0-23 * * * /home/ewf/chd3backend/reports.sh now >/dev/null 2>&1
-#*/1 0-23 * * * /home/ewf/chd3backend/email.sh >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/chd3backend/partition.sh >/dev/null 2>&1
+*/4 0-23 * * * /home/ewf/chd3backend/reports.sh now >/dev/null 2>&1
+*/1 0-23 * * * /home/ewf/chd3backend/email.sh >/dev/null 2>&1
 #
 ####################NFS Cleanup Start#########################
-#15 0 * * * find /mnt/nfs/ewf/upload -type f -mtime +365 -name ".html" -exec rm -f {} ; >/dev/null 2>&1
-#15 1 * * * find /mnt/nfs/ewf/upload -type f -mtime +90 ( -name *.xml -o -name *.pcl -o -name *.pdf ) -exec rm -f {} ; >/dev/null 2>&1
-#15 2 * * * find /mnt/nfs/ewf/upload -type f -name ".xdp" -mtime +3  -exec rm -f {} ; >/dev/null 2>&1
-#15 14 * * * find /mnt/nfs/ewf/upload -type f -name "*.xdp" -mtime +3  -exec rm -f {} ; >/dev/null 2>&1
-#15 3 * * * find /mnt/ha/image/ewf2 -type f -mtime +9 -exec rm -f {} ; >/dev/null 2>&1
-#20 14 * * * find /mnt/ha/image/ewf2 -type f -mtime +9 -exec rm -f {} ; >/dev/null 2>&1
-#15 4 * * * find /mnt/nfs/ewf/data/image -type f -mtime +30 -exec rm -f {} ; >/dev/null 2>&1
-#25 14 * * * find /mnt/nfs/ewf/data/image -type f -mtime +30 -exec rm -f {} ; >/dev/null 2>&1
+15  0 * * * find /mnt/nfs/ewf/upload     -type f -mtime  +365 -name ".html" -exec rm -f {} ; >/dev/null 2>&1
+15  1 * * * find /mnt/nfs/ewf/upload     -type f -mtime  +90 ( -name *.xml -o -name *.pcl -o -name *.pdf ) -exec rm -f {} ; >/dev/null 2>&1
+15  2 * * * find /mnt/nfs/ewf/upload     -type f -name ".xdp" -mtime +3  -exec rm -f {} ; >/dev/null 2>&1
+15 14 * * * find /mnt/nfs/ewf/upload     -type f -name "*.xdp" -mtime +3  -exec rm -f {} ; >/dev/null 2>&1
+15  3 * * * find /mnt/ha/image/ewf2      -type f -mtime  +9 -exec rm -f {} ; >/dev/null 2>&1
+20 14 * * * find /mnt/ha/image/ewf2      -type f -mtime  +9 -exec rm -f {} ; >/dev/null 2>&1
+15  4 * * * find /mnt/nfs/ewf/data/image -type f -mtime +30 -exec rm -f {} ; >/dev/null 2>&1
+25 14 * * * find /mnt/nfs/ewf/data/image -type f -mtime +30 -exec rm -f {} ; >/dev/null 2>&1
 ####################NFS Cleanup End#########################
 #
 ####################EReminders Start#########################
-#*/1,2,3 * * * * /home/ewf/supportscripts/eReminderMatch.sh >/dev/null 2>&1
-#*/5 * * * * /home/ewf/efbackend/eReminderWarn.sh >/dev/null 2>&1
-#5 6 * * * /home/ewf/efbackend/eRemindersImport.sh >/dev/null 2>&1
-#*/10 1-6 * * * /home/ewf/efbackend/eRemindersCleanup.sh >/dev/null 2>&1
+*/1,2,3 * * * * /home/ewf/supportscripts/eReminderMatch.sh >/dev/null 2>&1
+*/5 * * * * /home/ewf/efbackend/eReminderWarn.sh >/dev/null 2>&1
+5 6 * * * /home/ewf/efbackend/eRemindersImport.sh >/dev/null 2>&1
+*/10 1-6 * * * /home/ewf/efbackend/eRemindersCleanup.sh >/dev/null 2>&1
 ####################EReminders End#########################
 #
 ####################MISC Start#########################
 ##*/20 * * * * /home/ewf/bcdbackend/communicationWeeding.sh >/dev/null 2>&1
-#0 4 * * * /home/ewf/supportscripts/corporationTax.sh >/dev/null 2>&1
-#*/15 * * * * /home/ewf/efbackend/failedPayments.sh >/dev/null 2>&1
+0 4 * * * /home/ewf/supportscripts/corporationTax.sh >/dev/null 2>&1
+*/15 * * * * /home/ewf/efbackend/failedPayments.sh >/dev/null 2>&1
 ## email Warn double hashed out for repayments go-live 4/2/2012
 #0 5 * * * /home/ewf/efbackend/emailWarn.sh >/dev/null 2>&1
-#*/20  * * * * /home/ewf/efbackend/weed.sh ewf >/dev/null 2>&1
+*/5  * * * * /home/ewf/efbackend/weed.sh ewf >/dev/null 2>&1
 ##extra session weeding for a few hours, just incase tux2 is not weeding
-#*/10  0-7 * * * /home/ewf/efbackend/weed.sh ewf sessions >/dev/null 2>&1
+*/1  0-7 * * * /home/ewf/efbackend/weed.sh ewf sessions >/dev/null 2>&1
 ##JSON stats for Helen H. had to put these back onto bep1 as they will not run from cron and not got time to look at these with Brexit move to london
 ##1 0 * * * /home/ewf/statsjson/dailyjsonstats.pl >> /home/ewf/statsjson/jsonstats.log
 ##2 * * * * /home/ewf/statsjson/newjsonstats.pl >> /home/ewf/statsjson/newjsonstats.log
