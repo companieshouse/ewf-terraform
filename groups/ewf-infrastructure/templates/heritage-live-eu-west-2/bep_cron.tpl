@@ -171,9 +171,9 @@
 */30 7-18 * * * /home/ewf/supportscripts/BCD_EmailWaiting.sh >/dev/null 2>&1
 4,34 * * * * /home/ewf/supportscripts/filinqueuecheck.sh email >/dev/null 2>&1
 */15 7-18 * * * /home/ewf/efbackend/updateGenBarcodeSub.sh >/dev/null 2>&1
-#Barclaycard Payment fail check
+##Barclaycard Payment fail check
 5,35 * * * * /home/ewf/supportscripts/paymentfailcheck.sh email >/dev/null 2>&1
-#tidy up the pdf copies of filings, only need 10 days
+##tidy up the pdf copies of filings, only need 10 days
 30 19 * * * /home/ewf/supportscripts/pdfcleanup.sh >/dev/null 2>&1
 */5 * * * * /home/ewf/authlogcheck.sh -700 >/dev/null 2>&1
 */1 * * * * /home/ewf/supportscripts/eReminderlogcheck.sh -700 >/dev/null 2>&1
@@ -183,7 +183,7 @@
 45 0-23 * * * /home/ewf/supportscripts/checkForRecentFilings.sh >/dev/null 2>&1
 5 7-17 * * * /home/ewf/efGenFail.sh >/dev/null 2>&1
 15 7-18 * * * /home/ewf/PresInsertFail.sh >/dev/null 2>&1
-####### Check for failed auth code request fails
+######## Check for failed auth code request fails
 30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
 5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
 
