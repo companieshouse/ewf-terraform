@@ -129,63 +129,63 @@
 ####################MISC End#########################
 #
 #################################STATS GENERATION START#############################
-#0 6 * * 1 /home/ewf/efbackend/getOptIns.sh >/dev/null 2>&1
-#0 6 1 * * /home/ewf/efbackend/produceStats.sh AccountFilingReport "cyoude@companieshouse.gov.uk" month >/dev/null 2>&1
-#0 4 1 * * /home/ewf/efbackend/produceStats.sh IncFormationReport "thill@companieshouse.gov.uk" month >/dev/null 2>&1
-#0 6 7 * * /home/ewf/efbackend/produceStats.sh HMRCIncStatReport "internalstats@companieshouse.gov.uk" lastmonth >/dev/null 2>&1
-#15 4 1 * * /home/ewf/efbackend/produceStats.sh AverageProcessTimeReport "ACINotify@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
-#30 6 1 * * /home/ewf/efbackend/produceStats.sh AverageMonthlyTotalReport "ACINotify@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
-#10 0 1 * * /home/ewf/efbackend/produceStats.sh WebFiledRejectsReport "internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
-#10 1 1 * * /home/ewf/efbackend/produceStats.sh AcceptedRejectedIncsReport "internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
-#40 1 * * * /home/ewf/efbackend/produceStats.sh AcceptedRejectedSameDayIncsReport "internalstats@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
-#00 20 * * * /home/ewf/efbackend/produceFTPStats.sh WebAccountPaymentsReport 172.16.200.33 ${ USER } ${ PASSWORD } 8to8 >/dev/null 2>&1
-#40 2 * * * /home/ewf/efbackend/produceStats.sh CardPaymentsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
-#10 3 * * 1 /home/ewf/efbackend/produceStats.sh WeeklyAcceptedDocsReport "internalstats@companieshouse.gov.uk" week >/dev/null 2>&1
-#40 3 * * * /home/ewf/efbackend/produceStats.sh DailyAcceptedRejectedDocsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
-#10 4 * * * /home/ewf/efbackend/produceStats.sh ExtendedAcceptedRejectedDocsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
-#40 4 * * * /home/ewf/efbackend/produceStats.sh WebFiledDailyDocsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
-#40 5 * * * /home/ewf/efbackend/produceFTPStats.sh CardPaymentsReport 172.16.200.33 ${ USER } ${ PASSWORD } yesterday >/dev/null 2>&1
-#15 5 * * * /home/ewf/efbackend/produceStats.sh TwelveHourProcessingReportEW "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_EW >/dev/null 2>&1
-#35 5 * * * /home/ewf/efbackend/produceStats.sh TwelveHourProcessingReportSC "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_SC >/dev/null 2>&1
-#55 5 * * * /home/ewf/efbackend/produceStats.sh TwelveHourProcessingReportNI "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_NI >/dev/null 2>&1
-#15 7 * * * /home/ewf/efbackend/produceStats.sh TwentyFourHourProcessingReportEW "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_EW >/dev/null 2>&1
-#35 7 * * * /home/ewf/efbackend/produceStats.sh TwentyFourHourProcessingReportSC "internalstats@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_SC >/dev/null 2>&1
-#55 7 * * * /home/ewf/efbackend/produceStats.sh TwentyFourHourProcessingReportNI "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_NI >/dev/null 2>&1
-#20 6 * * * /home/ewf/efbackend/produceFTPStats.sh RejectsToRefundReport 172.16.200.33 ${ USER } ${ PASSWORD } yesterday >/dev/null 2>&1
-#20 5 * * * /home/ewf/efbackend/produceStats.sh RejectsToRefundReport "internalstats@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
-#40 23 * * * /home/ewf/chd3backend/paymentTXReport.sh >/dev/null 2>&1
-#29 8-18 * * 1-5 /home/ewf/efbackend/produceStats.sh SupportHourlyStatsReport "mwilliams5@companieshouse.gov.uk,dcornelius@companieshouse.gov.uk,sreadman@companieshouse.gov.uk,pparr@companieshouse.gov.uk,cnewland@companieshouse.gov.uk" >/dev/null 2>&1
-#0 11,16,20 * * * /home/ewf/efbackend/produceStats.sh SupportHourlyStatsReport "678104@gmail.com" >/dev/null 2>&1
+0 6 * * 1 /home/ewf/efbackend/getOptIns.sh >/dev/null 2>&1
+0 6 1 * * /home/ewf/efbackend/produceStats.sh AccountFilingReport "cyoude@companieshouse.gov.uk" month >/dev/null 2>&1
+0 4 1 * * /home/ewf/efbackend/produceStats.sh IncFormationReport "thill@companieshouse.gov.uk" month >/dev/null 2>&1
+0 6 7 * * /home/ewf/efbackend/produceStats.sh HMRCIncStatReport "internalstats@companieshouse.gov.uk" lastmonth >/dev/null 2>&1
+15 4 1 * * /home/ewf/efbackend/produceStats.sh AverageProcessTimeReport "ACINotify@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
+30 6 1 * * /home/ewf/efbackend/produceStats.sh AverageMonthlyTotalReport "ACINotify@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
+10 0 1 * * /home/ewf/efbackend/produceStats.sh WebFiledRejectsReport "internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
+10 1 1 * * /home/ewf/efbackend/produceStats.sh AcceptedRejectedIncsReport "internalstats@companieshouse.gov.uk" month >/dev/null 2>&1
+40 1 * * * /home/ewf/efbackend/produceStats.sh AcceptedRejectedSameDayIncsReport "internalstats@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
+00 20 * * * /home/ewf/efbackend/produceFTPStats.sh WebAccountPaymentsReport 172.16.200.33 ${ USER } ${ PASSWORD } 8to8 >/dev/null 2>&1
+40 2 * * * /home/ewf/efbackend/produceStats.sh CardPaymentsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
+10 3 * * 1 /home/ewf/efbackend/produceStats.sh WeeklyAcceptedDocsReport "internalstats@companieshouse.gov.uk" week >/dev/null 2>&1
+40 3 * * * /home/ewf/efbackend/produceStats.sh DailyAcceptedRejectedDocsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
+10 4 * * * /home/ewf/efbackend/produceStats.sh ExtendedAcceptedRejectedDocsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
+40 4 * * * /home/ewf/efbackend/produceStats.sh WebFiledDailyDocsReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
+40 5 * * * /home/ewf/efbackend/produceFTPStats.sh CardPaymentsReport 172.16.200.33 ${ USER } ${ PASSWORD } yesterday >/dev/null 2>&1
+15 5 * * * /home/ewf/efbackend/produceStats.sh TwelveHourProcessingReportEW "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_EW >/dev/null 2>&1
+35 5 * * * /home/ewf/efbackend/produceStats.sh TwelveHourProcessingReportSC "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_SC >/dev/null 2>&1
+55 5 * * * /home/ewf/efbackend/produceStats.sh TwelveHourProcessingReportNI "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_NI >/dev/null 2>&1
+15 7 * * * /home/ewf/efbackend/produceStats.sh TwentyFourHourProcessingReportEW "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_EW >/dev/null 2>&1
+35 7 * * * /home/ewf/efbackend/produceStats.sh TwentyFourHourProcessingReportSC "internalstats@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_SC >/dev/null 2>&1
+55 7 * * * /home/ewf/efbackend/produceStats.sh TwentyFourHourProcessingReportNI "internalstats@companieshouse.gov.uk" dayBefore_Ysterday_5to5_working_days_NI >/dev/null 2>&1
+20 6 * * * /home/ewf/efbackend/produceFTPStats.sh RejectsToRefundReport 172.16.200.33 ${ USER } ${ PASSWORD } yesterday >/dev/null 2>&1
+20 5 * * * /home/ewf/efbackend/produceStats.sh RejectsToRefundReport "internalstats@companieshouse.gov.uk,internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
+40 23 * * * /home/ewf/chd3backend/paymentTXReport.sh >/dev/null 2>&1
+29 8-18 * * 1-5 /home/ewf/efbackend/produceStats.sh SupportHourlyStatsReport "mwilliams5@companieshouse.gov.uk,dcornelius@companieshouse.gov.uk,sreadman@companieshouse.gov.uk,pparr@companieshouse.gov.uk,cnewland@companieshouse.gov.uk" >/dev/null 2>&1
+0 11,16,20 * * * /home/ewf/efbackend/produceStats.sh SupportHourlyStatsReport "678104@gmail.com" >/dev/null 2>&1
 #################################STATS GENERATION END#############################
 #
 ####################################SUPPORT SECTION START##############################
-#*/10 * * * * /home/ewf/supportscripts/jadeMonitor.sh >/dev/null 2>&1
-#0 8-17 * * 1-5 /home/ewf/supportscripts/updateEWFFormDetail.sh >/dev/null 2>&1
-#0 8 * * * /home/ewf/supportscripts/deleteoldaccounts.sh >/dev/null 2>&1
-#0 9 * * * /home/ewf/supportscripts/stuckAuthCodes.sh >/dev/null 2>&1
-#59 23 * * * /home/ewf/supportscripts/ServerBusyStat.sh >/dev/null 2>&1
-#*/1 * * * * /home/ewf/supportscripts/errorlogcheck.sh -700 >/dev/null 2>&1
-##1 6 * * 1 /home/ewf/supportscripts/getEreminderSignups.sh >/dev/null 2>&1
-#1 5 1 * * /home/ewf/supportscripts/BCD_EremSignUp.sh >/dev/null 2>&1
-#*/15 7-18 * * * /home/ewf/supportscripts/status7TNEP.sh >/dev/null 2>&1
-#*/30 7-18 * * * /home/ewf/supportscripts/BCD_EmailWaiting.sh >/dev/null 2>&1
-#4,34 * * * * /home/ewf/supportscripts/filinqueuecheck.sh email >/dev/null 2>&1
-#*/15 7-18 * * * /home/ewf/efbackend/updateGenBarcodeSub.sh >/dev/null 2>&1
+*/10 * * * * /home/ewf/supportscripts/jadeMonitor.sh >/dev/null 2>&1
+0 8-17 * * 1-5 /home/ewf/supportscripts/updateEWFFormDetail.sh >/dev/null 2>&1
+0 8 * * * /home/ewf/supportscripts/deleteoldaccounts.sh >/dev/null 2>&1
+0 9 * * * /home/ewf/supportscripts/stuckAuthCodes.sh >/dev/null 2>&1
+59 23 * * * /home/ewf/supportscripts/ServerBusyStat.sh >/dev/null 2>&1
+*/1 * * * * /home/ewf/supportscripts/errorlogcheck.sh -700 >/dev/null 2>&1
+#1 6 * * 1 /home/ewf/supportscripts/getEreminderSignups.sh >/dev/null 2>&1
+1 5 1 * * /home/ewf/supportscripts/BCD_EremSignUp.sh >/dev/null 2>&1
+*/15 7-18 * * * /home/ewf/supportscripts/status7TNEP.sh >/dev/null 2>&1
+*/30 7-18 * * * /home/ewf/supportscripts/BCD_EmailWaiting.sh >/dev/null 2>&1
+4,34 * * * * /home/ewf/supportscripts/filinqueuecheck.sh email >/dev/null 2>&1
+*/15 7-18 * * * /home/ewf/efbackend/updateGenBarcodeSub.sh >/dev/null 2>&1
 ##Barclaycard Payment fail check
-#5,35 * * * * /home/ewf/supportscripts/paymentfailcheck.sh email >/dev/null 2>&1
+5,35 * * * * /home/ewf/supportscripts/paymentfailcheck.sh email >/dev/null 2>&1
 ##tidy up the pdf copies of filings, only need 10 days
-#30 19 * * * /home/ewf/supportscripts/pdfcleanup.sh >/dev/null 2>&1
-#*/5 * * * * /home/ewf/authlogcheck.sh -700 >/dev/null 2>&1
-#*/1 * * * * /home/ewf/supportscripts/eReminderlogcheck.sh -700 >/dev/null 2>&1
-#0 4 * * * /home/ewf/supportscripts/checkregofficefails.sh >/dev/null 2>&1
-#0 7,12,16,18 * * 1-5 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
-#0 10 * * 0,6 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
-#45 0-23 * * * /home/ewf/supportscripts/checkForRecentFilings.sh >/dev/null 2>&1
-#5 7-17 * * * /home/ewf/efGenFail.sh >/dev/null 2>&1
-#15 7-18 * * * /home/ewf/PresInsertFail.sh >/dev/null 2>&1
+30 19 * * * /home/ewf/supportscripts/pdfcleanup.sh >/dev/null 2>&1
+*/5 * * * * /home/ewf/authlogcheck.sh -700 >/dev/null 2>&1
+*/1 * * * * /home/ewf/supportscripts/eReminderlogcheck.sh -700 >/dev/null 2>&1
+0 4 * * * /home/ewf/supportscripts/checkregofficefails.sh >/dev/null 2>&1
+0 7,12,16,18 * * 1-5 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
+0 10 * * 0,6 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
+45 0-23 * * * /home/ewf/supportscripts/checkForRecentFilings.sh >/dev/null 2>&1
+5 7-17 * * * /home/ewf/efGenFail.sh >/dev/null 2>&1
+15 7-18 * * * /home/ewf/PresInsertFail.sh >/dev/null 2>&1
 ######## Check for failed auth code request fails
-#30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
-#5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
-#
+30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
+5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
+
 ####################################SUPPORT SECTION END##############################
 
