@@ -72,7 +72,7 @@ nfs_mounts = {
   }
 
 # RDS Instance settings
-instance_class          = "db.m5.large"
+instance_class          = "db.m5.2xlarge"
 allocated_storage       = 250
 maximum_storage         = 300
 backup_retention_period = 7
