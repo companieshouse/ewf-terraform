@@ -6,6 +6,13 @@ exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 cat <<EOF >>inputs.json
 ${EWF_FRONTEND_INPUTS}
 EOF
+#Create cron file and set crontab for EWF user:
+cat <<EOF >>/root/cronfile
+${EWF_CRON_ENTRIES}
+EOF
+crontab -u ewf /root/cronfile
+#Set FESS_TOKEN
+echo "export FESS_TOKEN=${EWF_FESS_TOKEN}" >> /home/ewf/.bash_profile
 #Update Nagios registration script with relevant template
 cp /usr/local/bin/nagios-host-add.sh /usr/local/bin/nagios-host-add.j2
 REPLACE=EWF_Web_${HERITAGE_ENVIRONMENT} /usr/local/bin/j2 /usr/local/bin/nagios-host-add.j2 > /usr/local/bin/nagios-host-add.sh
