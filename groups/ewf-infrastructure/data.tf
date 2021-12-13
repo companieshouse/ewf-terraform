@@ -176,8 +176,6 @@ data "template_file" "fe_userdata" {
     HERITAGE_ENVIRONMENT = title(var.environment)
     EWF_FRONTEND_INPUTS  = local.ewf_fe_data
     ANSIBLE_INPUTS       = jsonencode(local.ewf_fe_ansible_inputs)
-    EWF_CRON_ENTRIES     = templatefile("${path.module}/templates/${var.aws_profile}/fe_cron.tpl",{})
-    EWF_FESS_TOKEN       = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
   }
 }
 
