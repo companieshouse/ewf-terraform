@@ -22,6 +22,11 @@ public_allow_cidr_blocks = [
   "127.0.0.1/32"
 ]
 
+# CIDRs requiring FE access via the ALB
+fe_access_cidrs = [
+  "10.254.0.0/24"
+]
+
 # Backend ASG settings
 bep_instance_size = "t2.medium"
 bep_min_size = 1

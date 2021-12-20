@@ -236,6 +236,12 @@ variable "fe_cw_logs" {
   default     = {}
 }
 
+variable "fe_access_cidrs" {
+  type        = list(any)
+  description = "List of additional CIDRs requiring access via the internal ALB"
+  default     = []
+}
+
 # ------------------------------------------------------------------------------
 # EWF Backend Variables
 # ------------------------------------------------------------------------------
