@@ -15,13 +15,13 @@ module "ewf_internal_alb_security_group" {
   ingress_with_cidr_blocks = [
     {
       rule        = "http-80-tcp"
-      description = "CHS applications"
-      cidr_blocks = join(",", local.chs_app_subnets)
+      description = "Application Access"
+      cidr_blocks = join(",", local.fe_alb_app_access)
     },
     {
       rule        = "https-443-tcp"
-      description = "CHS applications"
-      cidr_blocks = join(",", local.chs_app_subnets)
+      description = "Application Access"
+      cidr_blocks = join(",", local.fe_alb_app_access)
     }
   ]
 
