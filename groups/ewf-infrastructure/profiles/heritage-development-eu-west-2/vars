@@ -24,7 +24,9 @@ public_allow_cidr_blocks = [
 
 # CIDRs requiring FE access via the ALB
 fe_access_cidrs = [
-  "10.254.0.0/24"
+  "10.254.1.0/24",
+  "10.254.2.0/24",
+  "10.254.3.0/24"
 ]
 
 # Backend ASG settings
