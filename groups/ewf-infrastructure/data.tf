@@ -74,7 +74,7 @@ data "aws_security_group" "adminsites" {
 }
 
 data "aws_security_group" "identity_gateway" {
-  name  = "identity-gateway-instance"
+  name = "identity-gateway-instance"
 }
 
 data "aws_route53_zone" "private_zone" {
@@ -225,7 +225,7 @@ data "template_file" "bep_userdata" {
       "PASSWORD" = data.vault_generic_secret.ewf_bep_cron_data.data["password"]
       }
     )
-    EWF_FESS_TOKEN       = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
+    EWF_FESS_TOKEN = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
   }
 }
 
