@@ -125,7 +125,7 @@ module "ewf_internal_alb_alarms" {
   alb_arn_suffix            = module.ewf_internal_alb.this_lb_arn_suffix
   target_group_arn_suffixes = module.ewf_internal_alb.target_group_arn_suffixes
 
-  prefix                    = "ewf-inernal-frontend-"
+  prefix                    = "ewf-internal-frontend-"
   response_time_threshold   = "100"
   evaluation_periods        = "3"
   statistic_period          = "60"
