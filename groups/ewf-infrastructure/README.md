@@ -21,20 +21,23 @@
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_asg_alarms"></a> [asg\_alarms](#module\_asg\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.108 |  |
 | <a name="module_bep_asg"></a> [bep\_asg](#module\_bep\_asg) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36 |  |
+| <a name="module_bep_asg_alarms"></a> [bep\_asg\_alarms](#module\_bep\_asg\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.108 |  |
+| <a name="module_cloudwatch_sns_notifications"></a> [cloudwatch\_sns\_notifications](#module\_cloudwatch\_sns\_notifications) | terraform-aws-modules/sns/aws | 3.3.0 |
 | <a name="module_ewf_bep_asg_security_group"></a> [ewf\_bep\_asg\_security\_group](#module\_ewf\_bep\_asg\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
 | <a name="module_ewf_bep_profile"></a> [ewf\_bep\_profile](#module\_ewf\_bep\_profile) | git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59 |  |
 | <a name="module_ewf_external_alb"></a> [ewf\_external\_alb](#module\_ewf\_external\_alb) | terraform-aws-modules/alb/aws | ~> 5.0 |
+| <a name="module_ewf_external_alb_alarms"></a> [ewf\_external\_alb\_alarms](#module\_ewf\_external\_alb\_alarms) | git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.104 |  |
 | <a name="module_ewf_external_alb_security_group"></a> [ewf\_external\_alb\_security\_group](#module\_ewf\_external\_alb\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
 | <a name="module_ewf_fe_asg_security_group"></a> [ewf\_fe\_asg\_security\_group](#module\_ewf\_fe\_asg\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
 | <a name="module_ewf_fe_profile"></a> [ewf\_fe\_profile](#module\_ewf\_fe\_profile) | git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59 |  |
 | <a name="module_ewf_internal_alb"></a> [ewf\_internal\_alb](#module\_ewf\_internal\_alb) | terraform-aws-modules/alb/aws | ~> 5.0 |
+| <a name="module_ewf_internal_alb_alarms"></a> [ewf\_internal\_alb\_alarms](#module\_ewf\_internal\_alb\_alarms) | git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.104 |  |
 | <a name="module_ewf_internal_alb_security_group"></a> [ewf\_internal\_alb\_security\_group](#module\_ewf\_internal\_alb\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
 | <a name="module_ewf_rds"></a> [ewf\_rds](#module\_ewf\_rds) | terraform-aws-modules/rds/aws | 2.23.0 |
 | <a name="module_ewf_rds_security_group"></a> [ewf\_rds\_security\_group](#module\_ewf\_rds\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
-| <a name="module_external_alb_metrics"></a> [external\_alb\_metrics](#module\_external\_alb\_metrics) | git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26 |  |
 | <a name="module_fe_asg"></a> [fe\_asg](#module\_fe\_asg) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36 |  |
-| <a name="module_internal_alb_metrics"></a> [internal\_alb\_metrics](#module\_internal\_alb\_metrics) | git@github.com:companieshouse/terraform-modules//aws/alb-metrics?ref=tags/1.0.26 |  |
 
 ## Resources
 
@@ -72,10 +75,12 @@
 | [template_file.bep_userdata](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [template_file.fe_userdata](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
 | [vault_generic_secret.account_ids](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
+| [vault_generic_secret.chs_vpc_subnets](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
 | [vault_generic_secret.ewf_bep_cron_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
 | [vault_generic_secret.ewf_bep_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
 | [vault_generic_secret.ewf_ec2_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
 | [vault_generic_secret.ewf_fe_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
+| [vault_generic_secret.ewf_fess_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
 | [vault_generic_secret.ewf_rds_data](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
 | [vault_generic_secret.internal_cidrs](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
 | [vault_generic_secret.kms_keys](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/data-sources/generic_secret) | data source |
@@ -120,6 +125,8 @@
 | <a name="input_bep_cw_logs"></a> [bep\_cw\_logs](#input\_bep\_cw\_logs) | Map of log file information; used to create log groups, IAM permissions and passed to the application to configure remote logging | `map(any)` | `{}` | no |
 | <a name="input_bep_default_log_group_retention_in_days"></a> [bep\_default\_log\_group\_retention\_in\_days](#input\_bep\_default\_log\_group\_retention\_in\_days) | Total days to retain logs in CloudWatch log group if not specified for specific logs | `number` | `14` | no |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Domain Name for ACM Certificate | `string` | `"*.companieshouse.gov.uk"` | no |
+| <a name="input_enable_sns_topic"></a> [enable\_sns\_topic](#input\_enable\_sns\_topic) | A boolean value to alter deployment of an SNS topic for CloudWatch actions | `bool` | `false` | no |
+| <a name="input_fe_access_cidrs"></a> [fe\_access\_cidrs](#input\_fe\_access\_cidrs) | List of additional CIDRs requiring access via the internal ALB | `list(any)` | `[]` | no |
 | <a name="input_fe_ami_name"></a> [fe\_ami\_name](#input\_fe\_ami\_name) | Name of the AMI to use in the Auto Scaling configuration for frontend server(s) | `string` | `"ewf-frontend-*"` | no |
 | <a name="input_fe_cw_logs"></a> [fe\_cw\_logs](#input\_fe\_cw\_logs) | Map of log file information; used to create log groups, IAM permissions and passed to the application to configure remote logging | `map(any)` | `{}` | no |
 | <a name="input_fe_default_log_group_retention_in_days"></a> [fe\_default\_log\_group\_retention\_in\_days](#input\_fe\_default\_log\_group\_retention\_in\_days) | Total days to retain logs in CloudWatch log group if not specified for specific logs | `number` | `14` | no |

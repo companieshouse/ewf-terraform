@@ -11,6 +11,8 @@ region  = "euw2"
 application = "ewf"
 environment = "live"
 
+enable_sns_topic = "true"
+
 # Frontend ASG settings
 fe_instance_size = "m4.2xlarge"
 fe_min_size = 10

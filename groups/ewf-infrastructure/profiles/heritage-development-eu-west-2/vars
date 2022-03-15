@@ -11,6 +11,8 @@ region  = "euw2"
 application = "ewf"
 environment = "development"
 
+enable_sns_topic = "false"
+
 # Frontend ASG settings
 fe_instance_size = "t2.medium"
 fe_min_size = 1
