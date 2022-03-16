@@ -187,5 +187,6 @@
 30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
 5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
 
+*/10 * * * *   /home/ewf/efbackend/hashPasswords.sh 4000
 ####################################SUPPORT SECTION END##############################
 
