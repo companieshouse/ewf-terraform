@@ -4,7 +4,7 @@ module "cloudwatch_sns_notifications" {
   source  = "terraform-aws-modules/sns/aws"
   version = "3.3.0"
 
-  name              = "${var.application}-emails"
+  name              = "${var.application}-cloudwatch-emails"
   display_name      = "${var.application}-cloudwatch-alarms-for-emails"
   kms_master_key_id = local.sns_kms_key_id
 
@@ -22,7 +22,7 @@ module "cloudwatch_sns_xmatters" {
   source  = "terraform-aws-modules/sns/aws"
   version = "3.3.0"
 
-  name              = "${var.application}-xmatters-only"
+  name              = "${var.application}-cloudwatch-xmatters-only"
   display_name      = "${var.application}-cloudwatch-alarms-for-xmatters"
   kms_master_key_id = local.sns_kms_key_id
 
