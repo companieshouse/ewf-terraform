@@ -127,7 +127,7 @@ module "fe_asg" {
 # FE ASG CloudWatch Alarms
 #--------------------------------------------
 module "asg_alarms" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.108"
+  source = "git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.116"
 
   autoscaling_group_name = module.fe_asg.this_autoscaling_group_name
   prefix                 = "${var.application}-fe-asg-alarms"
@@ -145,9 +145,10 @@ module "asg_alarms" {
   total_instances_statistic_period   = "120"
   total_instances_in_service         = var.fe_desired_capacity
 
+  # If actions are used then all alarms will have these applied, do not add any actions which you only want to be used for specific alarms
+  # The module has lifecycle hooks to ignore changes via the AWS Console so in this use case the alarm can be modified there.
   actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
   actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
-
 
   depends_on = [
     module.cloudwatch_sns_notifications,

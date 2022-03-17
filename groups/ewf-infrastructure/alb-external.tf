@@ -95,7 +95,7 @@ module "ewf_external_alb" {
 # External ALB CloudWatch Alarms
 #--------------------------------------------
 module "ewf_external_alb_alarms" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.104"
+  source = "git@github.com:companieshouse/terraform-modules//aws/alb-cloudwatch-alarms?ref=tags/1.0.116"
 
   alb_arn_suffix            = module.ewf_external_alb.this_lb_arn_suffix
   target_group_arn_suffixes = module.ewf_external_alb.target_group_arn_suffixes
@@ -108,6 +108,8 @@ module "ewf_external_alb_alarms" {
   maximum_5xx_threshold     = "2"
   unhealthy_hosts_threshold = "1"
 
+  # If actions are used then all alarms will have these applied, do not add any actions which you only want to be used for specific alarms
+  # The module has lifecycle hooks to ignore changes via the AWS Console so in this use case the alarm can be modified there.
   actions_alarm = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
   actions_ok    = var.enable_sns_topic ? [module.cloudwatch_sns_notifications[0].sns_topic_arn] : []
 
