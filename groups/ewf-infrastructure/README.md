@@ -25,7 +25,7 @@
 | <a name="module_bep_asg"></a> [bep\_asg](#module\_bep\_asg) | git@github.com:companieshouse/terraform-modules//aws/terraform-aws-autoscaling?ref=tags/1.0.36 |  |
 | <a name="module_bep_asg_alarms"></a> [bep\_asg\_alarms](#module\_bep\_asg\_alarms) | git@github.com:companieshouse/terraform-modules//aws/asg-cloudwatch-alarms?ref=tags/1.0.116 |  |
 | <a name="module_cloudwatch_sns_notifications"></a> [cloudwatch\_sns\_notifications](#module\_cloudwatch\_sns\_notifications) | terraform-aws-modules/sns/aws | 3.3.0 |
-| <a name="module_cloudwatch_sns_xmatters"></a> [cloudwatch\_sns\_xmatters](#module\_cloudwatch\_sns\_xmatters) | terraform-aws-modules/sns/aws | 3.3.0 |
+| <a name="module_cloudwatch_sns_ooh"></a> [cloudwatch\_sns\_ooh](#module\_cloudwatch\_sns\_ooh) | terraform-aws-modules/sns/aws | 3.3.0 |
 | <a name="module_ewf_bep_asg_security_group"></a> [ewf\_bep\_asg\_security\_group](#module\_ewf\_bep\_asg\_security\_group) | terraform-aws-modules/security-group/aws | ~> 3.0 |
 | <a name="module_ewf_bep_profile"></a> [ewf\_bep\_profile](#module\_ewf\_bep\_profile) | git@github.com:companieshouse/terraform-modules//aws/instance_profile?ref=tags/1.0.59 |  |
 | <a name="module_ewf_external_alb"></a> [ewf\_external\_alb](#module\_ewf\_external\_alb) | terraform-aws-modules/alb/aws | ~> 5.0 |
