@@ -16,14 +16,14 @@ module "cloudwatch_sns_notifications" {
   )
 }
 
-module "cloudwatch_sns_xmatters" {
+module "cloudwatch_sns_ooh" {
   count = var.enable_sns_topic ? 1 : 0
 
   source  = "terraform-aws-modules/sns/aws"
   version = "3.3.0"
 
-  name              = "${var.application}-cloudwatch-xmatters-only"
-  display_name      = "${var.application}-cloudwatch-alarms-for-xmatters"
+  name              = "${var.application}-cloudwatch-ooh-only"
+  display_name      = "${var.application}-cloudwatch-alarms-for-ooh"
   kms_master_key_id = local.sns_kms_key_id
 
   tags = merge(
