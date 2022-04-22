@@ -27,6 +27,15 @@ locals {
   fe_alb_app_access = concat(local.chs_app_subnets, var.fe_access_cidrs)
 
   rds_ingress_cidrs = concat(local.admin_cidrs, var.rds_onpremise_access)
+  rds_ingress_from_services = flatten([
+    for sg_data in data.aws_security_group.rds_ingress : {
+      from_port                = 1521
+      to_port                  = 1521
+      protocol                 = "tcp"
+      description              = "Access from ${sg_data.tags.Name}"
+      source_security_group_id = sg_data.id
+    }
+  ])
 
   #For each log map passed, add an extra kv for the log group name
   fe_cw_logs  = { for log, map in var.fe_cw_logs : log => merge(map, { "log_group_name" = "${var.application}-fe-${log}" }) }
