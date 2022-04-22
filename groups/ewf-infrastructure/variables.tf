@@ -146,6 +146,12 @@ variable "rds_onpremise_access" {
   default     = []
 }
 
+variable "rds_ingress_groups" {
+  type        = list(string)
+  description = "A list of security group name patterns that will be allowed access to RDS"
+  default     = []
+}
+
 variable "rds_log_exports" {
   type        = list(string)
   description = "A list log types to export from RDS to Cloudwatch"
