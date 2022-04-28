@@ -4,7 +4,7 @@
 #############################LIVE SERVICE PROCESSING START############################
 ##Form Processing Jobs
 ## Monday
-#*/1 * * * 1 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 1 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 1 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ## ...or on demand
 ##*/1 0-18 * * 1 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -13,7 +13,7 @@
 ##*/10 22-23 * * 1 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Tuesday
-#*/1 * * * 2 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 2 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 2 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ## ...or on demand
 ##*/1 0-18 * * 2 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -22,7 +22,7 @@
 ##*/10 22-23 * * 2 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Wednesday
-#*/1 * * * 3 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 3 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 3 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-18 * * 3 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -31,7 +31,7 @@
 ##*/10 22-23 * * 3 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Thursday
-#*/1 * * * 4 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 4 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 ##*/10 * * * 4 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ## ...or on demand
 ##*/1 0-18 * * 4 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -40,7 +40,7 @@
 ##*/10 22-23 * * 4 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Friday
-#*/1 * * * 5 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 5 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 5 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-18 * * 5 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -49,7 +49,7 @@
 ##*/10 22-23 * * 5 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Saturday
-#*/1 * * * 6 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 6 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 6 /home/ewf/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-7 * * 6 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
@@ -58,7 +58,7 @@
 ##*/10 22-23 * * 6 /home/ewf/supportbackend/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 #
 ## Sunday
-#*/1 * * * 0 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
+*/1 * * * 0 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
 #*/10 * * * 0 /home/ewf/efbackend/formProcessFormsEnablementLive.sh >/dev/null 2>&1
 ##...or on demand
 ##*/1 0-18 * * 0 /home/ewf/efbackend/formPartition.sh >/dev/null 2>&1
