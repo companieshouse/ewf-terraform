@@ -186,7 +186,6 @@
 ######## Check for failed auth code request fails
 30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
 5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
-
-*/10 * * * *   /home/ewf/efbackend/hashPasswords.sh 4000
+*/20 7-18 * * * /home/ewf/supportscripts/LockCheck.sh >/dev/null 2>&1
 ####################################SUPPORT SECTION END##############################
 
