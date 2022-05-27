@@ -50,9 +50,6 @@ module "ewf_rds" {
   create_db_parameter_group = "true"
   create_db_subnet_group    = "true"
 
-  apply_immediately = true
-  allow_major_version_upgrade = true
-
   identifier                 = join("-", ["rds", var.application, var.environment, "001"])
   engine                     = "oracle-se2"
   major_engine_version       = var.major_engine_version
