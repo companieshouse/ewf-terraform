@@ -168,6 +168,24 @@ variable "rds_backup_window" {
   description = "A backup window that allows AWS to backup your RDS instance e.g. `03:00-06:00`"
 }
 
+variable "rds_schedule_enable" {
+  type        = bool
+  description = "Controls whether a start/stop schedule will be created for the RDS instance (true) or not (false)"
+  default     = false
+}
+
+variable "rds_start_schedule" {
+  type        = string
+  description = "The SSM cron expression that defines when the RDS instance will be started"
+  default     = ""
+}
+
+variable "rds_stop_schedule" {
+  type        = string
+  description = "The SSM cron expression that defines when the RDS instance will be stopped"
+  default     = ""
+}
+
 # ------------------------------------------------------------------------------
 # RDS Engine Type Variables
 # ------------------------------------------------------------------------------
