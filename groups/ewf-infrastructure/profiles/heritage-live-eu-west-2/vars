@@ -85,7 +85,9 @@ rds_ingress_groups = [
   "ewf-frontend-tuxedo-live*",
   "sgr-admin-sites-asg-*",
   "sgr-xml-bep-*",
-  "sgr-gfn-app-001-*"
+  "sgr-gfn-app-001-*",
+  "sgr-chips-oltp-db*",
+  "sgr-chips-rep-db*"
 ]
 
 # RDS logging
