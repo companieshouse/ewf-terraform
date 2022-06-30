@@ -9,6 +9,14 @@ module "ewf_bep_asg_security_group" {
   description = "Security group for the ${var.application} backend asg"
   vpc_id      = data.aws_vpc.vpc.id
 
+  computed_ingress_with_source_security_group_id = [
+    {
+      rule                     = "http-80-tcp"
+      source_security_group_id = module.ewf_bep_internal_alb_security_group.this_security_group_id
+    }
+  ]
+  number_of_computed_ingress_with_source_security_group_id = 1
+
   egress_rules = ["all-all"]
 
   tags = merge(
@@ -94,6 +102,7 @@ module "bep_asg" {
   refresh_triggers               = ["launch_configuration"]
   key_name                       = aws_key_pair.ewf_keypair.key_name
   termination_policies           = ["OldestLaunchConfiguration"]
+  target_group_arns              = module.ewf_bep_internal_alb.target_group_arns
   iam_instance_profile           = module.ewf_bep_profile.aws_iam_instance_profile.name
   user_data_base64               = data.template_cloudinit_config.bep_userdata_config.rendered
 
@@ -103,6 +112,10 @@ module "bep_asg" {
       "ServiceTeam", "${upper(var.application)}-FE-Support"
     )
   )
+
+  depends_on = [
+    module.ewf_bep_internal_alb
+  ]
 }
 
 #--------------------------------------------

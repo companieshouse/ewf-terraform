@@ -318,3 +318,15 @@ variable "bep_cw_logs" {
   description = "Map of log file information; used to create log groups, IAM permissions and passed to the application to configure remote logging"
   default     = {}
 }
+
+variable "bep_service_port" {
+  type        = number
+  default     = 80
+  description = "Target group backend port"
+}
+
+variable "bep_health_check_path" {
+  type        = string
+  default     = "/"
+  description = "Target group health check path"
+}
