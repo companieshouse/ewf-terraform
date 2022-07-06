@@ -221,6 +221,18 @@ data "template_cloudinit_config" "bep_userdata_config" {
   base64_encode = true
 
   part {
+    content_type = "text/cloud-config"
+    content = templatefile("${path.module}/templates/bep_httpd_server.tpl", {
+      httpd_user        = 
+      httpd_group       = 
+      server_name       = 
+      domain_name       = 
+      document_root     = 
+      status_allow_list = 
+    })
+  }
+
+  part {
     content_type = "text/x-shellscript"
     content      = data.template_file.bep_userdata.rendered
   }

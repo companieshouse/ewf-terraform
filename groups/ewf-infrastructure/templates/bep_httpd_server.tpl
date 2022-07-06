@@ -31,7 +31,7 @@ write_files:
       
       ServerAdmin enquiries@{{ domain_name }}
       
-      ServerName {{ env_service_name }}.{{ domain_name }}
+      ServerName {{ server_name }}.{{ domain_name }}
       
       UseCanonicalName Off
       
@@ -76,18 +76,18 @@ write_files:
           SetHandler server-status
           Order deny,allow
           Deny from all
-          Allow from {{ server_status_allow_from_list }}
+          Allow from {{ status_allow_list }}
       </Location>
       <Location /server-info>
           SetHandler server-info
           Order deny,allow
           Deny from all
-          Allow from {{ server_status_allow_from_list }}
+          Allow from {{ status_allow_list }}
       </Location>
       
       NameVirtualHost *:80
       <VirtualHost *:80>
-          ServerName {{ env_service_name }}.{{ domain_name }}
+          ServerName {{ server_name }}.{{ domain_name }}
           DocumentRoot "{{ document_root }}"
       
           <Directory "{{ document_root }}">
