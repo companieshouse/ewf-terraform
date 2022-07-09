@@ -77,8 +77,7 @@ module "fe_asg" {
   name = "${var.application}-webserver"
   # Launch configuration
   lc_name       = "${var.application}-fe-launchconfig"
-#  image_id      = data.aws_ami.ewf_fe.id
-  image_id      = "ami-04b2569ef0638ad9e"
+  image_id      = data.aws_ami.ewf_fe.id
   instance_type = var.fe_instance_size
   security_groups = [
     module.ewf_fe_asg_security_group.this_security_group_id,
