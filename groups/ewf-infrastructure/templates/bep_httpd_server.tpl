@@ -26,16 +26,16 @@ write_files:
       LoadModule dir_module modules/mod_dir.so
       LoadModule alias_module modules/mod_alias.so
       
-      User {{ httpd_user }}
-      Group {{ httpd_group }}
+      User ${httpd_user}
+      Group ${httpd_group}
       
-      ServerAdmin enquiries@{{ domain_name }}
+      ServerAdmin enquiries@${domain_name}
       
-      ServerName {{ server_name }}.{{ domain_name }}
+      ServerName ${server_name}.${domain_name}
       
       UseCanonicalName Off
       
-      DocumentRoot "{{ document_root }}"
+      DocumentRoot "${document_root}"
       
       <Directory />
           Options FollowSymLinks
@@ -59,10 +59,10 @@ write_files:
       
       ErrorLog /var/log/httpd/error_log
       LogLevel warn
-      LogFormat "%{X-Forwarded-For}i %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{cookie}n\" %{pid}P" combined
+      LogFormat "%%{X-Forwarded-For}i %h %l %u %t \"%r\" %>s %b \"%%{Referer}i\" \"%%{User-Agent}i\" \"%%{cookie}n\" %%{pid}P" combined
       LogFormat "%h %l %u %t \"%r\" %>s %b" common
-      LogFormat "%{Referer}i -> %U" referer
-      LogFormat "%{User-agent}i" agent
+      LogFormat "%%{Referer}i -> %U" referer
+      LogFormat "%%{User-agent}i" agent
       CustomLog /var/log/httpd/access_log combined
       
       ServerSignature Off
@@ -76,21 +76,24 @@ write_files:
           SetHandler server-status
           Order deny,allow
           Deny from all
-          Allow from {{ status_allow_list }}
+          Allow from ${status_allow_list}
       </Location>
       <Location /server-info>
           SetHandler server-info
           Order deny,allow
           Deny from all
-          Allow from {{ status_allow_list }}
+          Allow from ${status_allow_list}
       </Location>
       
       NameVirtualHost *:80
       <VirtualHost *:80>
-          ServerName {{ server_name }}.{{ domain_name }}
-          DocumentRoot "{{ document_root }}"
+          ServerName ${server_name}.${domain_name}
+          DocumentRoot "${document_root}"
       
-          <Directory "{{ document_root }}">
+          RewriteEngine On
+          RewriteRule ${rewrite_rule} [R=301,L]
+      
+          <Directory "${document_root}">
               AllowOverride none
               Options +Indexes
               Order allow,deny
