@@ -30,13 +30,11 @@ write_files:
       Group ${httpd_group}
       
       ServerAdmin enquiries@${domain_name}
-      
       ServerName ${server_name}.${domain_name}
       
       UseCanonicalName Off
       
-      DocumentRoot "${document_root}"
-      
+      DocumentRoot "/var/www/html"
       <Directory />
           Options FollowSymLinks
           AllowOverride None
@@ -88,12 +86,25 @@ write_files:
       NameVirtualHost *:80
       <VirtualHost *:80>
           ServerName ${server_name}.${domain_name}
-          DocumentRoot "${document_root}"
+      
+          # Return 204 to any root-level requests
+          <Location />
+              RedirectMatch 204 ^(?:(?:http[s]?):\/)?\/?(?:[^:\/\s]+?\.)*([^:\/\s]+\.[^:\/\s]+)
+          </Location>
       
           RewriteEngine On
-          RewriteRule ${rewrite_rule} [R=301,L]
+          RewriteRule ${archive_rewrite} [R=301,L]
       
-          <Directory "${document_root}">
+          Alias "/archive" "${archive_docroot}"
+          <Directory "${archive_docroot}">
+              AllowOverride none
+              Options +Indexes
+              Order allow,deny
+              Allow from all
+          </Directory>
+      
+          Alias "/submissions" "${submissions_docroot}"
+          <Directory "${submissions_docroot}">
               AllowOverride none
               Options +Indexes
               Order allow,deny
