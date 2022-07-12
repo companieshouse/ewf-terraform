@@ -98,7 +98,7 @@ write_files:
           Alias "/archive" "${archive_docroot}"
           <Directory "${archive_docroot}">
               AllowOverride none
-              Options +Indexes
+              Options -Indexes
               Order allow,deny
               Allow from all
           </Directory>
