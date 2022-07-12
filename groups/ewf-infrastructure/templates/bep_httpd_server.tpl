@@ -103,6 +103,10 @@ write_files:
               Allow from all
           </Directory>
       
+          <DirectoryMatch "${archive_docroot}/(.)*/(.)*/">
+              Options +Indexes
+          </DirectoryMatch>
+      
           Alias "/submissions" "${submissions_docroot}"
           <Directory "${submissions_docroot}">
               AllowOverride none
