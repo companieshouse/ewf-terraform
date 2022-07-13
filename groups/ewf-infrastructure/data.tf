@@ -220,19 +220,19 @@ data "template_cloudinit_config" "bep_userdata_config" {
   gzip          = true
   base64_encode = true
 
-#  part {
-#    content_type = "text/cloud-config"
-#    content = templatefile("${path.module}/templates/bep_httpd_server.tpl", {
-#      archive_docroot     = jsondecode(local.ewf_bep_data).httpd_server[0].archive_docroot
-#      archive_rewrite     = jsondecode(local.ewf_bep_data).httpd_server[0].archive_rewrite
-#      domain_name         = local.internal_fqdn
-#      httpd_group         = jsondecode(local.ewf_bep_data).httpd_server[0].httpd_group
-#      httpd_user          = jsondecode(local.ewf_bep_data).httpd_server[0].httpd_user
-#      server_name         = "${var.application}-bep"
-#      status_allow_list   = jsondecode(local.ewf_bep_data).httpd_server[0].status_allow_list
-#      submissions_docroot = jsondecode(local.ewf_bep_data).httpd_server[0].submissions_docroot
-#    })
-#  }
+  part {
+    content_type = "text/cloud-config"
+    content = templatefile("${path.module}/templates/bep_httpd_server.tpl", {
+      archive_docroot     = jsondecode(local.ewf_bep_data).httpd_server[0].archive_docroot
+      archive_rewrite     = jsondecode(local.ewf_bep_data).httpd_server[0].archive_rewrite
+      domain_name         = local.internal_fqdn
+      httpd_group         = jsondecode(local.ewf_bep_data).httpd_server[0].httpd_group
+      httpd_user          = jsondecode(local.ewf_bep_data).httpd_server[0].httpd_user
+      server_name         = "${var.application}-bep"
+      status_allow_list   = jsondecode(local.ewf_bep_data).httpd_server[0].status_allow_list
+      submissions_docroot = jsondecode(local.ewf_bep_data).httpd_server[0].submissions_docroot
+    })
+  }
 
   part {
     content_type = "text/x-shellscript"
