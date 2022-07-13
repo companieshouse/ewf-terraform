@@ -223,14 +223,14 @@ data "template_cloudinit_config" "bep_userdata_config" {
   part {
     content_type = "text/cloud-config"
     content = templatefile("${path.module}/templates/bep_httpd_server.tpl", {
-      archive_docroot     = jsondecode(local.ewf_bep_data).httpd_server[0].archive_docroot
-      archive_rewrite     = jsondecode(local.ewf_bep_data).httpd_server[0].archive_rewrite
+      archive_docroot     = local.ewf_bep_httpd_data.archive_docroot
+      archive_rewrite     = local.ewf_bep_httpd_data.archive_rewrite
       domain_name         = local.internal_fqdn
-      httpd_group         = jsondecode(local.ewf_bep_data).httpd_server[0].httpd_group
-      httpd_user          = jsondecode(local.ewf_bep_data).httpd_server[0].httpd_user
+      httpd_group         = local.ewf_bep_httpd_data.httpd_group
+      httpd_user          = local.ewf_bep_httpd_data.httpd_user
       server_name         = "${var.application}-bep"
-      status_allow_list   = jsondecode(local.ewf_bep_data).httpd_server[0].status_allow_list
-      submissions_docroot = jsondecode(local.ewf_bep_data).httpd_server[0].submissions_docroot
+      status_allow_list   = local.ewf_bep_httpd_data.status_allow_list
+      submissions_docroot = local.ewf_bep_httpd_data.submissions_docroot
     })
   }
 
