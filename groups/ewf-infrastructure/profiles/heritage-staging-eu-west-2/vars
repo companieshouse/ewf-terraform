@@ -391,3 +391,8 @@ bep_cw_logs = {
 rds_schedule_enable = true
 rds_start_schedule = "cron(0 5 * * ? *)"
 rds_stop_schedule = "cron(0 21 * * ? *)"
+
+## CloudWatch Alarms
+alarm_actions_enabled  = false
+alarm_topic_name       = ""
+alarm_topic_name_ooh   = ""
