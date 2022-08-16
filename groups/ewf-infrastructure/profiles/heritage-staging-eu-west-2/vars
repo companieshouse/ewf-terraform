@@ -99,7 +99,8 @@ rds_onpremise_access = [
 rds_ingress_groups = [
   "ewf-frontend-tuxedo-staging*",
   "sgr-admin-sites-asg-*",
-  "sgr-xml-bep-*"
+  "sgr-xml-bep-*",
+  "sgr-chips-oltp-db*",
 ]
 
 # RDS logging
