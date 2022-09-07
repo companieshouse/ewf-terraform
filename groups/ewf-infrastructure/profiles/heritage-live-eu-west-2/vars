@@ -384,3 +384,8 @@ bep_cw_logs = {
     log_group_retention = 180
   }
 }
+
+## CloudWatch Alarms
+alarm_actions_enabled  = false
+alarm_topic_name       = "Email_Alerts"
+alarm_topic_name_ooh   = "Phonecall_Alerts"
