@@ -130,7 +130,8 @@ data "vault_generic_secret" "ewf_fess_data" {
 }
 
 data "aws_acm_certificate" "acm_cert" {
-  domain = var.domain_name
+  domain      = var.domain_name
+  most_recent = true
 }
 
 # ------------------------------------------------------------------------------
