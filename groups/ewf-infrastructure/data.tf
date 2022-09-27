@@ -222,6 +222,20 @@ data "template_cloudinit_config" "bep_userdata_config" {
   base64_encode = true
 
   part {
+    content_type = "text/cloud-config"
+    content = templatefile("${path.module}/templates/bep_httpd_server.tpl", {
+      archive_docroot     = local.ewf_bep_httpd_data.archive_docroot
+      archive_rewrite     = local.ewf_bep_httpd_data.archive_rewrite
+      domain_name         = local.internal_fqdn
+      httpd_group         = local.ewf_bep_httpd_data.httpd_group
+      httpd_user          = local.ewf_bep_httpd_data.httpd_user
+      server_name         = "${var.application}-bep"
+      status_allow_list   = local.ewf_bep_httpd_data.status_allow_list
+      submissions_docroot = local.ewf_bep_httpd_data.submissions_docroot
+    })
+  }
+
+  part {
     content_type = "text/x-shellscript"
     content      = data.template_file.bep_userdata.rendered
   }
