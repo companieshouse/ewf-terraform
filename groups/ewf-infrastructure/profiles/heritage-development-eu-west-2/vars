@@ -170,6 +170,31 @@ parameter_group_settings = [
     },
 ]
 
+option_group_settings = [
+  {
+    option_name = "JVM"
+  },
+  {
+    option_name = "SQLT"
+    version     = "2018-07-25.v1"
+    option_settings = [
+      {
+        name  = "LICENSE_PACK"
+        value = "N"
+      },
+    ]
+  },
+  {
+    option_name = "Timezone"
+    option_settings = [
+      {
+        name  = "TIME_ZONE"
+        value = "Europe/London"
+      },
+    ]
+  }
+]
+
 fe_cw_logs = {
   "audit.log" = {
     file_path = "/var/log/audit"

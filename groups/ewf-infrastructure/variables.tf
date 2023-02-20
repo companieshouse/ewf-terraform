@@ -140,6 +140,11 @@ variable "parameter_group_settings" {
   description = "A list of parameters that will be set in the RDS instance parameter group"
 }
 
+variable "option_group_settings" {
+  type        = any
+  description = "A list of options that will be set in the RDS instance option group"
+}
+
 variable "rds_onpremise_access" {
   type        = list(any)
   description = "A list of cidr ranges that will be allowed access to RDS"
