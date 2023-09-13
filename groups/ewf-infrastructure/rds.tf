@@ -40,6 +40,18 @@ module "ewf_rds_security_group" {
   egress_rules = ["all-all"]
 }
 
+resource "aws_security_group_rule" "rds_cloud_ingress" {
+  for_each = var.rds_cloud_access
+
+  description       = "Ingress access from ${each.key}"
+  type              = "ingress"
+  from_port         = 1521
+  to_port           = 1521
+  protocol          = "tcp"
+  cidr_blocks       = [each.value]
+  security_group_id = module.ewf_rds_security_group.this_security_group_id
+}
+
 # ------------------------------------------------------------------------------
 # RDS EWF
 # ------------------------------------------------------------------------------
