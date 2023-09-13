@@ -145,6 +145,12 @@ variable "option_group_settings" {
   description = "A list of options that will be set in the RDS instance option group"
 }
 
+variable "rds_cloud_access" {
+  type        = map(any)
+  description = "A map of CIDR blocks names and values from Cloud sources that will be allowed access to RDS"
+  default     = {}
+}
+
 variable "rds_onpremise_access" {
   type        = list(any)
   description = "A list of cidr ranges that will be allowed access to RDS"
