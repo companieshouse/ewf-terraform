@@ -160,10 +160,10 @@ data "template_file" "fe_userdata" {
   template = file("${path.module}/templates/fe_user_data.tpl")
 
   vars = {
-    REGION               = var.aws_region
-    HERITAGE_ENVIRONMENT = title(var.environment)
-    EWF_FRONTEND_INPUTS  = local.ewf_fe_data
-    ANSIBLE_INPUTS       = jsonencode(local.ewf_fe_ansible_inputs)
+    REGION                    = var.aws_region
+    HERITAGE_ENVIRONMENT      = title(var.environment)
+    EWF_FRONTEND_INPUTS_PATH  = "${local.parameter_store_path_prefix}/frontend_inputs"
+    ANSIBLE_INPUTS_PATH       = "${local.parameter_store_path_prefix}/frontend_ansible_inputs"
   }
 }
 
@@ -213,12 +213,12 @@ data "template_file" "bep_userdata" {
   template = file("${path.module}/templates/bep_user_data.tpl")
 
   vars = {
-    REGION               = var.aws_region
-    HERITAGE_ENVIRONMENT = title(var.environment)
-    EWF_BACKEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/ewf_backend_inputs"
-    ANSIBLE_INPUTS_PATH = "${local.parameter_store_path_prefix}/ansible_inputs"
-    EWF_CRON_ENTRIES_PATH = "${local.parameter_store_path_prefix}/ewf_cron_entries"
-    EWF_FESS_TOKEN_PATH = "${local.parameter_store_path_prefix}/ewf_fess_token"
+    REGION                  = var.aws_region
+    HERITAGE_ENVIRONMENT    = title(var.environment)
+    EWF_BACKEND_INPUTS_PATH = "${local.parameter_store_path_prefix}/backend_inputs"
+    ANSIBLE_INPUTS_PATH     = "${local.parameter_store_path_prefix}/backend_ansible_inputs"
+    EWF_CRON_ENTRIES_PATH   = "${local.parameter_store_path_prefix}/backend_cron_entries"
+    EWF_FESS_TOKEN_PATH     = "${local.parameter_store_path_prefix}/backend_fess_token"
   }
 }
 

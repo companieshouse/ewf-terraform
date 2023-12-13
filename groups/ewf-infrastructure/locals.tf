@@ -81,9 +81,11 @@ locals {
   parameter_store_path_prefix = "/${var.application}/${var.environment}"
   
   parameter_store_secrets = {
-    ewf_backend_inputs = local.ewf_bep_data
-    ansible_inputs     = jsonencode(local.ewf_bep_ansible_inputs)
-    ewf_cron_entries   = data.template_file.ewf_cron_file.rendered
-    ewf_fess_token     = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
+    frontend_inputs         = local.ewf_fe_data
+    frontend_ansible_inputs = jsonencode(local.ewf_fe_ansible_inputs)
+    backend_inputs          = local.ewf_bep_data
+    backend_ansible_inputs  = jsonencode(local.ewf_bep_ansible_inputs)
+    backend_cron_entries    = data.template_file.ewf_cron_file.rendered
+    backend_fess_token      = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
   }
 }
