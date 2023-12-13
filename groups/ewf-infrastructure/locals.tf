@@ -11,6 +11,7 @@ locals {
 
   kms_keys_data          = data.vault_generic_secret.kms_keys.data
   security_kms_keys_data = data.vault_generic_secret.security_kms_keys.data
+  account_ssm_key_arn    = local.kms_keys_data["ssm"]
   logs_kms_key_id        = local.kms_keys_data["logs"]
   sns_kms_key_id         = local.kms_keys_data["sns"]
   ssm_kms_key_id         = local.security_kms_keys_data["session-manager-kms-key-arn"]
@@ -75,5 +76,14 @@ locals {
     Application = upper(var.application)
     Region      = var.aws_region
     Account     = var.aws_account
+  }
+
+  parameter_store_path_prefix = "/${var.application}/${var.environment}"
+  
+  parameter_store_secrets = {
+    ewf_backend_inputs = local.ewf_bep_data
+    ansible_inputs     = jsonencode(local.ewf_bep_ansible_inputs)
+    ewf_cron_entries   = data.template_file.ewf_cron_file.rendered
+    ewf_fess_token     = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
   }
 }
