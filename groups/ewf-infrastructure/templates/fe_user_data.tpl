@@ -2,10 +2,10 @@
 # Redirect the user-data output to the console logs
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 
+GET_PARAM_COMMAND="/usr/local/bin/aws ssm get-parameter --with-decryption --region ${REGION} --output text --query Parameter.Value --name"
+
 #Create key:value variable
-cat <<EOF >>inputs.json
-${EWF_FRONTEND_INPUTS}
-EOF
+$${GET_PARAM_COMMAND} '${EWF_FRONTEND_INPUTS_PATH}' > inputs.json
 #Update Nagios registration script with relevant template
 cp /usr/local/bin/nagios-host-add.sh /usr/local/bin/nagios-host-add.j2
 REPLACE=EWF_Web_${HERITAGE_ENVIRONMENT} /usr/local/bin/j2 /usr/local/bin/nagios-host-add.j2 > /usr/local/bin/nagios-host-add.sh
@@ -20,4 +20,5 @@ rm /etc/httpd/conf.d/perl.conf
 #Create and populate the perl config
 /usr/local/bin/j2 -f json /etc/httpd/conf.d/ewf_perl.conf.j2 inputs.json > /etc/httpd/conf.d/ewf_perl.conf
 #Run Ansible playbook for Frontend deployment using provided inputs
-/usr/local/bin/ansible-playbook /root/frontend_deployment.yml -e '${ANSIBLE_INPUTS}'
+$${GET_PARAM_COMMAND} '${ANSIBLE_INPUTS_PATH}' > /root/ansible_inputs.json
+/usr/local/bin/ansible-playbook /root/frontend_deployment.yml -e '@/root/ansible_inputs.json'
