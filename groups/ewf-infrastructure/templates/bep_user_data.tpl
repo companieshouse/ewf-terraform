@@ -7,7 +7,7 @@ GET_PARAM_COMMAND="/usr/local/bin/aws ssm get-parameter --with-decryption --regi
 #Create key:value variable
 $${GET_PARAM_COMMAND} '${EWF_BACKEND_INPUTS_PATH}' > inputs.json
 #Create cron file and set crontab for EWF user:
-$${GET_PARAM_COMMAND} '${EWF_CRON_ENTRIES_PATH}' > /root/cronfile
+$${GET_PARAM_COMMAND} '${EWF_CRON_ENTRIES_PATH}' | base64 -d | gunzip > /root/cronfile
 crontab -u ewf /root/cronfile
 #Set FESS_TOKEN
 FESS_TOKEN=$($${GET_PARAM_COMMAND} '${EWF_FESS_TOKEN_PATH}')
