@@ -9,6 +9,8 @@ locals {
   ewf_fe_data  = data.vault_generic_secret.ewf_fe_data.data_json
   ewf_bep_data = data.vault_generic_secret.ewf_bep_data.data_json
 
+  dba_dev_cidrs_list = jsondecode(data.vault_generic_secret.ewf_rds_data.data_json)["dba-dev-cidrs"]
+
   kms_keys_data          = data.vault_generic_secret.kms_keys.data
   security_kms_keys_data = data.vault_generic_secret.security_kms_keys.data
   account_ssm_key_arn    = local.kms_keys_data["ssm"]

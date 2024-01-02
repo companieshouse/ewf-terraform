@@ -52,6 +52,17 @@ resource "aws_security_group_rule" "rds_cloud_ingress" {
   security_group_id = module.ewf_rds_security_group.this_security_group_id
 }
 
+resource "aws_security_group_rule" "dba_dev_ingress" {
+  for_each = toset(local.dba_dev_cidrs_list)
+
+  type              = "ingress"
+  from_port         = 1521
+  to_port           = 1521
+  protocol          = "tcp"
+  cidr_blocks       = [each.value]
+  security_group_id = module.ewf_rds_security_group.this_security_group_id
+}
+
 # ------------------------------------------------------------------------------
 # RDS EWF
 # ------------------------------------------------------------------------------
