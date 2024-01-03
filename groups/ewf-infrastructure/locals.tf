@@ -84,7 +84,7 @@ locals {
     frontend_inputs         = local.ewf_fe_data
     frontend_ansible_inputs = jsonencode(local.ewf_fe_ansible_inputs)
     backend_inputs          = local.ewf_bep_data
-    backend_ansible_inputs  = jsonencode(local.ewf_bep_ansible_inputs)
+    backend_ansible_inputs  = base64gzip(jsonencode(local.ewf_bep_ansible_inputs))
     backend_cron_entries    = base64gzip(data.template_file.ewf_cron_file.rendered)
     backend_fess_token      = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
   }
