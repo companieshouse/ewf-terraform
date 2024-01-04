@@ -22,7 +22,7 @@ rm /etc/httpd/conf.d/welcome.conf
 rm /etc/httpd/conf.d/ssl.conf
 rm /etc/httpd/conf.d/perl.conf
 #Run Ansible playbook for Backend deployment using provided inputs
-$${GET_PARAM_COMMAND} '${ANSIBLE_INPUTS_PATH}' > /root/ansible_inputs.json
+$${GET_PARAM_COMMAND} '${ANSIBLE_INPUTS_PATH}' | base64 -d | gunzip > /root/ansible_inputs.json
 echo "Deploying ${APP_VERSION}"
 /usr/local/bin/ansible-playbook /root/backend_deployment.yml -e '@/root/ansible_inputs.json'
 # Update hostname and reboot
