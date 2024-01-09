@@ -148,7 +148,7 @@ module "rds_start_stop_schedule" {
 }
 
 module "rds_cloudwatch_alarms" {
-  source = "git@github.com:companieshouse/terraform-modules//aws/oracledb_cloudwatch_alarms?ref=tags/1.0.173"
+  source = "git@github.com:companieshouse/terraform-modules//aws/oracledb_cloudwatch_alarms?ref=tags/1.0.236"
 
   db_instance_id         = module.ewf_rds.this_db_instance_id
   db_instance_shortname  = upper(var.application)
