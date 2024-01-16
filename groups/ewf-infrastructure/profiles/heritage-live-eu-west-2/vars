@@ -54,8 +54,8 @@ nfs_mounts = {
 
 # RDS Instance settings
 instance_class          = "db.m5.2xlarge"
-allocated_storage       = 1500
-maximum_storage         = 1600
+allocated_storage       = 3000
+maximum_storage         = 3000
 backup_retention_period = 14
 multi_az                = true
 rds_maintenance_window  = "Sat:10:00-Sat:13:00"
