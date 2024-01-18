@@ -86,9 +86,10 @@ module "fe_asg" {
   root_block_device = [
     {
       volume_size = "40"
-      volume_type = "gp2"
+      volume_type = "gp3"
       encrypted   = true
-      iops        = 0
+      iops        = "3000"
+      throughput  = "125"
     },
   ]
   # Auto scaling group
