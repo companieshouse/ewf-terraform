@@ -38,7 +38,7 @@ bep_max_size = 1
 bep_desired_capacity = 1
 
 # CVO Mounts
-nfs_server = "10.104.9.145"
+nfs_server = "cvonfs.development.heritage.aws.internal"
 nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
 nfs_mounts = {
     ewf_image = {
