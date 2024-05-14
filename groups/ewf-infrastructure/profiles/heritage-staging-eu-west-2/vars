@@ -31,7 +31,7 @@ bep_max_size = 1
 bep_desired_capacity = 1
 
 # CVO Mounts
-nfs_server = "192.168.255.19"
+nfs_server = "192.168.255.24"
 nfs_mount_destination_parent_dir = "/-"
 nfs_mounts = {
     # AWS NFS
