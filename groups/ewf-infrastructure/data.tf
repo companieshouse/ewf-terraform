@@ -138,7 +138,7 @@ data "aws_acm_certificate" "acm_cert" {
 # EWF Frontend data
 # ------------------------------------------------------------------------------
 data "aws_ami" "ewf_fe" {
-  owners      = [data.vault_generic_secret.account_ids.data["development"]]
+  owners      = [local.account_ids["development"]]
   most_recent = var.fe_ami_name == "ewf-frontend-*" ? true : false
 
   filter {
@@ -183,7 +183,7 @@ data "template_cloudinit_config" "fe_userdata_config" {
 # EWF Backend data
 # ------------------------------------------------------------------------------
 data "aws_ami" "ewf_bep" {
-  owners      = [data.vault_generic_secret.account_ids.data["development"]]
+  owners      = [local.account_ids["development"]]
   most_recent = var.bep_ami_name == "ewf-frontend-*" ? true : false
 
   filter {

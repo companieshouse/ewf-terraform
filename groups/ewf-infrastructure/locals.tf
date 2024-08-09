@@ -1,7 +1,5 @@
-# ------------------------------------------------------------------------
-# Locals
-# ------------------------------------------------------------------------
 locals {
+  account_ids = data.vault_generic_secret.account_ids.data
   admin_cidrs  = values(data.vault_generic_secret.internal_cidrs.data)
   s3_releases  = data.vault_generic_secret.s3_releases.data
   ewf_ec2_data = data.vault_generic_secret.ewf_ec2_data.data
