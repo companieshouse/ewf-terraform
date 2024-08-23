@@ -107,6 +107,8 @@ module "ewf_rds" {
   performance_insights_kms_key_id       = data.aws_kms_key.rds.arn
   performance_insights_retention_period = 7
 
+  ca_cert_identifier = "rds-ca-rsa2048-g1"
+
   # RDS Security Group
   vpc_security_group_ids = [
     module.ewf_rds_security_group.this_security_group_id,
