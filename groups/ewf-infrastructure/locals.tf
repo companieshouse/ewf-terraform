@@ -8,6 +8,10 @@ locals {
   ewf_bep_data = data.vault_generic_secret.ewf_bep_data.data_json
 
   dba_dev_cidrs_list = jsondecode(data.vault_generic_secret.ewf_rds_data.data_json)["dba-dev-cidrs"]
+  cdp_eu_west_2_lookups = lookup(jsondecode(data.vault_generic_secret.ewf_rds_data.data_json), "cdp_eu_west_2_lookups", {})
+  cdp_development_eu_west_2_lookups = lookup(jsondecode(data.vault_generic_secret.ewf_rds_data.data_json), "cdp_development_eu_west_2_lookups", {})
+  cdp_staging_eu_west_2_lookups = lookup(jsondecode(data.vault_generic_secret.ewf_rds_data.data_json), "cdp_staging_eu_west_2_lookups", {})
+  cdp_live_eu_west_2_lookups = lookup(jsondecode(data.vault_generic_secret.ewf_rds_data.data_json), "cdp_live_eu_west_2_lookups", {})
 
   kms_keys_data          = data.vault_generic_secret.kms_keys.data
   security_kms_keys_data = data.vault_generic_secret.security_kms_keys.data
@@ -88,4 +92,22 @@ locals {
     backend_cron_entries    = base64gzip(data.template_file.ewf_cron_file.rendered)
     backend_fess_token      = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
   }
+
+  lookup_results = merge(
+    { for result in module.cdp_eu_west_2_lookups : result.account_id => result.subnet_cidrs },
+    { for result in module.cdp_development_eu_west_2_lookups : result.account_id => result.subnet_cidrs },
+    { for result in module.cdp_staging_eu_west_2_lookups : result.account_id => result.subnet_cidrs },
+    { for result in module.cdp_live_eu_west_2_lookups : result.account_id => result.subnet_cidrs }
+  )
+
+  subnet_security_group_rules = coalesce(merge([
+    for account_id, cidrs in local.lookup_results : {
+      for subnet_name, cidr_range in cidrs : cidr_range => {
+        account_id = account_id
+        description = "Ingress access from the ${subnet_name} subnet in ${account_id}"
+        subnet_name = subnet_name
+      }
+    }
+  ]...),{})
+
 }
