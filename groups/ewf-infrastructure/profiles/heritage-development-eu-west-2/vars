@@ -75,12 +75,6 @@ auto_minor_version_upgrade  = true
 
 # RDS Access
 rds_cloud_access = {
-  "cdp account sub-data-a subnet" = "10.87.9.0/24",
-  "cdp account sub-data-b subnet" = "10.87.10.0/24",
-  "cdp account sub-data-c subnet" = "10.87.11.0/24",
-  "cdp-development account sub-data-a subnet" = "10.109.9.0/24",
-  "cdp-development account sub-data-b subnet" = "10.109.10.0/24",
-  "cdp-development account sub-data-c subnet" = "10.109.11.0/24",
   "mesos_euw2a" = "10.75.40.0/21",
   "mesos_euw2b" = "10.75.80.0/21",
   "mesos_euw2c" = "10.75.120.0/21"
