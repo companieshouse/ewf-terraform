@@ -187,5 +187,6 @@
 30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
 5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
 */20 7-18 * * * /home/ewf/supportscripts/LockCheck.sh >/dev/null 2>&1
+0 6 * * * /home/ewf/supportscripts/failedPayRefs.sh >/dev/null 2>&1
 ####################################SUPPORT SECTION END##############################
 
