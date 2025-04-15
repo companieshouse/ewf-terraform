@@ -154,7 +154,7 @@
 20 6 * * * /home/ewf/efbackend/produceFTPStats.sh RejectsToRefundReport 172.16.200.33 ${ USER } ${ PASSWORD } yesterday >/dev/null 2>&1
 20 5 * * * /home/ewf/efbackend/produceStats.sh RejectsToRefundReport "internalstats@companieshouse.gov.uk" yesterday >/dev/null 2>&1
 40 23 * * * /home/ewf/chd3backend/paymentTXReport.sh >/dev/null 2>&1
-29 8-18 * * 1-5 /home/ewf/efbackend/produceStats.sh SupportHourlyStatsReport "mwilliams5@companieshouse.gov.uk,dcornelius@companieshouse.gov.uk,sreadman@companieshouse.gov.uk,pparr@companieshouse.gov.uk" >/dev/null 2>&1
+29 8-18 * * 1-5 /home/ewf/efbackend/produceStats.sh SupportHourlyStatsReport "dcornelius@companieshouse.gov.uk,sreadman@companieshouse.gov.uk" >/dev/null 2>&1
 0 11,16,20 * * * /home/ewf/efbackend/produceStats.sh SupportHourlyStatsReport "678104@gmail.com" >/dev/null 2>&1
 #################################STATS GENERATION END#############################
 #
@@ -167,7 +167,7 @@
 */1 * * * * /home/ewf/supportscripts/errorlogcheck.sh -700 >/dev/null 2>&1
 #1 6 * * 1 /home/ewf/supportscripts/getEreminderSignups.sh >/dev/null 2>&1
 1 5 1 * * /home/ewf/supportscripts/BCD_EremSignUp.sh >/dev/null 2>&1
-*/15 7-18 * * * /home/ewf/supportscripts/status7TNEP.sh >/dev/null 2>&1
+*/15 7-18 * * 1-5 /home/ewf/supportscripts/status7TNEP.sh >/dev/null 2>&1
 */30 7-18 * * * /home/ewf/supportscripts/BCD_EmailWaiting.sh >/dev/null 2>&1
 4,34 * * * * /home/ewf/supportscripts/filinqueuecheck.sh email >/dev/null 2>&1
 */15 7-18 * * * /home/ewf/efbackend/updateGenBarcodeSub.sh >/dev/null 2>&1
@@ -181,12 +181,13 @@
 0 7,12,16,18 * * 1-5 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
 0 10 * * 0,6 /home/ewf/supportscripts/updatedb.sh >/dev/null 2>&1
 45 0-23 * * * /home/ewf/supportscripts/checkForRecentFilings.sh >/dev/null 2>&1
-5 7-17 * * * /home/ewf/efGenFail.sh >/dev/null 2>&1
-15 7-18 * * * /home/ewf/PresInsertFail.sh >/dev/null 2>&1
+5 7-17 * * * /home/ewf/supportscripts/efGenFail.sh >/dev/null 2>&1
+15 7-18 * * * /home/ewf/supportscripts/PresInsertFail.sh >/dev/null 2>&1
 ######## Check for failed auth code request fails
 30 7 * * * /home/ewf/supportscripts/getewfauthfail.sh email >/dev/null 2>&1
 5 8-17 * * * /home/ewf/supportscripts/checkEmailFail.sh >/dev/null 2>&1
-*/20 7-18 * * * /home/ewf/supportscripts/LockCheck.sh >/dev/null 2>&1
+*/30 6-18 * * * /home/ewf/supportscripts/CertsUpdate.sh >/dev/null 2>&1
+0 5 * * 1-5 /home/ewf/supportscripts/EWFAdminUserReset.sh >/dev/null 2>&1
 0 6 * * * /home/ewf/supportscripts/failedPayRefs.sh >/dev/null 2>&1
 ####################################SUPPORT SECTION END##############################
 
