@@ -134,6 +134,10 @@ data "aws_acm_certificate" "acm_cert" {
   most_recent = true
 }
 
+data "aws_ec2_managed_prefix_list" "concourse" {
+  name = "shared-services-management-cidrs"
+}
+
 # ------------------------------------------------------------------------------
 # EWF Frontend data
 # ------------------------------------------------------------------------------
