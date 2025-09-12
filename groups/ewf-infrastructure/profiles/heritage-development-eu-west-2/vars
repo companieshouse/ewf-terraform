@@ -80,6 +80,8 @@ rds_cloud_access = {
   "mesos_euw2c" = "10.75.120.0/21"
 }
 
+rds_concourse_access = true
+
 rds_onpremise_access = [
   "192.168.90.0/24"
 ]

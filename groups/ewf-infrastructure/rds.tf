@@ -76,7 +76,7 @@ resource "aws_security_group_rule" "dba_dev_ingress" {
 }
 
 resource "aws_security_group_rule" "concourse_ingress" {
-  count = var.environment == "development" ? 1 : 0
+  count = var.rds_concourse_access ? 1 : 0
 
   description       = "Ingress from Concourse"
   type              = "ingress"
