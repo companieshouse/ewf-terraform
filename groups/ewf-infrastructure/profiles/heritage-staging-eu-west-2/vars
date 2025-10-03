@@ -31,8 +31,12 @@ bep_max_size = 1
 bep_desired_capacity = 1
 
 # CVO Mounts
-nfs_server = "192.168.255.24"
+nfs_server = "cvodata-n2.staging.heritage.aws.internal"
+nfs_finance_server = "cvodata.staging.finance.aws.internal"
+
 nfs_mount_destination_parent_dir = "/-"
+nfs_finance_mount_destination_parent_dir = "/finance_staging_e5fs/data/"
+
 nfs_mounts = {
     # AWS NFS
     ewf_image = {
@@ -51,6 +55,12 @@ nfs_mounts = {
       local_mount_point = "/mnt/nfs/filings/recent_filings"
     }
   }
+
+  nfs_finance_mounts = {
+    upload = {
+      local_mount_point =. "/mnt/nfs/e5_upload"
+    }
+}
 
 # RDS Instance settings
 instance_class          = "db.m5.2xlarge"

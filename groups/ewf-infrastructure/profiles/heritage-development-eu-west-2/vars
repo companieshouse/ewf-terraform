@@ -39,24 +39,25 @@ bep_desired_capacity = 1
 
 # CVO Mounts
 nfs_server = "cvonfs.development.heritage.aws.internal"
-nfs_mount_destination_parent_dir = "/mnt/nfs/filings"
+nfs_mount_destination_parent_dir = "/-"
 nfs_mounts = {
+    # AWS NFS
     ewf_image = {
-      local_mount_point = "image"
+      local_mount_point = "/mnt/nfs/filings/image"
     },
     ewf_upload = {
-      local_mount_point = "upload"
+      local_mount_point = "/mnt/nfs/filings/upload"
     },
     ewf_submissions = {
-      local_mount_point = "submissions"
+      local_mount_point = "/mnt/nfs/filings/submissions"
     },
     ewf_archive = {
-      local_mount_point = "archive"
+      local_mount_point = "/mnt/nfs/filings/archive"
     },
     ewf_recent_filings = {
-      local_mount_point = "recent_filings"
+      local_mount_point = "/mnt/nfs/filings/recent_filings"
     }
-  }
+}
 
 # RDS Instance settings
 instance_class          = "db.t3.medium"
