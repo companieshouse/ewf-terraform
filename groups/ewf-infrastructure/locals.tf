@@ -68,8 +68,10 @@ locals {
     heritage_environment       = var.environment
     version                    = var.bep_app_release_version
     default_nfs_server_address = var.nfs_server
+    finance_nfs_server_address = var.nfs_finance_server
     mounts_parent_dir          = var.nfs_mount_destination_parent_dir
     mounts                     = var.nfs_mounts
+    finance_mounts             = var.nfs_finance_mounts
     region                     = var.aws_region
     cw_log_files               = local.bep_cw_logs
     cw_agent_user              = "root"
