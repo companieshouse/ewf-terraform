@@ -100,11 +100,11 @@ variable "nfs_mounts" {
 
 variable "nfs_finance_mounts" {
   type        = map(any)
-  description = "A map of objects which contains 
+  description = "A map of objects which contains mount details for each mount path required."
   default = {
-    SH_NFSTest = {                  # The name of
-      local_mount_point = "folder", # The name of
-      mount_options = [             # Traditional
+    SH_NFSTest = {                  # The name of the NFS Share from the NFS Server
+      local_mount_point = "folder", # The name of the local folder to mount to if the share name is not wanted
+      mount_options = [             # Traditional mount options as documented for any NFS Share mounts
         "rw",
         "wsize=8192"
       ]
