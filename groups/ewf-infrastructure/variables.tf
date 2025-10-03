@@ -72,6 +72,12 @@ variable "nfs_server" {
   default     = null
 }
 
+variable "nfs_finance_server" {
+  type        = string
+  description = "The name or IP of the environment specific NFS server"
+  default     = null
+}
+
 variable "nfs_mount_destination_parent_dir" {
   type        = string
   description = "The parent folder that all NFS shares should be mounted inside on the EC2 instance"
@@ -85,6 +91,20 @@ variable "nfs_mounts" {
     SH_NFSTest = {                  # The name of the NFS Share from the NFS Server
       local_mount_point = "folder", # The name of the local folder to mount to if the share name is not wanted
       mount_options = [             # Traditional mount options as documented for any NFS Share mounts
+        "rw",
+        "wsize=8192"
+      ]
+    }
+  }
+}
+
+variable "nfs_finance_mounts" {
+  type        = map(any)
+  description = "A map of objects which contains 
+  default = {
+    SH_NFSTest = {                  # The name of
+      local_mount_point = "folder", # The name of
+      mount_options = [             # Traditional
         "rw",
         "wsize=8192"
       ]
