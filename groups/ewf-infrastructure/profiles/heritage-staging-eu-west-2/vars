@@ -85,6 +85,8 @@ rds_onpremise_access = [
   "192.168.90.0/24"
 ]
 
+rds_concourse_access = true
+
 rds_ingress_groups = [
   "ewf-frontend-tuxedo-staging*",
   "sgr-admin-sites-asg-*",
