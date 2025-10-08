@@ -90,10 +90,10 @@ locals {
   parameter_store_path_prefix = "/${var.application}/${var.environment}"
 
   bep_finance_nfs_parameter_store_secrets = var.bep_mount_finance_nfs_share ? {
-    backend_finance_mount   = base64gzip(data.template_file.finance_fstab_entry[0].rendered)
-    backend_ewf_user        = local.ewf_user
-    backend_finance_gid     = local.finance_gid
-    backend_finance_group   = local.finance_group
+    backend_finance_mount = base64gzip(data.template_file.finance_fstab_entry[0].rendered)
+    backend_ewf_user      = local.ewf_user
+    backend_finance_gid   = local.finance_gid
+    backend_finance_group = local.finance_group
   } : {}
 
   parameter_store_secrets = merge(
