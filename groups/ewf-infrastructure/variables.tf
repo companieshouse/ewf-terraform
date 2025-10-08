@@ -360,3 +360,9 @@ variable "bep_cw_logs" {
   description = "Map of log file information; used to create log groups, IAM permissions and passed to the application to configure remote logging"
   default     = {}
 }
+
+variable "bep_mount_finance_nfs_share" {
+  default     = false
+  description = "Defines whether the finance share should be mounted"
+  type        = bool
+}
