@@ -11,7 +11,7 @@ $${GET_PARAM_COMMAND} '${EWF_CRON_ENTRIES_PATH}' | base64 -d | gunzip > /root/cr
 crontab -u ewf /root/cronfile
 #Add finance mount and group to staging and live here as we can't use RHEL6 base ami anymore to get the ansible to work
 EWF_ENV=$($${GET_PARAM_COMMAND} '${HERITAGE_ENVIRONMENT}')
-if [ $EWF_ENV == 'Staging'] || [$EWF_ENV == 'Live']
+if [ $EWF_ENV == 'Staging' ] || [ $EWF_ENV == 'Live' ]
 then
 FINANCE_GID=$($${GET_PARAM_COMMAND} '${FINANCE_BE_GID}')
 FINANCE_GROUP=$($${GET_PARAM_COMMAND} '${FINANCE_BE_GROUP}')
