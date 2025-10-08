@@ -215,6 +215,8 @@ data "template_file" "ewf_cron_file" {
 }
 
 data "template_file" "finance_fstab_entry" {
+  count = var.bep_mount_finance_nfs_share ? 1 : 0
+
   template = file("${path.module}/templates/${var.aws_profile}/finance_nfs.tpl")
 }
 

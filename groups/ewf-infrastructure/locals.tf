@@ -88,19 +88,25 @@ locals {
   }
 
   parameter_store_path_prefix = "/${var.application}/${var.environment}"
-  
-  parameter_store_secrets = {
-    frontend_inputs         = local.ewf_fe_data
-    frontend_ansible_inputs = jsonencode(local.ewf_fe_ansible_inputs)
-    backend_inputs          = local.ewf_bep_data
-    backend_ansible_inputs  = base64gzip(jsonencode(local.ewf_bep_ansible_inputs))
-    backend_cron_entries    = base64gzip(data.template_file.ewf_cron_file.rendered)
-    backend_fess_token      = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
-    backend_finance_mount   = base64gzip(data.template_file.finance_fstab_entry.rendered)
+
+  bep_finance_nfs_parameter_store_secrets = var.bep_mount_finance_nfs_share ? {
+    backend_finance_mount   = base64gzip(data.template_file.finance_fstab_entry[0].rendered)
     backend_ewf_user        = local.ewf_user
     backend_finance_gid     = local.finance_gid
     backend_finance_group   = local.finance_group
-  }
+  } : {}
+
+  parameter_store_secrets = merge(
+    {
+      frontend_inputs         = local.ewf_fe_data
+      frontend_ansible_inputs = jsonencode(local.ewf_fe_ansible_inputs)
+      backend_inputs          = local.ewf_bep_data
+      backend_ansible_inputs  = base64gzip(jsonencode(local.ewf_bep_ansible_inputs))
+      backend_cron_entries    = base64gzip(data.template_file.ewf_cron_file.rendered)
+      backend_fess_token      = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
+    },
+    local.bep_finance_nfs_parameter_store_secrets
+  )
 
   lookup_results = merge(
     { for result in module.cdp_eu_west_2_lookups : result.account_id => result.subnet_cidrs },

@@ -409,3 +409,5 @@ rds_stop_schedule = "cron(0 21 * * ? *)"
 alarm_actions_enabled  = false
 alarm_topic_name       = ""
 alarm_topic_name_ooh   = ""
+
+bep_mount_finance_nfs_share = true
