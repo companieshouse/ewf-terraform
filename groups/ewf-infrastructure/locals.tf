@@ -1,11 +1,14 @@
 locals {
-  account_ids = data.vault_generic_secret.account_ids.data
-  admin_cidrs  = values(data.vault_generic_secret.internal_cidrs.data)
-  s3_releases  = data.vault_generic_secret.s3_releases.data
-  ewf_ec2_data = data.vault_generic_secret.ewf_ec2_data.data
-  ewf_rds_data = data.vault_generic_secret.ewf_rds_data.data
-  ewf_fe_data  = data.vault_generic_secret.ewf_fe_data.data_json
-  ewf_bep_data = data.vault_generic_secret.ewf_bep_data.data_json
+  account_ids   = data.vault_generic_secret.account_ids.data
+  admin_cidrs   = values(data.vault_generic_secret.internal_cidrs.data)
+  s3_releases   = data.vault_generic_secret.s3_releases.data
+  ewf_ec2_data  = data.vault_generic_secret.ewf_ec2_data.data
+  ewf_rds_data  = data.vault_generic_secret.ewf_rds_data.data
+  ewf_fe_data   = data.vault_generic_secret.ewf_fe_data.data_json
+  ewf_bep_data  = data.vault_generic_secret.ewf_bep_data.data_json
+  ewf_user      = "ewf"
+  finance_gid   = "1003"
+  finance_group = "e5fsadmin"
 
   dba_dev_cidrs_list = jsondecode(data.vault_generic_secret.ewf_rds_data.data_json)["dba-dev-cidrs"]
   cdp_eu_west_2_lookups = lookup(jsondecode(data.vault_generic_secret.ewf_rds_data.data_json), "cdp_eu_west_2_lookups", {})
@@ -93,6 +96,10 @@ locals {
     backend_ansible_inputs  = base64gzip(jsonencode(local.ewf_bep_ansible_inputs))
     backend_cron_entries    = base64gzip(data.template_file.ewf_cron_file.rendered)
     backend_fess_token      = data.vault_generic_secret.ewf_fess_data.data["fess_token"]
+    backend_finance_mount   = base64gzip(data.template_file.finance_fstab_entry.rendered)
+    backend_ewf_user        = local.ewf_user
+    backend_finance_gid     = local.finance_gid
+    backend_finance_group   = local.finance_group
   }
 
   lookup_results = merge(

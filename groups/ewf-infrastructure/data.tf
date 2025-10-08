@@ -214,6 +214,10 @@ data "template_file" "ewf_cron_file" {
   }
 }
 
+data "template_file" "finance_fstab_entry" {
+  template = file("${path.module}/templates/${var.aws_profile}/finance_nfs.tpl")
+}
+
 data "template_file" "bep_userdata" {
   template = file("${path.module}/templates/bep_user_data.tpl")
 
@@ -225,6 +229,10 @@ data "template_file" "bep_userdata" {
     ANSIBLE_INPUTS_PATH     = "${local.parameter_store_path_prefix}/backend_ansible_inputs"
     EWF_CRON_ENTRIES_PATH   = "${local.parameter_store_path_prefix}/backend_cron_entries"
     EWF_FESS_TOKEN_PATH     = "${local.parameter_store_path_prefix}/backend_fess_token"
+    EWF_FINANCE_MOUNT_PATH  = "${local.parameter_store_path_prefix}/backend_finance_mount"
+    EWF_BE_USER             = "${local.parameter_store_path_prefix}/backend_ewf_user"
+    FINANCE_BE_GID          = "${local.parameter_store_path_prefix}/backend_finance_gid"
+    FINANCE_BE_GROUP        = "${local.parameter_store_path_prefix}/backend_finance_group"
   }
 }
 
