@@ -10,15 +10,14 @@ $${GET_PARAM_COMMAND} '${EWF_BACKEND_INPUTS_PATH}' > inputs.json
 $${GET_PARAM_COMMAND} '${EWF_CRON_ENTRIES_PATH}' | base64 -d | gunzip > /root/cronfile
 crontab -u ewf /root/cronfile
 #Add finance mount and group to staging and live here as we can't use RHEL6 base ami anymore to get the ansible to work
-EWF_ENV=$($${GET_PARAM_COMMAND} '${HERITAGE_ENVIRONMENT}')
-if [[ $EWF_ENV == 'Staging' ]] || [[ $EWF_ENV == 'Live' ]]
-then
+EWF_ENV="${HERITAGE_ENVIRONMENT}"
+if [[ "$${EWF_ENV}" == 'Staging' ]] || [[ "$${EWF_ENV}" == 'Live' ]]; then
 FINANCE_GID=$($${GET_PARAM_COMMAND} '${FINANCE_BE_GID}')
 FINANCE_GROUP=$($${GET_PARAM_COMMAND} '${FINANCE_BE_GROUP}')
 EWF_USER=$($${GET_PARAM_COMMAND} '${EWF_BE_USER}')
 groupadd -g $FINANCE_GID $FINANCE_GROUP
 usermod -a -G $FINANCE_GID $EWF_USER
-mkdir /mnt/nfs/e5_upload
+mkdir -p /mnt/nfs/e5_upload > /dev/null
 $${GET_PARAM_COMMAND} '${EWF_FINANCE_MOUNT_PATH}' | base64 -d | gunzip >> /etc/fstab
 fi
 #Set FESS_TOKEN
