@@ -91,6 +91,30 @@ module "ewf_external_alb" {
   )
 }
 
+resource "aws_lb_listener_rule" "redirects" {
+  listener_arn = module.ewf_external_alb.https_listener_arns[0]
+  priority     = 10
+
+  action {
+    type          = "redirect"
+
+    redirect {
+      path        = "/"
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+
+  condition {
+    path_pattern {
+      values           = [
+        "account/login*"
+      ]
+    }
+  }
+}
+
 #--------------------------------------------
 # External ALB CloudWatch Alarms
 #--------------------------------------------
