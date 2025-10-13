@@ -108,8 +108,9 @@ resource "aws_lb_listener_rule" "redirects_external" {
 
   condition {
     path_pattern {
-      values           = [
-        "/account/login*"
+      values = [
+        "/account*",
+        "/password-recovery*"
       ]
     }
   }
