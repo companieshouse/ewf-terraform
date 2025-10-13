@@ -116,7 +116,7 @@ module "ewf_internal_alb" {
   )
 }
 
-resource "aws_lb_listener_rule" "redirects" {
+resource "aws_lb_listener_rule" "redirects_internal" {
   listener_arn = module.ewf_internal_alb.https_listener_arns[0]
   priority     = 10
 
