@@ -91,7 +91,7 @@ module "ewf_external_alb" {
   )
 }
 
-resource "aws_lb_listener_rule" "redirects" {
+resource "aws_lb_listener_rule" "redirects_external" {
   listener_arn = module.ewf_external_alb.https_listener_arns[0]
   priority     = 10
 
